@@ -1,0 +1,29 @@
+
+/*body {*/
+/*    background-size: cover;*/
+/*    background-position: center center;*/
+/*    background-image: url("images/halloween header optimized.jpeg");*/
+/*    background-repeat: no-repeat;*/
+/*    width: 100%;*/
+/*    height: 100vh;*/
+/*}*/
+.container-fluid {
+    height: 400px;
+}
+form {
+    /*border: 1px solid blue;*/
+    padding: 50px 60px;
+    margin-top: 10%;
+    -webkit-box-shadow: 1px 3px 26px -18px rgba(12,100,240,1);
+    -moz-box-shadow: 1px 3px 26px -18px rgba(12,100,240,1);
+    box-shadow: 1px 3px 26px -18px rgba(12,100,240,1);
+}
+.bg {
+    padding-top: 1%;
+}
+
+.responsive {
+    margin-left: 20%;
+    width: 60%;
+    height: auto;
+}
