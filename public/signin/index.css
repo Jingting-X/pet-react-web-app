@@ -14,6 +14,7 @@ form {
     /*border: 1px solid blue;*/
     padding: 50px 60px;
     margin-top: 10%;
+    /*add shadow from cssmatic.com*/
     -webkit-box-shadow: 1px 3px 26px -18px rgba(12,100,240,1);
     -moz-box-shadow: 1px 3px 26px -18px rgba(12,100,240,1);
     box-shadow: 1px 3px 26px -18px rgba(12,100,240,1);
