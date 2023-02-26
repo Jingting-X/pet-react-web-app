@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css'
-
+import users from './users.json'
+import AdminUserManagement from "./admin_user_management";
 
 const AdminNav = () => {
     return (
@@ -15,89 +16,10 @@ const AdminNav = () => {
                 </li>
             </ul>
             <ul className="list-group rounded-0">
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"/>
-                    <i className="fa fa-pencil me-3"/>
-                </li>
-
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-                <li className="list-group-item d-flex align-items-end">
-                    <span className="me-auto">Alice</span>
-                    <i className="fa fa-trash me-3"></i>
-                    <i className="fa fa-pencil me-3"></i>
-                </li>
-
-
+                {
+                    users.map(user =>
+                    <AdminUserManagement user={user}/>)
+                }
             </ul>
         </div>
         );
