@@ -4,8 +4,9 @@
     <link rel="stylesheet" href="../../vendors/boostrap/css/bootstrap.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
+    <link href="calendar.css" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>Home-user-main</title>
+    <title>Home-guest-main</title>
 </head>
 <body>
     <div class="container mt-2">
@@ -31,11 +32,7 @@
                     </a>
                     <a class="list-group-item rounded-5" style="background-color: lightgreen" href="#">
                         <i class="fa-solid fa-bars fa-lg"></i>
-                        <span class="ms-1 d-none d-xl-inline">Setting</span>
-                    </a>
-                    <a class="list-group-item rounded-5" style="background-color: cyan" href="#">
-                        <i class="fa-regular fa-bell fa-lg"></i>
-                        <span class="ms-1 d-none d-xl-inline">Notifications</span>
+                        <span class="ms-1 d-none d-xl-inline">Post</span>
                     </a>
                 </ul>
             </div>
@@ -118,58 +115,80 @@
 
             <!--Right contents-->
             <div class="d-lg-flex flex-column col-lg-3 col-xxl-3 ps-4">
-                <ul class="list-group fw-bold mb-4 rounded-circle text-center"
-                    style="font-size: 20px; color: gray; background-color: lightblue">
-                    Welcome back! XXXX
+                <ul>
+                    <a href="#" class="btn rounded-5 bg-light" style="list-style-type: none">
+                        <span style="font-family: Seravek; font-size: 20px">log in</span>
+                    </a>
+                    <a href="#" class="btn rounded-5 bg-light" style="list-style-type: none">
+                        <span style="font-family: Seravek; font-size: 20px">Sign in</span>
+                    </a>
                 </ul>
-                <ul class="list-group rounded-5" style="overflow-x: auto">
-                    <li class="list-group-item fw-bold bg-light p-3 text-center">
-                        Following
-                    </li>
-                    <li class="list-group-item d-flex bg-light">
-                        <img src="../img/do1.jpeg" class="rounded-circle wd-follow-img">
-                        <div class="ms-3">
-                            <a class="fw-bold" href="#">Friend1</a>
-                            <div class="text-secondary mb-2">@friend1</div>
-                        </div>
-                        <div class="position-relative ms-auto my-1 align-content-center">
-                            <button type="button" class="btn btn-secondary rounded-5 fw-bold">Followed</button>
-                        </div>
-                    </li>
 
-                    <li class="list-group-item d-flex bg-light">
-                        <img src="../img/do2.jpeg" class="rounded-circle wd-follow-img">
-                        <div class="ms-3">
-                            <a class="fw-bold" href="#">Friend2</a>
-                            <div class="text-secondary mb-2">@friend2</div>
-                        </div>
-                        <div class="position-relative ms-auto my-1 align-content-center">
-                            <button type="button" class="btn btn-secondary rounded-5 fw-bold">Followed</button>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item d-flex bg-light">
-                        <img src="../img/do3.jpeg" class="rounded-circle wd-follow-img">
-                        <div class="ms-3">
-                            <a class="fw-bold" href="#">Friend3</a>
-                            <div class="text-secondary mb-2">@friend3</div>
-                        </div>
-                        <div class="position-relative ms-auto my-1 align-content-center">
-                            <button type="button" class="btn btn-secondary rounded-5 fw-bold">Followed</button>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item d-flex bg-light">
-                        <img src="../img/do4.jpeg" class="rounded-circle wd-follow-img">
-                        <div class="ms-3">
-                            <a class="fw-bold" href="#">Friend4</a>
-                            <div class="text-secondary mb-2">@friend4</div>
-                        </div>
-                        <div class="position-relative ms-auto my-1 align-content-center">
-                            <button type="button" class="btn btn-secondary rounded-5 fw-bold">Followed</button>
-                        </div>
-                    </li>
-                </ul>
+                <div class="cldBody">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="top">
+                                        <span id="left">&lt;</span>
+                                        <span id="topDate"></span>
+                                        <span id="right">&gt;</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="week" >
+                                <td>Sun</td>
+                                <td>Mon</td>
+                                <td>Tue</td>
+                                <td>Wed</td>
+                                <td>Thu</td>
+                                <td>Fri</td>
+                                <td>Sat</td>
+                            </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                        </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                            </tr>
+                            <tr>
+                                <td>22</td>
+                                <td>23</td>
+                                <td>24</td>
+                                <td>25</td>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                            </tr>
+                            <tr>
+                                <td>29</td>
+                                <td>30</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody" ></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

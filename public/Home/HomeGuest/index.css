@@ -21,16 +21,6 @@
     font-weight: normal;
 }
 
-.wd-post-image {
-    float: left;
-    width: 250px;
-    height: 250px;
-}
-
-.wd-float-left {
-    float: left;
-}
-
 .wd-image {
     border-radius: 20px;
     float: right;
@@ -59,4 +49,8 @@
 .wd-checkmark-img {
     width: 20px;
     height: 20px;
+}
+
+.wd-post-image {
+    width: 250px;
 }
