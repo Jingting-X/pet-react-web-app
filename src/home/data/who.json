@@ -1,0 +1,26 @@
+[
+  {
+    "_id": 123,
+    "userName": "Friend1",
+    "handle": "friend1",
+    "avatarIcon": "../../img/do1.jpeg"
+  },
+  {
+    "_id": 234,
+    "userName": "Friend2",
+    "handle": "friend2",
+    "avatarIcon": "../../img/do2.jpeg"
+  },
+  {
+    "_id": 345,
+    "userName": "Friend3",
+    "handle": "friend3",
+    "avatarIcon": "../../img/do3.jpeg"
+  },
+  {
+    "_id": 456,
+    "userName": "Friend4",
+    "handle": "friend4",
+    "avatarIcon": "../../img/do4.jpeg"
+  }
+]
