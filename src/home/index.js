@@ -3,7 +3,7 @@ import {Routes, Route} from "react-router";
 import NavigationSidebarGuest from "./navigation-sidebar/index.js";
 import NavigationSidebarUser from "./navigation-sidebar/navigationSidebarUser.js";
 import NavigationSidebarAdmin from "./navigation-sidebar/navigationSidebarAdmin.js";
-import HomeComponent from "./home/ExploreComponent.js";
+import HomeComponent from "./home/HomeComponent.js";
 import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
 import whoReducer from "./reducers/who-reducer";
