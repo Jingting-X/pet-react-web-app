@@ -1,0 +1,10 @@
+
+
+.wd-name:first-child {
+    margin-right: 5%;
+    margin-left: 4%;
+}
+
+.wd-name:nth-child(2) {
+    margin-right: 3%;
+}

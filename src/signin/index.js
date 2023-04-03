@@ -38,7 +38,8 @@ function Signin() {
                    placeholder="Password"
                    onChange={handlePasswordChange}
                    required/>
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button className="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign in</button>
+            <div className="mt-5">Don't have an account? <a href="/signup">Sign up</a></div>
         </form>
 
     );
