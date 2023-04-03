@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import styles from "./style.css";
+import {Link} from "react-router-dom";
 function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,12 +19,11 @@ function Signup() {
     };
 
     return (
-
-            <section className="vh-100" style={{ backgroundColor: "#eee" }}>
+            <section className="vh-100">
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-lg-12 col-xl-11">
-                            <div className="card text-black" style={{borderRadius:"25px"}}>
+                            <div className="card text-black">
                                 <div className="card-body p-md-5">
                                     <div className="row justify-content-center">
                                         <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -92,7 +92,12 @@ function Signup() {
                                                     </div>
 
                                                 </div>
-
+                                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                    <p>
+                                                        Already have an account?{" "}
+                                                        <Link to="/signin">Sign in</Link>
+                                                    </p>
+                                                </div>
                                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                     <button type="button" className="btn btn-primary btn-lg">Sign up
                                                     </button>
@@ -102,7 +107,7 @@ function Signup() {
                                         <div
                                             className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                                             <img
-                                                src="img/dog-signup.jpeg"
+                                                src="../img/dog-signup.jpeg"
                                                 className="img-fluid" alt="Signup image"/>
                                         </div>
                                     </div>

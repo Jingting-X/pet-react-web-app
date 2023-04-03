@@ -8,3 +8,10 @@
 .wd-name:nth-child(2) {
     margin-right: 3%;
 }
+.wd-section {
+    background-color: #eee;
+}
+
+.wd-border {
+    border-radius: 25px;
+}
