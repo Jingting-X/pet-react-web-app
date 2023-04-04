@@ -11,10 +11,10 @@ import Calendar from "./calendar-list/calendar-list-item";
 import WhoToFollowList from "./who-to-follow-list/index.js";
 import WelcomeAdmin from "./welcome-admin";
 import Footnote from "./Footnote";
-
+import postsReducer from "./posts/post-reducer";
 
 const store = configureStore({
-  reducer: {who: whoReducer}
+  reducer: {who: whoReducer, postsData: postsReducer}
 });
 
 function Home() {
