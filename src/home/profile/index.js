@@ -4,6 +4,7 @@ import "./index.css";
 import {Link} from "react-router-dom";
 import PostSummaryList from "../post-summary-list";
 import CreatePostComponent from "./create-post-component";
+import PostList from "../posts/post-list";
 
 
 const ProfileComponent = () => {
@@ -78,7 +79,7 @@ const ProfileComponent = () => {
                     <a className="nav-link" href="#bookmarks.html">Bookmarks</a>
                 </li>
             </ul>
-            <PostSummaryList/>
+            <PostList/>
         </div>
 
     );
