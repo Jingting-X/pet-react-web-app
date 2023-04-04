@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 
-const NavigationSidebarGuest = () => {
+const NavigationSidebarUser = () => {
   const {pathname} = useLocation();
   const paths = pathname.split('/');
   const active = paths[2];
@@ -13,31 +13,31 @@ const NavigationSidebarGuest = () => {
           <span className="ms-1 d-none d-xl-inline">Home</span>
         </Link>
 
-        <Link to="/home/about" className={`list-group-item ${active === 'about' ? 'active' : ''}`}>
+        <Link to="/about" className={`list-group-item ${active === 'about' ? 'active' : ''}`}>
           <i className="fas fa-hashtag fa-lg me-2"></i>
           <span className="ms-1 d-none d-xl-inline">About</span>
         </Link>
 
-        <Link to="/home/event" className={`list-group-item ${active === 'event' ? 'active' : ''}`}>
+        <Link to="/event" className={`list-group-item ${active === 'event' ? 'active' : ''}`}>
           <i className="fa-solid fa-calendar-days fa-lg me-2"></i>
           <span className="ms-1 d-none d-xl-inline">Event</span>
         </Link>
 
-        <Link to="/home/post" className={`list-group-item ${active === 'post' ? 'active' : ''}`}>
+        <Link to="/post" className={`list-group-item ${active === 'post' ? 'active' : ''}`}>
           <i className="fa-solid fa-book fa-lg me-2"></i>
           <span className="ms-1 d-none d-xl-inline">Post</span>
         </Link>
 
-        <Link to="/home/setting" className={`list-group-item ${active === 'setting' ? 'active' : ''}`}>
+        <Link to="/profile" className={`list-group-item ${active === 'profile' ? 'active' : ''}`}>
           <i className="fa-solid fa-bars fa-lg me-2"></i>
-          <span className="ms-1 d-none d-xl-inline">Setting</span>
+          <span className="ms-1 d-none d-xl-inline">Profile</span>
         </Link>
 
-        <Link to="/home/notifications" className={`list-group-item ${active === 'notifications' ? 'active' : ''}`}>
+        <Link to="/notifications" className={`list-group-item ${active === 'notifications' ? 'active' : ''}`}>
           <i className="fa-regular fa-bell fa-lg me-2"></i>
           <span className="ms-1 d-none d-xl-inline">Notifications</span>
         </Link>
       </div>
   )
 };
-export default NavigationSidebarGuest;
+export default NavigationSidebarUser;

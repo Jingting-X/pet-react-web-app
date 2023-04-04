@@ -12,9 +12,12 @@ import WhoToFollowList from "./who-to-follow-list/index.js";
 import WelcomeAdmin from "./welcome-admin";
 import Footnote from "./Footnote";
 import postsReducer from "./posts/post-reducer";
+import profileReducer from "./profile/profile-reducer";
+import ProfileComponent from "./profile";
+import EditProfileComponent from "./profile/edit-profile-component";
 
 const store = configureStore({
-  reducer: {who: whoReducer, postsData: postsReducer}
+  reducer: {who: whoReducer, postsData: postsReducer, profile: profileReducer}
 });
 
 function Home() {
@@ -28,18 +31,21 @@ function Home() {
           <div className="row mt-2">
             <div className="col-2 col-md-2 col-lg-2 col-xl-2">
               {/*<NavigationSidebarGuest/>*/}
-              {/*<NavigationSidebarUser/>*/}
-              <NavigationSidebarAdmin/>
+              <NavigationSidebarUser/>
+              {/*<NavigationSidebarAdmin/>*/}
             </div>
             <div className="col-10 col-md-7 col-lg-7 col-xl-7" style={{"position": "relative"}}>
               <Routes>
-                <Route path="/" element={<HomeComponent/>}/>
+                  <Route index element={<HomeComponent/>}/>
+                  <Route path="home" element={<HomeComponent/>}/>
+                  <Route path="profile" element={<ProfileComponent/>}/>
+                  <Route path="edit-profile" element={<EditProfileComponent/>}/>
               </Routes>
             </div>
             <div className="d-none d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">
               {/*<Calendar/>*/}
-              <WelcomeAdmin/>
-              {/*<WhoToFollowList/>*/}
+              {/*<WelcomeAdmin/>*/}
+              <WhoToFollowList/>
             </div>
           </div>
         </div>
