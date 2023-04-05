@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+// import {useDispatch} from "react-redux";
 function Signin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -11,10 +12,11 @@ function Signin() {
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
-
+    // const dispatch = useDispatch();
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle signup logic here
+        // Handle signin logic here
+        // dispatch(signinReducer(currentUser))
     };
 
     return (
@@ -34,7 +36,9 @@ function Signin() {
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="email"
                                                                className="form-control"
-                                                                placeholder="Email"/>
+                                                               placeholder="Email"
+                                                               onChange={handleEmailChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="d-flex flex-row align-items-center mb-4">
@@ -42,7 +46,9 @@ function Signin() {
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="password"
                                                                className="form-control"
-                                                                placeholder="Password"/>
+                                                               placeholder="Password"
+                                                               onChange={handlePasswordChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
@@ -52,7 +58,10 @@ function Signin() {
                                                     </p>
                                                 </div>
                                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                    <button type="button" className="btn btn-primary btn-lg">Sign in
+                                                    <button type="button"
+                                                            className="btn btn-primary btn-lg"
+                                                            onClick={handleSubmit}
+                                                    >Sign in
                                                     </button>
                                                 </div>
                                             </form>

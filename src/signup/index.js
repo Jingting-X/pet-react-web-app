@@ -2,15 +2,30 @@ import React, {useState} from "react";
 import styles from "./style.css";
 import {Link} from "react-router-dom";
 function Signup() {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value);
+    };
+    const handleLastNameChange = (event) => {
+        setLastName(event.target.value);
+    };
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
-
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+    };
+    const handlePasswordConfirmChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const [selectedRole, setSelectedRole] = useState("option1");
+    const handleRoleChange = (event) => {
+        setSelectedRole(event.target.value);
     };
 
     const handleSubmit = (event) => {
@@ -19,7 +34,7 @@ function Signup() {
     };
 
     return (
-            <section className="vh-100">
+            <section className="vh-100 wd-section">
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-lg-12 col-xl-11">
@@ -34,10 +49,14 @@ function Signup() {
                                                     <div className="form-outline flex-fill mb-0 row wd-name-container">
                                                         <input type="text"
                                                                className="form-control col wd-name"
-                                                               placeholder="First Name"/>
+                                                               placeholder="First Name"
+                                                               onChange={handleFirstNameChange}
+                                                        />
                                                         <input type="text"
                                                                className="form-control col wd-name"
-                                                               placeholder="Last Name"/>
+                                                               placeholder="Last Name"
+                                                               onChange={handleLastNameChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="d-flex flex-row align-items-center mb-4">
@@ -45,7 +64,9 @@ function Signup() {
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="email"
                                                                className="form-control"
-                                                                placeholder="Email"/>
+                                                               placeholder="Email"
+                                                               onChange={handleEmailChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="d-flex flex-row align-items-center mb-4">
@@ -53,7 +74,9 @@ function Signup() {
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="password"
                                                                className="form-control"
-                                                                placeholder="Password"/>
+                                                               placeholder="Password"
+                                                               onChange={handlePasswordChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="d-flex flex-row align-items-center mb-4">
@@ -61,34 +84,41 @@ function Signup() {
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="password"
                                                                className="form-control"
-                                                                placeholder="Confirm Password"/>
+                                                               placeholder="Confirm Password"
+                                                               onChange={handlePasswordConfirmChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 mb-4">
-
                                                     <h6 className="mb-2 pb-1">Role</h6>
                                                     <div className="form-check form-check-inline">
                                                         <input className="form-check-input" type="radio"
-                                                               name="inlineRadioOptions" id="femaleGender"
-                                                               value="option1" checked/>
-                                                        <label className="form-check-label"
-                                                               htmlFor="femaleGender">Personal User</label>
+                                                               name="inlineRadioOptions"
+                                                               value="option1"
+                                                               checked={selectedRole === "option1"}
+                                                               onChange={handleRoleChange}
+                                                        />
+                                                        <label className="form-check-label">Personal User</label>
                                                     </div>
 
                                                     <div className="form-check form-check-inline">
                                                         <input className="form-check-input" type="radio"
-                                                               name="inlineRadioOptions" id="maleGender"
-                                                               value="option2"/>
-                                                        <label className="form-check-label"
-                                                               htmlFor="maleGender">Service Provider</label>
+                                                               name="inlineRadioOptions"
+                                                               value="option2"
+                                                               checked={selectedRole === "option2"}
+                                                               onChange={handleRoleChange}
+                                                        />
+                                                        <label className="form-check-label">Service Provider</label>
                                                     </div>
 
                                                     <div className="form-check form-check-inline">
                                                         <input className="form-check-input" type="radio"
-                                                               name="inlineRadioOptions" id="otherGender"
-                                                               value="option3"/>
-                                                        <label className="form-check-label"
-                                                               htmlFor="otherGender">Admin</label>
+                                                               name="inlineRadioOptions"
+                                                               value="option3"
+                                                               checked={selectedRole === "option3"}
+                                                               onChange={handleRoleChange}
+                                                        />
+                                                        <label className="form-check-label">Admin</label>
                                                     </div>
 
                                                 </div>
@@ -99,7 +129,10 @@ function Signup() {
                                                     </p>
                                                 </div>
                                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                    <button type="button" className="btn btn-primary btn-lg">Sign up
+                                                    <button type="button"
+                                                            className="btn btn-primary btn-lg"
+                                                            onSubmit={handleSubmit}
+                                                    >Sign up
                                                     </button>
                                                 </div>
                                             </form>
