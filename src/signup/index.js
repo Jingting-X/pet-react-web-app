@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import styles from "./style.css";
 import {Link} from "react-router-dom";
 function Signup() {
     const [firstName, setFirstName] = useState("");

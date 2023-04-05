@@ -5,7 +5,6 @@ import Home from "./home";
 import AdminComponent from "./admin";
 import Footnote from "./home/Footnote";
 import './styles/app.css'
-
 import Signin from "./signin";
 import Signup from "./signup";
 
