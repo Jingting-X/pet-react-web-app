@@ -8,6 +8,8 @@ import './styles/app.css'
 import Signin from "./signin";
 import Signup from "./signup";
 import UsersComponent from "./user";
+import DogsScreen from "./dogs";
+import DogsSearch from "./dogs/dogs-search";
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
                         <Route path="/signin" element={<Signin/>}/>
                         <Route path="/signup" element={<Signup/>}/>
                         <Route path="/users" element={<UsersComponent/>}/>
+                        <Route path="/dogs" element={<DogsScreen/>}/>
+                        <Route path="/dogs/search" element={<DogsSearch/>}/>
                     </Routes>
                 </div>
                 <div>
