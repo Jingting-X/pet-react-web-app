@@ -6,6 +6,10 @@ import AdminComponent from "./admin";
 import Footnote from "./home/Footnote";
 import './styles/app.css'
 
+import Signin from "./signin";
+import Signup from "./signup";
+
+
 function App() {
     return (
         <BrowserRouter>
@@ -19,6 +23,9 @@ function App() {
                         <Route path="/" element={<Home/>}/>
                         <Route path="/home/*" element={<Home/>}/>
                         <Route path="/admin" element={<AdminComponent/>}/>
+
+                        <Route path="/signin" element={<Signin/>}/>
+                        <Route path="/signup" element={<Signup/>}/>
                     </Routes>
                 </div>
                 <div>
