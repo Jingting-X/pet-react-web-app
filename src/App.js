@@ -16,6 +16,7 @@ function App() {
                 </div>
                 <div className="content-wrapper">
                     <Routes>
+                        <Route path="/" element={<Home/>}/>
                         <Route path="/home/*" element={<Home/>}/>
                         <Route path="/admin" element={<AdminComponent/>}/>
                     </Routes>
