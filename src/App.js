@@ -7,6 +7,7 @@ import Footnote from "./home/Footnote";
 import './styles/app.css'
 import Signin from "./signin";
 import Signup from "./signup";
+import UsersComponent from "./user";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/admin" element={<AdminComponent/>}/>
                         <Route path="/signin" element={<Signin/>}/>
                         <Route path="/signup" element={<Signup/>}/>
+                        <Route path="/users" element={<UsersComponent/>}/>
                     </Routes>
                 </div>
                 <div>

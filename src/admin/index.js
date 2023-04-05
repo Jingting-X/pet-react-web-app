@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 function AdminComponent() {
     return (
         <div className="row mt-5">
@@ -5,7 +7,7 @@ function AdminComponent() {
                 <div className="card">
                     <div className="card-body text-center">
                         <img src="img/user_management.jpeg" className="w-100 mb-4"/>
-                        <a href="/users" className="btn btn-primary">User Management</a>
+                        <Link to="/users" className="btn btn-primary">User Management</Link>
                     </div>
                 </div>
             </div>
