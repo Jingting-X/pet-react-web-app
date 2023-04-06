@@ -1,32 +1,13 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.content-wrapper {
-    flex: 1;
-}
 
 .wd-footer {
     background-color: lightpink;
 }
 
-.wd-section {
-    background-color: #eee;
-}
 
 .wd-border {
     border-radius: 25px;
 }
 
-.wd-section {
-    background-color: #eee;
-}
-
-.wd-border {
-    border-radius: 25px;
-}
 
 .wd-name:first-child {
     margin-right: 5%;
@@ -35,11 +16,4 @@
 
 .wd-name:nth-child(2) {
     margin-right: 3%;
-}
-.wd-section {
-    background-color: #eee;
-}
-
-.wd-border {
-    border-radius: 25px;
 }

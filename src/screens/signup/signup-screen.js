@@ -33,17 +33,16 @@ function SignupScreen() {
     };
 
     return (
-            <section className="vh-100 wd-section mt-3">
-                <div className="container h-100">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                        <div className="col-lg-12 col-xl-11">
+            <section className="mt-3">
+                    <div className="row d-flex justify-content-center align-items-center">
+                        <div className="col-lg-7 col-xl-8">
                             <div className="card text-black">
-                                <div className="card-body p-md-5">
+                                <div className="card-body">
                                     <div className="row justify-content-center">
-                                        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                        <div className="col-md-10 col-lg-6 col-xl-6 order-2 order-lg-1">
+                                            <p className="text-center h1 fw-bold mb-2 mx-1 mx-md-4">Sign up</p>
                                             <form className="mx-1 mx-md-4">
-                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                <div className="d-flex flex-row align-items-center mb-2">
                                                     <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                                                     <div className="form-outline flex-fill mb-0 row wd-name-container">
                                                         <input type="text"
@@ -58,7 +57,7 @@ function SignupScreen() {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                <div className="d-flex flex-row align-items-center mb-2">
                                                     <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="email"
@@ -68,7 +67,7 @@ function SignupScreen() {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                <div className="d-flex flex-row align-items-center mb-2">
                                                     <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="password"
@@ -78,7 +77,7 @@ function SignupScreen() {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                <div className="d-flex flex-row align-items-center mb-2">
                                                     <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input type="password"
@@ -88,7 +87,7 @@ function SignupScreen() {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6 mb-4">
+                                                <div className="col-md-6">
                                                     <h6 className="mb-2 pb-1">Role</h6>
                                                     <div className="form-check form-check-inline">
                                                         <input className="form-check-input" type="radio"
@@ -121,13 +120,13 @@ function SignupScreen() {
                                                     </div>
 
                                                 </div>
-                                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                <div className="d-flex justify-content-center">
                                                     <p>
                                                         Already have an account?{" "}
                                                         <Link to="/signin">Sign in</Link>
                                                     </p>
                                                 </div>
-                                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                <div className="d-flex justify-content-center mx-4">
                                                     <button type="button"
                                                             className="btn btn-primary btn-lg"
                                                             onSubmit={handleSubmit}
@@ -137,7 +136,7 @@ function SignupScreen() {
                                             </form>
                                         </div>
                                         <div
-                                            className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                            className="col-md-10 col-lg-6 col-xl-6 d-flex align-items-center order-1 order-lg-2">
                                             <img
                                                 src="../img/dog-signup.jpeg"
                                                 className="img-fluid" alt="Signup image"/>
@@ -147,7 +146,6 @@ function SignupScreen() {
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
 
     );

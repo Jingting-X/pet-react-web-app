@@ -21,12 +21,11 @@ function SigninScreen() {
 
     return (
 
-            <section className="vh-100 wd-section mt-3">
-                <div className="container h-100">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                        <div className="col-lg-12 col-xl-11">
+            <section className="mt-3">
+                    <div className="row d-flex justify-content-center align-items-center">
+                        <div className="col-lg-7 col-xl-8">
                             <div className="card text-black wd-border" >
-                                <div className="card-body p-md-5">
+                                <div className="card-body">
                                     <div className="row justify-content-center">
                                         <div className="col-md-10 col-lg-6 col-xl-5 order-1 order-lg-2">
                                             <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
@@ -77,7 +76,6 @@ function SigninScreen() {
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
 
     );
