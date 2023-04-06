@@ -30,7 +30,7 @@ function SigninScreen() {
     };
 
     return (
-
+        
         <section className="mt-3">
             <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-lg-7 col-xl-8">
@@ -96,7 +96,6 @@ function SigninScreen() {
                 </div>
             </div>
         </section>
-
     );
 }
 

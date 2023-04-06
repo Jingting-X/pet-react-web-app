@@ -7,23 +7,23 @@ function UsersScreen() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    if (!currentUser || currentUser.role !== 'admin') {
-        navigate('/signin');
-    }
+    // if (!currentUser || currentUser.role !== 'admin') {
+    //     navigate('/signin');
+    // }
 
     useEffect(() => {
         dispatch(getUsersThunk());
     }, []);
 
     return (
-        <ul className='list-group'>
+        <ul className='list-group mt-3'>
             {users && users.map(user => (
                 <li className='list-group-item' key={user.id}>
                     {user.firstName} {user.lastName}
+                    <button className='btn btn-danger float-end me-3'>Delete</button>
                     <button 
                     // onClick={() => navigate(`/profile/${user.id}`)}
-                    className='btn btn-warning float-right me-1'>Edit</button>
-                    <button className='btn btn-danger float-right'>Delete</button>
+                    className='btn btn-warning float-end me-3'>Edit</button>
                 </li>
             ))}
         </ul>
