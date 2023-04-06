@@ -1,10 +1,16 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-// import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {Navigate} from "react-router-dom";
+import {signinThunk} from "../../services/users-thunks";
+
 function SigninScreen() {
+    const {currentUser} = useSelector((state) => state.users);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const dispatch = useDispatch();
+    
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
@@ -12,11 +18,15 @@ function SigninScreen() {
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
-    // const dispatch = useDispatch();
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle signin logic here
-        // dispatch(signinReducer(currentUser))
+        try {
+            dispatch(signinThunk({email, password}));
+            Navigate("/profile");
+        } catch {
+            alert("Invalid email or password");
+        }
     };
 
     return (

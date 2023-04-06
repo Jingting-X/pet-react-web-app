@@ -4,16 +4,17 @@ import {Route, Routes} from 'react-router';
 import Home from "./home";
 import Footnote from "./home/Footnote";
 import './styles/app.css'
-import UsersComponent from "./user";
 import DogsScreen from "./dogs";
 import DogsSearch from "./dogs/dogs-search";
 import SigninScreen from "./screens/signin/signin-screen";
 import SignupScreen from "./screens/signup/signup-screen";
 import AdminScreen from "./screens/admin/admin-screen";
-
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
     return (
+        <Provider store={store}>
         <BrowserRouter>
             <div className="container">
                 <div className="text-center fw-bold mt-2"
@@ -27,7 +28,6 @@ function App() {
                         <Route path="/admin" element={<AdminScreen/>}/>
                         <Route path="/signin" element={<SigninScreen/>}/>
                         <Route path="/signup" element={<SignupScreen/>}/>
-                        <Route path="/users" element={<UsersComponent/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                     </Routes>
@@ -37,6 +37,7 @@ function App() {
                 </div>
             </div>
         </BrowserRouter>
+        </Provider>
     );
 }
 

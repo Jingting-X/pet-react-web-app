@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import whoArray from "../data/who.json";
+import whoArray from "../home/data/who.json";
 
 const whoSlice = createSlice({
   name: "who",
