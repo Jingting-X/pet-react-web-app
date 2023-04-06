@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { signinThunk } from "../../services/users-thunks";
+import { signinThunk } from "../services/users-thunks";
 
 function SigninScreen() {
     const { currentUser } = useSelector((state) => state.users);

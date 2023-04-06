@@ -6,11 +6,12 @@ import Footnote from "./home/Footnote";
 import './styles/app.css'
 import DogsScreen from "./dogs";
 import DogsSearch from "./dogs/dogs-search";
-import SigninScreen from "./screens/signin/signin-screen";
-import SignupScreen from "./screens/signup/signup-screen";
-import AdminScreen from "./screens/admin/admin-screen";
+import SigninScreen from "./screens/signin-screen";
+import SignupScreen from "./screens/signup-screen";
+import AdminScreen from "./screens/admin-screen";
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import UsersScreen from './screens/users-screen';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                         <Route path="/admin" element={<AdminScreen/>}/>
                         <Route path="/signin" element={<SigninScreen/>}/>
                         <Route path="/signup" element={<SignupScreen/>}/>
+                        <Route path="/users" element={<UsersScreen/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                     </Routes>
