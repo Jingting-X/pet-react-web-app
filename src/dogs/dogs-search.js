@@ -20,7 +20,6 @@ function DogsSearch() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <h2>Results</h2>
             <ul className="list-group">
                 {
                     results && Object.keys(results).map((dog,idx) => (
@@ -29,7 +28,7 @@ function DogsSearch() {
                     ))
                 }
             </ul>
-            <pre>{JSON.stringify(results, null, 2)}</pre>
+            {/*<pre>{JSON.stringify(results, null, 2)}</pre>*/}
         </div>
     );
 }
