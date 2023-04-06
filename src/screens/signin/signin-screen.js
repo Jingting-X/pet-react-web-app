@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 // import {useDispatch} from "react-redux";
-function Signin() {
+function SigninScreen() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -83,4 +83,4 @@ function Signin() {
     );
 }
 
-export default Signin;
+export default SigninScreen;

@@ -11,7 +11,6 @@ import Calendar from "./calendar-list/calendar-list-item";
 import WhoToFollowList from "./who-to-follow-list/index.js";
 import WelcomeAdmin from "./welcome-admin";
 import Footnote from "./Footnote";
-import AdminComponent from "../admin";
 
 
 const store = configureStore({

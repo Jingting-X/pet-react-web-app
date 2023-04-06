@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-function Signup() {
+function SignupScreen() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -153,4 +153,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default SignupScreen;

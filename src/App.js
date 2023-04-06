@@ -2,14 +2,14 @@ import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {Route, Routes} from 'react-router';
 import Home from "./home";
-import AdminComponent from "./admin";
 import Footnote from "./home/Footnote";
 import './styles/app.css'
-import Signin from "./signin";
-import Signup from "./signup";
 import UsersComponent from "./user";
 import DogsScreen from "./dogs";
 import DogsSearch from "./dogs/dogs-search";
+import SigninScreen from "./screens/signin/signin-screen";
+import SignupScreen from "./screens/signup/signup-screen";
+import AdminScreen from "./screens/admin/admin-screen";
 
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/home/*" element={<Home/>}/>
-                        <Route path="/admin" element={<AdminComponent/>}/>
-                        <Route path="/signin" element={<Signin/>}/>
-                        <Route path="/signup" element={<Signup/>}/>
+                        <Route path="/admin" element={<AdminScreen/>}/>
+                        <Route path="/signin" element={<SigninScreen/>}/>
+                        <Route path="/signup" element={<SignupScreen/>}/>
                         <Route path="/users" element={<UsersComponent/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>

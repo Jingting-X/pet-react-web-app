@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-function AdminComponent() {
+function AdminScreen() {
     return (
         <div className="row mt-5">
             <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
@@ -31,4 +31,4 @@ function AdminComponent() {
     )
 }
 
-export default AdminComponent;
+export default AdminScreen;
