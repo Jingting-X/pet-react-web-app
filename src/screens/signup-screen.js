@@ -7,11 +7,12 @@ import { signupThunk } from '../services/users-thunks.js';
 
 
 function SignupScreen() {
-    const {currentUser} = useSelector(state => state.users);
+    // const {currentUser} = useSelector(state => state.users);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [selectedRole, setSelectedRole] = useState("option1");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -32,7 +33,6 @@ function SignupScreen() {
         setPassword(event.target.value);
     };
 
-    const [selectedRole, setSelectedRole] = useState("option1");
     const handleRoleChange = (event) => {
         setSelectedRole(event.target.value);
     };

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router';
-import { getUsersThunk } from '../services/users-thunks.js';
+import { getUsersThunk, deleteUserThunk } from '../services/users-thunks.js';
 function UsersScreen() {
     const { currentUser, users } = useSelector(state => state.users);
     const navigate = useNavigate();
@@ -15,15 +15,17 @@ function UsersScreen() {
         dispatch(getUsersThunk());
     }, []);
 
+    const handleDeleteUserById = (_id) => {
+        dispatch(deleteUserThunk(_id));
+    }
     return (
         <ul className='list-group mt-3'>
             {users && users.map(user => (
                 <li className='list-group-item' key={user._id}>
                     {user.firstName} {user.lastName}
-                    <button className='btn btn-danger float-end me-3'>Delete</button>
-                    <button 
-                    // onClick={() => navigate(`/profile/${user.id}`)}
-                    className='btn btn-warning float-end me-3'>Edit</button>
+                    <button className='btn btn-danger float-end me-3'
+                    onClick={() => handleDeleteUserById(user._id)}>Delete</button>
+            
                 </li>
             ))}
         </ul>
