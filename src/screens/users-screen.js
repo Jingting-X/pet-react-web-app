@@ -18,7 +18,7 @@ function UsersScreen() {
     return (
         <ul className='list-group mt-3'>
             {users && users.map(user => (
-                <li className='list-group-item' key={user.id}>
+                <li className='list-group-item' key={user._id}>
                     {user.firstName} {user.lastName}
                     <button className='btn btn-danger float-end me-3'>Delete</button>
                     <button 

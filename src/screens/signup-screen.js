@@ -1,10 +1,20 @@
 import React, {useState} from "react";
+import { useSelector } from "react-redux";
 import {Link} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router';
+import { signupThunk } from '../services/users-thunks.js';
+
+
 function SignupScreen() {
+    const {currentUser} = useSelector(state => state.users);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value);
@@ -27,9 +37,13 @@ function SignupScreen() {
         setSelectedRole(event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Handle signup logic here
+    const handleSubmit = () => {
+        try {
+            dispatch(signupThunk({firstName, lastName, email, password, selectedRole}));
+            navigate("/home");
+        } catch {
+            alert("Invalid email or password");
+        }
     };
 
     return (
