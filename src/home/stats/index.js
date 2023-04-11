@@ -4,28 +4,25 @@ import {useDispatch} from "react-redux";
 const DogStats = (
     {
         dog = {
-            "topic": "Space",
-            "userName": "SpaceX",
-            "time": "2h",
-            "title": "Tesla Cybertruck lands on Mars and picks up the Curiosity rover on its 6' bed",
-            "image": "tesla.png",
+            "topic": "TestDog",
+            "userName": "Lili",
+            "image": "https://cdn2.thedogapi.com/images/8NAninQ0P.jpg",
             "liked": true,
-            "disliked": true,
+            "disliked": false,
             "replies": 345,
-            "redogs": 321,
+            "forward": 321,
             "likes": 1234,
             "dislikes": 3,
-            "handle": "@SpaceX",
-            "dog": "Tesla Cybertruck lands on Mars and picks up the Curiosity rover on its 6' bed"
+            "handle": "@lili",
         }
     }
 ) => {
     const dispatch = useDispatch();
     const toggleLiked = (inre) => {
-        dispatch(updateTuitThunk({...dog, likes: dog.likes + inre, liked: !dog.liked}))
+        // dispatch(updateTuitThunk({...dog, likes: dog.likes + inre, liked: !dog.liked}))
     }
     const toggleDisliked = (inre) => {
-        dispatch(updateTuitThunk({...dog, dislikes: dog.dislikes + inre, disliked: !dog.disliked}))
+        // dispatch(updateTuitThunk({...dog, dislikes: dog.dislikes + inre, disliked: !dog.disliked}))
     }
     return (
         <div className="row justify-content-evenly mt-2">
