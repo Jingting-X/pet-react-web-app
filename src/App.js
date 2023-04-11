@@ -12,6 +12,7 @@ import AdminScreen from "./screens/admin-screen";
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import UsersScreen from './screens/users-screen';
+import DogsDetailScreen from "./dogs/dogs-detail";
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/users" element={<UsersScreen/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
+                        <Route path="/dogs/search/:id" element={<DogsDetailScreen/>} />
                     </Routes>
                 </div>
                 <div>
