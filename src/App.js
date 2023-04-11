@@ -34,7 +34,7 @@ function App() {
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                         <Route path="/dogs/search/:searchTerm" element={<DogsSearch/>}/>
-                        <Route path="/dogs/search/:id" element={<DogsDetailScreen/>} />
+                        <Route path="/dogs/search/detail/:id" element={<DogsDetailScreen/>} />
                     </Routes>
                 </div>
                 <div>
