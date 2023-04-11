@@ -1,14 +1,20 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { fullTextSearch} from "./dogs-service";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 function DogsSearch() {
-    const [search, setSearch] = useState("");
+    const {searchTerm} = useParams();
+    const [search, setSearch] = useState(searchTerm || "");
     const [results, setResults] = useState({});
     const searchDogs = async () => {
         const response = await fullTextSearch(search);
         setResults(response)
     }
+    useEffect(() => {
+        if (searchTerm) {
+            searchDogs();
+        }},[searchTerm]
+    );
 
     return (
         <div>
