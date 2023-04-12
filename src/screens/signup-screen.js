@@ -40,7 +40,7 @@ function SignupScreen() {
         setSelectedRole(event.target.value);
     };
 // TODO: error handling while user input existing email address
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (selectedRole === '') {
             setShowModal(true);
             setErrorMsg("Please choose a role.");
@@ -49,16 +49,18 @@ function SignupScreen() {
             setErrorMsg("The passwords don't match, please try again.");
         }  else {
             try {
-                dispatch(signupThunk({ firstName, lastName, email, password, selectedRole }));
-                navigate("/home");
-            } catch (error) {
-                setShowModal(true);
-                if (error.message === "Email already exists") {
-                  setErrorMsg("The current email has already been registered. Please choose another one or sign in.");
+                const result = await dispatch(signupThunk({ firstName, lastName, email, password, selectedRole }));
+                if (result.error) {
+                    setErrorMsg(result.error.message);
+                    setShowModal(true);
                 } else {
-                  setErrorMsg("Invalid email or password");
+                    setErrorMsg(""); // Clear the error state
+                    navigate("/home");
                 }
-              }
+            } catch {
+                setErrorMsg("An unexpected error occurred");
+                setShowModal(true);
+            }
         }
     };
 

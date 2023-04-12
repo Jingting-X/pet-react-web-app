@@ -54,7 +54,15 @@ export const signinThunk = createAsyncThunk(
 export const signupThunk = createAsyncThunk(
     'users/signup',
     async (user) => {
-        return await userServices.signup(user);
+        try {
+            return await userServices.signup(user);
+        } catch (error) {
+            if (error && error.message === "Email has already been registered.") {
+                throw new Error("This email has already been registered, please try again or sign in.");
+              } else {
+                throw new Error("An unexpected error occurred.");
+              }
+        }
     }
 );
 

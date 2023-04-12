@@ -67,6 +67,10 @@ const usersSlice = createSlice({
         [signupThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload;
         },
+        [signupThunk.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        },
 
         [signoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null;

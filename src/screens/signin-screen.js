@@ -35,7 +35,6 @@ function SigninScreen() {
                 setError(result.error);
                 setShowModal(true);
             } else {
-                console.log(currentUser);
                 setError(""); // Clear the error state
                 navigate("/home");
             }
