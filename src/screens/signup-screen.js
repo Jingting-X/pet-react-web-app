@@ -53,7 +53,7 @@ function SignupScreen() {
                 navigate("/home");
             } catch (error) {
                 setShowModal(true);
-                if (error.message === "Email already registered") {
+                if (error.message === "Email already exists") {
                   setErrorMsg("The current email has already been registered. Please choose another one or sign in.");
                 } else {
                   setErrorMsg("Invalid email or password");

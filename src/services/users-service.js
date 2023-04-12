@@ -34,7 +34,7 @@ export const signin = async (user) => {
 export const signup = async (user) => {
     const response = await axios.post(`${USERS_API_BASE_URL}/signup`, user);
     if(response.status === 409) {
-        return {error: "Email already exists"};
+        return {message: "Email already exists"};
     }
     return response.data;
 }
