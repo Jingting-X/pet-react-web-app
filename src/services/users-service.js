@@ -27,8 +27,13 @@ export const deleteUser = async (id) => {
 }
 
 export const signin = async (user) => {
-    const response = await axios.post(`${USERS_API_BASE_URL}/signin`, user);
-    return response.data;
+    try {
+        const response = await axios.post(`${USERS_API_BASE_URL}/signin`, user);
+        return response.data;
+    }  catch (error) {
+        throw new Error(error.response.data.message);
+    }
+    
 }
 
 export const signup = async (user) => {
