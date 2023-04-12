@@ -13,8 +13,8 @@ function SignupScreen() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [selectedRole, setSelectedRole] = useState("option1");
-    const [ showModal, setShowModal] = useState(false);
+    const [selectedRole, setSelectedRole] = useState("personalUser");
+    const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -116,8 +116,8 @@ function SignupScreen() {
                                             <div className="form-check form-check-inline">
                                                 <input className="form-check-input" type="radio"
                                                     name="inlineRadioOptions"
-                                                    value="option1"
-                                                    checked={selectedRole === "option1"}
+                                                    value="personalUser"
+                                                    checked={selectedRole === "personalUser"}
                                                     onChange={handleRoleChange}
                                                 />
                                                 <label className="form-check-label">Personal User</label>
@@ -126,8 +126,8 @@ function SignupScreen() {
                                             <div className="form-check form-check-inline">
                                                 <input className="form-check-input" type="radio"
                                                     name="inlineRadioOptions"
-                                                    value="option2"
-                                                    checked={selectedRole === "option2"}
+                                                    value="serviceProvider"
+                                                    checked={selectedRole === "serviceProvider"}
                                                     onChange={handleRoleChange}
                                                 />
                                                 <label className="form-check-label">Service Provider</label>
@@ -136,8 +136,8 @@ function SignupScreen() {
                                             <div className="form-check form-check-inline">
                                                 <input className="form-check-input" type="radio"
                                                     name="inlineRadioOptions"
-                                                    value="option3"
-                                                    checked={selectedRole === "option3"}
+                                                    value="admin"
+                                                    checked={selectedRole === "admin"}
                                                     onChange={handleRoleChange}
                                                 />
                                                 <label className="form-check-label">Admin</label>

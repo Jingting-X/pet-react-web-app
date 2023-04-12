@@ -5,12 +5,12 @@ function Modal({ show, message, onClose }) {
     if (!show) return null;
 
     return (
-        <div className="modal centered-modal" >
-            <div className="modal-dialog">
+        // TODO: fix inline style
+        <div className="modal" tabIndex="-1" style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+            <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Error</h5>
-                        <button type="button" className="btn-close" onClick={onClose}></button>
+                        <h5 className="modal-title text-center w-100">Error</h5>
                     </div>
                     <div className="modal-body">
                         <p>{message}</p>
