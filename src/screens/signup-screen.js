@@ -13,8 +13,9 @@ function SignupScreen() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [selectedRole, setSelectedRole] = useState("personalUser");
+    const [selectedRole, setSelectedRole] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -38,17 +39,26 @@ function SignupScreen() {
     const handleRoleChange = (event) => {
         setSelectedRole(event.target.value);
     };
-
+// TODO: error handling while user input existing email address
     const handleSubmit = () => {
-        if (password !== confirmPassword) {
+        if (selectedRole === '') {
             setShowModal(true);
-        } else {
+            setErrorMsg("Please choose a role.");
+        } else if (password !== confirmPassword) {
+            setShowModal(true);
+            setErrorMsg("The passwords don't match, please try again.");
+        }  else {
             try {
                 dispatch(signupThunk({ firstName, lastName, email, password, selectedRole }));
                 navigate("/home");
-            } catch {
-                alert("Invalid email or password");
-            }
+            } catch (error) {
+                setShowModal(true);
+                if (error.message === "Email already registered") {
+                  setErrorMsg("The current email has already been registered. Please choose another one or sign in.");
+                } else {
+                  setErrorMsg("Invalid email or password");
+                }
+              }
         }
     };
 
@@ -116,8 +126,8 @@ function SignupScreen() {
                                             <div className="form-check form-check-inline">
                                                 <input className="form-check-input" type="radio"
                                                     name="inlineRadioOptions"
-                                                    value="personalUser"
-                                                    checked={selectedRole === "personalUser"}
+                                                    value="Personal User"
+                                                    checked={selectedRole === "Personal User"}
                                                     onChange={handleRoleChange}
                                                 />
                                                 <label className="form-check-label">Personal User</label>
@@ -126,8 +136,8 @@ function SignupScreen() {
                                             <div className="form-check form-check-inline">
                                                 <input className="form-check-input" type="radio"
                                                     name="inlineRadioOptions"
-                                                    value="serviceProvider"
-                                                    checked={selectedRole === "serviceProvider"}
+                                                    value="Service Provider"
+                                                    checked={selectedRole === "Service Provider"}
                                                     onChange={handleRoleChange}
                                                 />
                                                 <label className="form-check-label">Service Provider</label>
@@ -136,8 +146,8 @@ function SignupScreen() {
                                             <div className="form-check form-check-inline">
                                                 <input className="form-check-input" type="radio"
                                                     name="inlineRadioOptions"
-                                                    value="admin"
-                                                    checked={selectedRole === "admin"}
+                                                    value="Admin"
+                                                    checked={selectedRole === "Admin"}
                                                     onChange={handleRoleChange}
                                                 />
                                                 <label className="form-check-label">Admin</label>
@@ -156,7 +166,7 @@ function SignupScreen() {
                                                 onClick={handleSubmit}
                                             >Sign up
                                             </button>
-                                            <Modal show={showModal} message="The passwords don't match, please try again" onClose={closeModal} />
+                                            <Modal show={showModal} message={errorMsg} onClose={closeModal} />
                                         </div>
                                     </form>
                                 </div>
