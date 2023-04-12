@@ -20,6 +20,8 @@ function DogsSearch() {
         }},[searchTerm]
     );
 
+    console.log("results is:", results);
+
     return (
         <div>
             <h1>Dogs Search</h1>
@@ -37,7 +39,7 @@ function DogsSearch() {
                     results && Object.keys(results).map((dog,idx) => (
                         <li className="list-group-item" key={idx}>
                         <img src={results[dog].url} width={400} height={300} alt={results[dog].id}/>
-                        <Link to={`/dogs/search/detail/${results[dog].id}`}>Detail</Link>
+                        <Link to={`/dogs/search/detail/${results[dog].id}`}>Check on my details!</Link>
                             <DogStats key={results[dog].id} dog={results[dog].id}/>
                         </li>
                     ))
