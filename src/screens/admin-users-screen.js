@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUsersThunk, deleteUserThunk } from '../services/users-thunks.js';
 import DeleteConfirmationModal from '../components/deleteConfirmationModal';
 
-function UsersScreen() {
+function AdminUsersScreen() {
     const { users } = useSelector((state) => state.users);
 
     const dispatch = useDispatch();
@@ -48,4 +48,4 @@ function UsersScreen() {
     );
 }
 
-export default UsersScreen;
+export default AdminUsersScreen;

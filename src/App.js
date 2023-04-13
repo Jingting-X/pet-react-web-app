@@ -11,7 +11,9 @@ import SignupScreen from "./screens/signup-screen";
 import AdminScreen from "./screens/admin-screen";
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import UsersScreen from './screens/users-screen';
+import AdminUsersScreen from './screens/admin-users-screen';
+import AdminPostsScreen from './screens/admin-posts-screen';
+import AdminEventsScreen from './screens/admin-events-screen';
 import DogsDetailScreen from "./dogs/dogs-detail";
 
 function App() {
@@ -30,7 +32,9 @@ function App() {
                         <Route path="/admin" element={<AdminScreen/>}/>
                         <Route path="/signin" element={<SigninScreen/>}/>
                         <Route path="/signup" element={<SignupScreen/>}/>
-                        <Route path="/users" element={<UsersScreen/>}/>
+                        <Route path="/admin/users" element={<AdminUsersScreen/>}/>
+                        <Route path="/admin/posts" element={<AdminPostsScreen/>}/>
+                        <Route path="/admin/events" element={<AdminEventsScreen/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                         <Route path="/dogs/search/:searchTerm" element={<DogsSearch/>}/>
