@@ -1,0 +1,56 @@
+.wd-search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.wd-round-corner {
+    border-radius: 40px;
+}
+
+.wd-search-icon {
+    position: absolute;
+    padding-left: 30px;
+}
+
+.wd-title-text {
+    color: black;
+    font-weight: bold;
+}
+
+.wd-text-normal {
+    font-weight: normal;
+}
+
+.wd-image {
+    border-radius: 20px;
+    float: right;
+    width: 100px;
+    height: 100px;
+}
+
+.wd-row {
+    clear: both;
+}
+
+.wd-height {
+    height:150px;
+}
+
+.wd-height2 {
+    height:140px;
+}
+
+.wd-follow-img {
+    border-radius: 20px;
+    width: 55px;
+    height: 55px;
+}
+
+.wd-checkmark-img {
+    width: 20px;
+    height: 20px;
+}
+
+.wd-post-image {
+    width: 250px;
+}
