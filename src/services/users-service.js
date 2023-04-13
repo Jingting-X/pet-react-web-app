@@ -1,5 +1,8 @@
 import axios from "axios";
-const USERS_API_BASE_URL = "http://localhost:4000/api/users";
+const SERVER_API_URL = "http://localhost:4000/api";
+const USERS_API_BASE_URL = `${SERVER_API_URL}/users`;
+
+const api = axios.create({withCredentials: true});
 
 export const getUsers = async () => {
     const response = await axios.get(USERS_API_BASE_URL);
@@ -28,7 +31,7 @@ export const deleteUser = async (id) => {
 
 export const signin = async (user) => {
     try {
-        const response = await axios.post(`${USERS_API_BASE_URL}/signin`, user);
+        const response = await api.post(`${USERS_API_BASE_URL}/signin`, user);
         return response.data;
     }  catch (error) {
         throw new Error(error.response.data.message);

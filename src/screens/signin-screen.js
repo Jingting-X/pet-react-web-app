@@ -36,7 +36,11 @@ function SigninScreen() {
                 setShowModal(true);
             } else {
                 setError(""); // Clear the error state
-                navigate("/home");
+                if(currentUser.role === "admin") {
+                    navigate("/admin");
+                } else {
+                    navigate("/home");
+                }
             }
         } catch {
             setError("An unexpected error occurred");
@@ -89,14 +93,14 @@ function SigninScreen() {
                                                 onClick={handleSubmit}
                                             >Sign in
                                             </button>
-                                            <div>
+                                            {/* <div>
                                                 {currentUser && (
                                                     <div>
                                                         <h2>{currentUser.email}</h2>
                                                         <h2>{currentUser.password}</h2>
                                                     </div>
                                                 )}
-                                            </div>
+                                            </div> */}
 
                                         </div>
                                     </form>

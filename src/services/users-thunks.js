@@ -38,9 +38,9 @@ export const deleteUserThunk = createAsyncThunk(
 
 export const signinThunk = createAsyncThunk(
     'users/signin',
-    async (user) => {
+    async (credentials) => {
         try {
-            return await userServices.signin(user);
+            return await userServices.signin(credentials);
         } catch (error) {
             if (error && error.message === "User not found.") {
                 throw new Error("Invalid email or password, please try again.");
