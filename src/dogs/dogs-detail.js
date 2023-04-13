@@ -28,14 +28,20 @@ function DogsDetailScreen() {
         const response = await getDetail(id);
         setDetail(response);
     }
+
+    //todo: get detail id and pass it into likes
+    let detailId = "";
+    const createDetailClick = async () => {
+        detailId = createDetail(id)._id;
+        console.log("detailId returned is", detailId);
+    }
+    console.log("detailId line 36: ", detailId);
     const likeDetail = async () => {
-        const response = await userLikesDetail(currentUser._id, id);
+        const response = await userLikesDetail(currentUser._id, detailId);
         console.log("userLikesDetail response: ", response);
     }
 
-    const createDetailClick = async () => {
-        createDetail(id);
-    }
+
 
     useEffect(() => {
         searchDogs(id);
