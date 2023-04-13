@@ -8,4 +8,9 @@ const LIKES_API = "http://localhost:4000/api/likes";
      return response.data;
  }
 
+ const findLikesByUserId = async (userId) => {
+     const response = await axios.get(`${USERS_API}/${userId}/likes`);
+     return response.data;
+ }
+
  export default userLikesDetail;

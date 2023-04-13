@@ -46,8 +46,6 @@ export const signup = async (user) => {
     } catch (error) {
         throw new Error(error.response.data.message);
     }
-    
-    
 }
 
 export const signout = async () => {

@@ -3,6 +3,13 @@ import { fullTextSearch} from "./dogs-service";
 import {Link, useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
 import DogStats from "../home/stats";
+import detailReducer from "../redux/detail-reducer";
+import {configureStore} from "@reduxjs/toolkit";
+import {Provider} from "react-redux";
+
+const store = configureStore(
+    {reducer: detailReducer}
+);
 
 function DogsSearch() {
     const {searchTerm} = useParams();
@@ -23,6 +30,7 @@ function DogsSearch() {
     console.log("results is:", results);
 
     return (
+        <Provider store={store}>
         <div>
             <h1>Dogs Search</h1>
             <button className="float-end btn btn-primary" onClick={searchDogs}>
@@ -47,6 +55,7 @@ function DogsSearch() {
             </ul>
             <pre>{JSON.stringify(results, null, 2)}</pre>
         </div>
+        </Provider>
     );
 }
 
