@@ -20,7 +20,7 @@ function AdminScreen() {
                 <div className="card">
                     <div className="card-body text-center">
                         <img src="img/user_management.jpeg" className="w-100 mb-4"/>
-                        <a href ="/users" className="btn btn-primary">User Management</a>
+                        <a href ="/admin/users" className="btn btn-primary">User Management</a>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@ function AdminScreen() {
                 <div className="card">
                     <div className="card-body text-center">
                         <img src="img/post_management.jpeg" className="w-100 mb-4"/>
-                        <a href="/posts" className="btn btn-primary">Post Management</a>
+                        <a href="/admin/posts" className="btn btn-primary">Post Management</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@ function AdminScreen() {
                 <div className="card">
                     <div className="card-body text-center">
                         <img src="img/event_management.jpeg" className="w-100 mb-4"/>
-                        <a href="/events" className="btn btn-primary">Event Management</a>
+                        <a href="/admin/events" className="btn btn-primary">Event Management</a>
                     </div>
                 </div>
             </div>

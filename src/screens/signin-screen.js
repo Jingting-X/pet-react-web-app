@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signinThunk } from "../services/users-thunks";
+import Modal from "../components/modal";
 
 function SigninScreen() {
     const { currentUser } = useSelector((state) => state.users);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -19,19 +23,36 @@ function SigninScreen() {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = () => {
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setError("");
+    };
+
+    const handleSubmit = async () => {
         try {
-            dispatch(signinThunk({ email, password }));
-            console.log(currentUser);
-            // Navigate("/home");
+            const result = await dispatch(signinThunk({ email, password }));
+            if (result.error) {
+                setError(result.error);
+                setShowModal(true);
+            } else {
+                setError(""); // Clear the error state
+                if(currentUser.role === "admin") {
+                    navigate("/admin");
+                } else {
+                    navigate("/home");
+                }
+            }
         } catch {
-            alert("Invalid email or password");
+            setError("An unexpected error occurred");
+            setShowModal(true);
         }
     };
 
+
     return (
-        
+
         <section className="mt-3">
+            <Modal show={showModal} message={error.message} onClose={handleCloseModal} />
             <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-lg-7 col-xl-8">
                     <div className="card text-black wd-border" >
@@ -72,14 +93,14 @@ function SigninScreen() {
                                                 onClick={handleSubmit}
                                             >Sign in
                                             </button>
-                                            <div>
+                                            {/* <div>
                                                 {currentUser && (
                                                     <div>
                                                         <h2>{currentUser.email}</h2>
                                                         <h2>{currentUser.password}</h2>
                                                     </div>
                                                 )}
-                                            </div>
+                                            </div> */}
 
                                         </div>
                                     </form>
