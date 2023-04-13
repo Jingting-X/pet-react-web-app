@@ -1,0 +1,27 @@
+.wd-footer {
+    background-color: lightpink;
+}
+
+
+.wd-border {
+    border-radius: 25px;
+}
+
+
+.wd-name:first-child {
+    margin-right: 5%;
+    margin-left: 4%;
+}
+
+.wd-name:nth-child(2) {
+    margin-right: 3%;
+}
+.centered-modal {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+  }

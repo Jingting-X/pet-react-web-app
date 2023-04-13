@@ -1,7 +1,7 @@
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
 
-const NavigationSidebarGuest = () => {
+const NavigationSidebarAdmin = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[2];
@@ -44,4 +44,4 @@ const NavigationSidebarGuest = () => {
         </div>
     )
 };
-export default NavigationSidebarGuest;
+export default NavigationSidebarAdmin;
