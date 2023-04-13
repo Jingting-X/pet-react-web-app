@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createPostThunk, deletePostThunk, findPostsThunk, updatePostThunk} from "../../services/post-thunk";
+import {createPostThunk, deletePostThunk, findPostsThunk, updatePostThunk} from "../services/post-thunk";
 
 const initialState = {
     posts: [],
@@ -22,7 +22,7 @@ const templatePost = {
     "likes": 0,
 }
 
-const postsSlice = createSlice({
+const postSlice = createSlice({
     name: 'posts',
     initialState,
     extraReducers: {
@@ -94,5 +94,5 @@ const postsSlice = createSlice({
         }
     }
 });
-export const {createPost, deletePost, likeToggle} = postsSlice.actions;
-export default postsSlice.reducer;
+export const {createPost, deletePost, likeToggle} = postSlice.actions;
+export default postSlice.reducer;
