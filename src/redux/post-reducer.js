@@ -1,25 +1,30 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {createPostThunk, deletePostThunk, findPostsThunk, updatePostThunk} from "../services/post-thunk";
+import {createSlice, current} from "@reduxjs/toolkit";
+import {
+    createPostThunk,
+    deletePostThunk,
+    findPostsThunk,
+    findPostsThunkByUser,
+    updatePostThunk
+} from "../services/post-thunk";
+
 
 const initialState = {
+    users: [],
     posts: [],
-    loading: false
+    loading: false,
+    error: null,
+    currentUser: null,
 }
 
-const currentUser = {
-    "userName": "Collie",
-    "handle": "@collie",
-    "image": "collie.jpeg",
-};
-
 const templatePost = {
-    ...currentUser,
-    "topic": "Pet",
-    "time": "2h",
-    "liked": false,
-    "comments": 0,
+    ...initialState.currentUser,
+    "avatar": "",
+    "replies": 0,
     "reposts": 0,
     "likes": 0,
+    "liked": false,
+    "collects": 0,
+    "collected": false
 }
 
 const postSlice = createSlice({
@@ -58,6 +63,8 @@ const postSlice = createSlice({
                     ...payload,
                     ...templatePost,
                 };
+                console.log("----------3--------");
+                console.log(payload);
                 state.posts.push(newPost)
             },
 
@@ -66,6 +73,22 @@ const postSlice = createSlice({
                 state.loading = false
                 state.posts = state.posts
                     .filter(t => t._id !== payload)
+            },
+        [findPostsThunkByUser.pending]:
+            (state) => {
+                state.loading = true
+                state.posts = []
+            },
+        [findPostsThunkByUser.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false;
+                const currentUserPosts = state.posts.filter(post => post.userId === payload.userId);
+                state.posts = currentUserPosts;
+            },
+        [findPostsThunkByUser.rejected]:
+            (state, action) => {
+                state.loading = false
+                state.error = action.error
             },
     },
     reducers: {

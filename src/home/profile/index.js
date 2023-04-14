@@ -88,7 +88,7 @@ const ProfileComponent = () => {
                     <a className="nav-link" href="#bookmarks.html">Bookmarks</a>
                 </li>
             </ul>
-            {/*<PostList/>*/}
+            <PostList/>
         </div>
 
     );

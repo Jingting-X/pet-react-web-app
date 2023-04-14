@@ -1,14 +1,17 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem from "./post-item";
-import {findPostsThunk} from "../../services/post-thunk";
+import {findPostsThunk, findPostsThunkByUser} from "../../services/post-thunk";
 
 const PostList = () => {
-    const {posts, loading} = useSelector(state => state.postsData)
+    const {posts, loading} = useSelector(state => state.posts)
+    const {currentUser} = useSelector(state => state.users)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(findPostsThunk())
-    }, [])
+        if (currentUser && currentUser._id) {
+            dispatch(findPostsThunkByUser(currentUser._id));
+        }
+    }, [currentUser]);
 
     return (
         <ul className="list-group">

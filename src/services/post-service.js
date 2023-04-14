@@ -23,3 +23,8 @@ export const updatePost = async (post) => {
         .put(`${POSTS_API}/${post._id}`, post);
     return post;
 }
+
+export const findPostsByUser = async (userId) => {
+    const response = await axios.get(`${POSTS_API}/${userId}`);
+    return response.data;
+}

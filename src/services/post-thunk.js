@@ -24,3 +24,8 @@ export const updatePostThunk =
         async (post) =>
             await service.updatePost(post)
     )
+
+export const findPostsThunkByUser = createAsyncThunk(
+    'posts/findPostsByUser', async (user) =>
+        await service.findPostsByUser(user)
+)
