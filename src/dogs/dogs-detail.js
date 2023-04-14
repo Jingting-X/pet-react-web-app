@@ -7,12 +7,11 @@ import {createDetail} from "../services/details-service";
 
 function DogsDetailScreen() {
 
+    const [error, setError] = useState("");
+
     const {currentUser} = useSelector((state => state.users))
     console.log("current User is:", currentUser);
-    let userId = "";
-    if (currentUser) {
-        userId = currentUser._id;
-    }
+
     const {id} = useParams();
     // createDetail(id);
     console.log("In dogs-detail image id is:", id);
@@ -29,19 +28,16 @@ function DogsDetailScreen() {
         setDetail(response);
     }
 
-    //todo: get detail id and pass it into likes
-    let detailId = "";
-    const createDetailClick = async () => {
-        detailId = createDetail(id)._id;
-        console.log("detailId returned is", detailId);
-    }
-    console.log("detailId line 36: ", detailId);
+    // console.log("detailId line 36: ", detailId);
     const likeDetail = async () => {
-        const response = await userLikesDetail(currentUser._id, detailId);
-        console.log("userLikesDetail response: ", response);
+        await createDetail(id);
+        if (! currentUser) {
+            setError("Not logged in!")
+        } else {
+            const response = await userLikesDetail(currentUser._id, id);
+            console.log("userLikesDetail response: ", response);
+        }
     }
-
-
 
     useEffect(() => {
         searchDogs(id);
@@ -59,7 +55,7 @@ function DogsDetailScreen() {
             </div>
             <div>
             <button className="btn btn-success mt-2" onClick={likeDetail}> <i className="bi bi-heart">{likes}</i></button>
-            <button className="btn btn-danger mt-2" onClick={createDetailClick}><i className="bi bi-hand-thumbs-down"></i></button>
+            <button className="btn btn-danger mt-2"><i className="bi bi-hand-thumbs-down"></i></button>
             </div>
             {/*<pre>{JSON.stringify(detail, null, 2)}</pre>*/}
         </div>
