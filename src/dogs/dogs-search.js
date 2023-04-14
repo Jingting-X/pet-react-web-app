@@ -32,7 +32,7 @@ function DogsSearch() {
     return (
         <Provider store={store}>
         <div>
-            <h1>Dogs Search</h1>
+            <h1 className="display-3">Search in Dogs API</h1>
             <button className="float-end btn btn-primary" onClick={searchDogs}>
                 Search
             </button>
@@ -48,7 +48,7 @@ function DogsSearch() {
                         <li className="list-group-item" key={idx}>
                         <img src={results[dog].url} width={400} height={300} alt={results[dog].id}/>
                         <Link to={`/dogs/search/detail/${results[dog].id}`}>Check on my details!</Link>
-                            <DogStats key={results[dog].id} dog={results[dog].id}/>
+                            {/*<DogStats key={results[dog].id} dog={results[dog].id}/>*/}
                         </li>
                     ))
                 }

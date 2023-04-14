@@ -12,11 +12,10 @@ function DogsDetailScreen() {
     const [disliked, setDisliked] = useState(false);
     const {id} = useParams();
     const {currentUser} = useSelector((state => state.users))
+    const loggedIn = currentUser != null;
     const checkLiked = async() => {
-        if (currentUser != null) {
+        if (loggedIn) {
             const res = await service.findLikedOrNotByUser(currentUser._id, id);
-            console.log("pringing res:", res);
-            console.log("pringing res.length:", res.length);
             if (res.length > 0) {
                 setLiked(true);
             } else {
@@ -28,7 +27,7 @@ function DogsDetailScreen() {
     }
 
     const checkDisliked = async() => {
-        if (currentUser != null) {
+        if (loggedIn) {
             const res = await dislikeService.findDislikedOrNotByUser(currentUser._id, id);
             if (res.length > 0) {
                 setDisliked(true);
@@ -42,16 +41,13 @@ function DogsDetailScreen() {
 
     const [detail, setDetail] = useState({});
 
-    // const [likes, setLikes] = useState([]);
-
     const searchDogs = async () => {
         const response = await getDetail(id);
         setDetail(response);
     }
-    // await createDetail(id);
-    // console.log("222222");
+
     const likeDetail = async () => {
-        if (! currentUser) {
+        if (! loggedIn) {
             setError("Not logged in!")
         } else {
             const response = await service.userLikesDetail(currentUser._id, id);
@@ -60,7 +56,7 @@ function DogsDetailScreen() {
     }
 
     const dislikeDetail = async () => {
-        if (! currentUser) {
+        if (! loggedIn) {
             setError("Not logged in!")
         } else {
             const response = await dislikeService.userDislikesDetail(currentUser._id, id);
@@ -74,23 +70,24 @@ function DogsDetailScreen() {
         checkDisliked();
         },[]
     );
+
+
     console.log("liked is:", liked);
     console.log("disliked is:", disliked);
 
     return (
         <div>
-            <h1>Dogs detail page</h1>
-            <h1>Current user: {currentUser? currentUser.firstName : "not logged in"} {currentUser? currentUser.lastName : ""} </h1>
-            <h1>Current user id: {currentUser? currentUser._id :"not logged in"}</h1>
-            <p>{detail.name}</p>
+            <h1 className="display-3">Dogs detail page</h1>
+
+            <p className="display-3">{detail.name}</p>
             <div>
             <img src={`https://cdn2.thedogapi.com/images/${id}.jpg`} width={400} height={300} alt={id}/>
             </div>
             <div>
+                <h1 className="display-5">{loggedIn? `Hi ${currentUser.firstName} Like it or not?` : "Ops! You need to log in to like or dislike!"} </h1>
             <button className="btn btn-success mt-2" onClick={likeDetail}>{liked? <i className="bi bi-heart-fill"/>: <i className="bi bi-heart"/>}</button>
-            <button className="btn btn-danger mt-2" onClick={dislikeDetail}>{disliked? <i className="bi bi-hand-thumbs-down-fill"/>: <i className="bi bi-hand-thumbs-down"/>}</button>
+            <button className="btn btn-danger mt-2 ms-2" onClick={dislikeDetail}>{disliked? <i className="bi bi-hand-thumbs-down-fill"/>: <i className="bi bi-hand-thumbs-down"/>}</button>
             </div>
-            {/*<pre>{JSON.stringify(detail, null, 2)}</pre>*/}
         </div>
     )
 }
