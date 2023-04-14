@@ -7,7 +7,7 @@ import { signinThunk } from "../services/users-thunks";
 import Modal from "../components/modal";
 
 function SigninScreen() {
-    // const { currentUser } = useSelector((state) => state.users);
+    let { currentUser } = useSelector((state) => state.users);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -35,11 +35,12 @@ function SigninScreen() {
             setShowModal(true);
         } else {
             setError("");
+            currentUser = result.payload;
             const userRole = result.payload.role; // Access the user's role from the result
-            if (userRole === "Admin") {
-                navigate("/admin");
-            } else {
+            if (userRole === "admin") {
                 navigate("/home");
+            } else {
+                navigate("/home/other");
             }
         }
     };

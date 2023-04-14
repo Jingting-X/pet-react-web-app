@@ -38,7 +38,7 @@ const NavigationSidebarGuest = () => {
             </Link>
 
             <Link to="/admin" className={`list-group-item ${active === 'admincenter' ? 'active' : ''}`}>
-                <i className="fa-solid fa-user-shield fa-lg me-2"></i>
+                <i className="fa-solid fa-user-shield fs-6 me-1"></i>
                 <span className="ms-1 d-none d-xl-inline">Admin Center</span>
             </Link>
         </div>

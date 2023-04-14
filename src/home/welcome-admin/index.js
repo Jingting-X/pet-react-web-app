@@ -1,11 +1,17 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
+import "../../styles/app.css"
 const WelcomeAdmin = () => {
-  return (
-            <ul class="list-group fw-bold mb-4 rounded-circle text-center"
-                style={{fontSize: '20px', color: 'gray', backgroundColor: 'lightblue'}}>
-                Welcome back! XXXX
-            </ul>
-        )
+    const { currentUser } = useSelector((state) => state.users);
+    return (
+        <div class="list-group fw-bold mb-4 rounded-circle text-center"
+            style={{ fontSize: '20px', color: 'gray' }}>
+            <span>
+                Welcome back!{'   '}{currentUser.firstName}
+                <i className="fas fa-paw ms-2 wd-paw-icon"></i>
+            </span>
+
+        </div>
+    )
 }
 export default WelcomeAdmin;
