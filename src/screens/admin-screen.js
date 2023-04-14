@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router';
 import '../styles/app.css'
-
+import { signoutThunk } from '../services/users-thunks.js';
 function AdminScreen() {
     const { currentUser, users } = useSelector(state => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // if (!currentUser || currentUser.role !== 'admin') {
-    //     navigate('/signin');
-    // }
+    const handleSignOut = async () => {
+        await dispatch(signoutThunk());
+        navigate('/home')
+    }
 
     return (
         <div>
@@ -20,7 +21,7 @@ function AdminScreen() {
                 </div>
                 <div className='col-4'></div>
                 <div className="col-4 d-flex justify-content-end">
-                    <button className="btn  border" onClick={() => navigate('/home/other')}>Log Out</button>
+                    <button className="btn  border" onClick={handleSignOut}>Sign Out</button>
                 </div>
             </div>
             <div className="row mt-3">
