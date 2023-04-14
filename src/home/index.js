@@ -4,7 +4,7 @@ import NavigationSidebarGuest from "./navigation-sidebar/index.js";
 import NavigationSidebarUser from "./navigation-sidebar/navigationSidebarUser.js";
 import NavigationSidebarAdmin from "./navigation-sidebar/navigationSidebarAdmin.js";
 import HomeComponent from "./home/HomeComponent.js";
-import Calendar from "./calendar-list/calendar-list-item";
+import Calendar from "./calendar-list/index.js";
 import WhoToFollowList from "./who-to-follow-list/index.js";
 import WelcomeAdmin from "./welcome-admin";
 import { useSelector } from 'react-redux';
@@ -27,7 +27,7 @@ function Home() {
               </Routes>
             </div>
             <div className="d-none d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">
-              {/*<Calendar/>*/}
+              <Calendar/>
               {/* {currentUser.role === "admin" &&<WelcomeAdmin/>} */}
               {/*<WhoToFollowList/>*/}
             </div>

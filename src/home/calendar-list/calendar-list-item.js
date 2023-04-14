@@ -1,17 +1,18 @@
 import React from "react";
 
-const Calendar = () => {
+const EventSummaryItem = ({post}) => {
   return(
-      <div>
-        <a href="#" className="btn rounded-5 bg-light" style={{listStyleType: 'none'}}>
-          <span style={{fontFamily: 'Seravek', fontSize: '20px'}}>log in</span>
-        </a>
-        <a href="#" className="btn rounded-5 bg-light" style={{listStyleType: 'none'}}>
-          <span style={{fontFamily: 'Seravek', fontSize: '20px'}}>Sign in</span>
-        </a>
-        <div className="fw-bold" style={{color: "red", fontSize: '35px'}}>Add calendar later</div>
-      </div>
-
+      <li className="list-group-item">
+        <div className="row">
+          <div className="col-12">
+            <div className="fw-bold">{post.username}</div>
+            <div>{post.tuit}</div>
+          </div>
+          {/*<div className="col-2">*/}
+          {/*  <button className="btn btn-primary rounded-pill float-end">Click</button>*/}
+          {/*</div>*/}
+        </div>
+      </li>
   );
-}
-export default Calendar;
+};
+export default EventSummaryItem;
