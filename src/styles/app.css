@@ -1,5 +1,8 @@
 .wd-footer {
     background-color: lightpink;
+    width: 100%;
+    height: 300px;
+    overflow-x: hidden;
 }
 
 
