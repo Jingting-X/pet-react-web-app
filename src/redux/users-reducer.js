@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {
     getUsersThunk,
     getUserByIdThunk,
@@ -8,7 +8,8 @@ import {
     signinThunk,
     signupThunk,
     signoutThunk,
-    userProfileThunk
+    userProfileThunk,
+    updateUserProfileByIdThunk
 } from '../services/users-thunks.js';
 
 const initialState = {
@@ -100,15 +101,13 @@ const usersSlice = createSlice({
             state.loading = false;
         },
 
-        // [updateUserProfileByIdThunk.fulfilled]: (state, action) => {
-        //     state.currentUser = {
-        //         ...state.currentUser,
-        //         ...action.payload
-        //     }
-        //     console.log("newProfile in reducer")
-        //     console.log(state.currentUser)
-        //     state.error = null
-        // },
+        [updateUserProfileByIdThunk.fulfilled]: (state, action) => {
+            state.currentUser = {
+                ...state.currentUser,
+                ...action.payload
+            }
+            state.error = null
+        },
 
 
     }

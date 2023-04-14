@@ -26,9 +26,7 @@ const EditProfileComponent = () => {
         const newBio = document.getElementById('bio').value;
         const newLocation = document.getElementById('location').value;
         const newBirthdate = document.getElementById('birthdate').value;
-        const newJoinedDate = document.getElementById('joinedDate').value;
-        console.log("---------5-----------");
-        console.log(newFirstname);
+        // const newJoinedDate = document.getElementById('joinedDate').value;
         const currProfile = {
             ...currentUser,
             'firstName': newFirstname,
@@ -36,7 +34,7 @@ const EditProfileComponent = () => {
             'bio': newBio,
             'location':newLocation,
             'birthdate': newBirthdate,
-            'joinedDate': newJoinedDate,
+            // 'joinedDate': newJoinedDate,
         };
         console.log("---------6-----------");
         console.log(currProfile.firstName);
@@ -87,7 +85,7 @@ const EditProfileComponent = () => {
             </div>
             <div className="border pt-2 mt-4 rounded-1">
                 <label className="text-secondary ps-2">Location</label>
-                <input id="profileLocation" className="form-control border-0" defaultValue={`${currentUser.location}`}/>
+                <input id="location" className="form-control border-0" defaultValue={`${currentUser.location}`}/>
             </div>
             <div className="mt-4">
                 <div className="d-flex align-items-center">

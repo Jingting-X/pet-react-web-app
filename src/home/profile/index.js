@@ -17,8 +17,8 @@ const ProfileComponent = () => {
         dispatch(getUserByIdThunk);
     }, [])
 
-    const dateOfBirth = BirthdateConvert(currentUser.birthdate);
-    const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
+    // const dateOfBirth = BirthdateConvert(currentUser.birthdate);
+    // const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
     console.log("---------9----");
     console.log(currentUser.location);
     return (
@@ -31,7 +31,7 @@ const ProfileComponent = () => {
                 </div>
                 <div className="col-11">
                     <div className="fw-bolder">{currentUser.firstName} {currentUser.lastName}</div>
-                    <div className="text-secondary small">10 Posts</div>
+                    {/*<div className="text-secondary small">10 Posts</div>*/}
                 </div>
             </div>
             <div className="pos-relative">
@@ -53,15 +53,15 @@ const ProfileComponent = () => {
                     <span className="bi bi-geo-alt text-secondary"></span>
                     <span className="ps-1">{currentUser.location}</span>
                 </div>
-                <div className="col-4">
-                    <span className="bi bi-balloon text-secondary"></span>
-                    <span className="ps-1">Born {currentUser.birthdate}</span>
-                </div>
+                {/*<div className="col-4">*/}
+                {/*    <span className="bi bi-balloon text-secondary"></span>*/}
+                {/*    <span className="ps-1">Born {currentUser.birthdate}</span>*/}
+                {/*</div>*/}
 
-                <div className="col-4">
-                    <span className="bi bi-calendar3 text-secondary"></span>
-                    <span className="ps-1">Joined {currentUser.joinedDate}</span>
-                </div>
+                {/*<div className="col-4">*/}
+                {/*    <span className="bi bi-calendar3 text-secondary"></span>*/}
+                {/*    <span className="ps-1">Joined {currentUser.joinedDate}</span>*/}
+                {/*</div>*/}
             </div>
 
             {/*<div className="pt-2 row">*/}
@@ -98,13 +98,13 @@ const ProfileComponent = () => {
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export const BirthdateConvert = (date) => {
-    if (date == null) return null;
+    if (date == null) return;
     const birthDate = date.split("/");
     const month = birthDate[0] - 1;
     return months[month] + " " + birthDate[1] + ", " + birthDate[2];
 }
 export const JoinDateConvert = (date) => {
-    if (date == null) return null;
+    if (date == null) return;
     const joinDate = date.split("/");
     const joinMonth = joinDate[0] - 1;
     return months[joinMonth] + ", " + joinDate[1];
