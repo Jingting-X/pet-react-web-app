@@ -1,7 +1,7 @@
 import React from 'react';
 
-function DeleteConfirmationModal({ show, itemToDelete, onDelete, onCancel }) {
-    if (!show || !itemToDelete) return null;
+function DeleteConfirmationModal({ show, onDelete, onCancel }) {
+    if (!show) return null;
 
     return (
         <div className="modal" tabIndex="-1" style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>

@@ -40,7 +40,7 @@ function AdminUsersScreen() {
             </ul>
             <DeleteConfirmationModal
                 show={showDeleteModal}
-                userToDelete={userToDelete}
+                // userToDelete={userToDelete}
                 onDelete={handleDeleteUserById}
                 onCancel={() => setShowDeleteModal(false)}
             />

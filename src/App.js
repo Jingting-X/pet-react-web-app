@@ -14,6 +14,8 @@ import store from './redux/store';
 import UsersScreen from './screens/admin-users-screen';
 import DogsDetailScreen from "./dogs/dogs-detail";
 import EventsScreen from "./screens/admin-events-screen";
+import PostsScreen from "./screens/admin-posts-screen";
+
 function App() {
     return (
         <Provider store={store}>
@@ -32,6 +34,7 @@ function App() {
                         <Route path="/signup" element={<SignupScreen/>}/>
                         <Route path="/admin/users" element={<UsersScreen/>}/>
                         <Route path="/admin/events" element={<EventsScreen/>}/>
+                        <Route path="/admin/posts" element={<PostsScreen/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                         <Route path="/dogs/search/:searchTerm" element={<DogsSearch/>}/>
