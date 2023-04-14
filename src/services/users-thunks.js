@@ -54,6 +54,7 @@ export const signinThunk = createAsyncThunk(
 export const signupThunk = createAsyncThunk(
     'users/signup',
     async (user) => {
+        console.log('thunk:' + user.role)
         try {
             return await userServices.signup(user);
         } catch (error) {
