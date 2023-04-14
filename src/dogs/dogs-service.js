@@ -9,9 +9,8 @@ export const fullTextSearch = async (query) => {
     })
 
     const breed_list = breed_names_res.data;
-    console.log("breed list is:", breed_list);
     const breed_map = new Map(breed_list.map(i => [i.image.id, i.name]))
-    console.log("breed map is:", breed_map);
+    // console.log("breed map is:", breed_map);
 
     let ids = breed_list.filter(b =>
         b['name'].toString().toLowerCase().includes(breed) ||
@@ -20,7 +19,6 @@ export const fullTextSearch = async (query) => {
         (b['origin'] && b['origin'].toString().toLowerCase().includes(breed)) ||
         (b['bred_for'] && b['bred_for'].toString().toLowerCase().includes(breed)));
 
-    // console.log("breed_id is: ", ids);
     let matching_ids = [];
     let response = "";
     if (ids.length) {
@@ -44,19 +42,15 @@ export const fullTextSearch = async (query) => {
         );
     }
     const result = response.data;
-    // console.log("result is:", result);
     return result;
 };
 
 export const getDetail = async (imageID) => {
-    // console.log("type of imageID is: ", typeof (imageID));
-    // console.log("in get detail imageID  is", imageID);
     const breed_names_res = await axios.get(`${DOGS_API}/v1/breeds`, {
         headers: DOGS_KEY
     })
 
     const breed_map = new Map(breed_names_res.data.map(i => [i.image.id, i.id]))
-    // console.log("breed_map is:", breed_map);
     let dogID = "test";
     breed_map.forEach((k, v) => {
         const id = v.toString();
@@ -71,7 +65,7 @@ export const getDetail = async (imageID) => {
         headers: DOGS_KEY
     })
 
-    console.log("Breed detail is", breed_detail_res.data);
+    // console.log("Breed detail is", breed_detail_res.data);
 
     return breed_detail_res.data;
 };

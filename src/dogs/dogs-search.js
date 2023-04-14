@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import { fullTextSearch} from "./dogs-service";
 import {Link, useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-import DogStats from "../home/stats";
+// import DogStats from "../home/stats";
 import detailReducer from "../redux/detail-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
@@ -45,9 +45,9 @@ function DogsSearch() {
             <ul className="list-group">
                 {
                     results && Object.keys(results).map((dog,idx) => (
-                        <li className="list-group-item" key={idx}>
+                        <li className="list-group-item border-0" key={idx}>
                         <img src={results[dog].url} width={400} height={300} alt={results[dog].id}/>
-                        <Link to={`/dogs/search/detail/${results[dog].id}`}>Check on my details!</Link>
+                        <Link to={`/dogs/search/detail/${results[dog].id}`}> Check on my details!</Link>
                             {/*<DogStats key={results[dog].id} dog={results[dog].id}/>*/}
                         </li>
                     ))
