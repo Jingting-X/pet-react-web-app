@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findEventsThunk, deleteEventThunk, createEventThunk, updateEventThunk} from "../../services/event-thunks.js";
+import {findEventsThunk, deleteEventThunk, createEventThunk, updateEventThunk} from "../services/event-thunks.js";
 
 const initialState = {
   events: [],

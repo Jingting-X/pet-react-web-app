@@ -11,14 +11,9 @@ import SignupScreen from "./screens/signup-screen";
 import AdminScreen from "./screens/admin-screen";
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import UsersScreen from './screens/users-screen';
+import UsersScreen from './screens/admin-users-screen';
 import DogsDetailScreen from "./dogs/dogs-detail";
-import EventCompoment from "./event/index.js";
-
-const store = configureStore({
-  reducer: {tuitsData: tuitsReducer}
-});
-
+// import EventCompoment from "./event/index.js";
 function App() {
     return (
         <Provider store={store}>
@@ -35,7 +30,7 @@ function App() {
                         <Route path="/admin" element={<AdminScreen/>}/>
                         <Route path="/signin" element={<SigninScreen/>}/>
                         <Route path="/signup" element={<SignupScreen/>}/>
-                        <Route path="/users" element={<UsersScreen/>}/>
+                        <Route path="/admin/users" element={<UsersScreen/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                         <Route path="/dogs/search/:searchTerm" element={<DogsSearch/>}/>
