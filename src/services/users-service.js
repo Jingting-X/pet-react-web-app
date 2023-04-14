@@ -40,7 +40,6 @@ export const signin = async (user) => {
 }
 
 export const signup = async (user) => {
-    console.log('service:' + user.role)
     try {
         const response = await axios.post(`${USERS_API_BASE_URL}/signup`, user);
         return response.data;

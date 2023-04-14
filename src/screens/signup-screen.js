@@ -49,7 +49,6 @@ function SignupScreen() {
             setErrorMsg("The passwords don't match, please try again.");
         }  else {
             try {
-                console.log('sign up:' + role);
                 const result = await dispatch(signupThunk({ firstName, lastName, email, password, role }));
                 if (result.error) {
                     setErrorMsg(result.error.message);
