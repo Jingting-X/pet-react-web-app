@@ -11,10 +11,14 @@ import SignupScreen from "./screens/signup-screen";
 import AdminScreen from "./screens/admin-screen";
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import UsersScreen from './screens/admin-users-screen';
+import AdminUsersScreen from './screens/admin-users-screen';
+import AdminPostsScreen from './screens/admin-posts-screen';
+import AdminEventsScreen from './screens/admin-events-screen';
 import DogsDetailScreen from "./dogs/dogs-detail";
 import EventsScreen from "./screens/admin-events-screen";
 import PostsScreen from "./screens/admin-posts-screen";
+import ProfileComponent from "./home/profile";
+import EditProfileComponent from "./home/profile/edit-profile-component";
 
 function App() {
     return (
@@ -32,13 +36,15 @@ function App() {
                         <Route path="/admin" element={<AdminScreen/>}/>
                         <Route path="/signin" element={<SigninScreen/>}/>
                         <Route path="/signup" element={<SignupScreen/>}/>
-                        <Route path="/admin/users" element={<UsersScreen/>}/>
-                        <Route path="/admin/events" element={<EventsScreen/>}/>
-                        <Route path="/admin/posts" element={<PostsScreen/>}/>
+                        <Route path="/admin/users" element={<AdminUsersScreen/>}/>
+                        <Route path="/admin/posts" element={<AdminPostsScreen/>}/>
+                        <Route path="/admin/events" element={<AdminEventsScreen/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                         <Route path="/dogs/search/:searchTerm" element={<DogsSearch/>}/>
                         <Route path="/dogs/search/detail/:id" element={<DogsDetailScreen/>} />
+                        <Route path="/profile" element={<ProfileComponent/>}/>
+                        <Route path="/edit-profile" element={<EditProfileComponent/>}/>
                     </Routes>
                 </div>
                 <div>

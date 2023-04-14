@@ -72,3 +72,13 @@ export const signoutThunk = createAsyncThunk(
         return await userServices.signout();
     }
 );
+
+export const userProfileThunk = createAsyncThunk(
+    '/profile',
+    async () => await userServices.userProfile()
+)
+
+export const updateUserProfileByIdThunk = createAsyncThunk(
+    '/updateUserProfileById',
+    async (user) => await userServices.updateUserProfileById(user._id, user)
+)

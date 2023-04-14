@@ -1,17 +1,26 @@
-import React from "react";
-import {useSelector} from "react-redux";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import PostSummaryList from "../post-summary-list";
 import CreatePostComponent from "./create-post-component";
 import PostList from "../posts/post-list";
+import {getUserById} from "../../services/users-service";
+import {getUserByIdThunk} from "../../services/users-thunks";
 
 
 const ProfileComponent = () => {
-    const profile = useSelector(state => state.profile)
-    const dateOfBirth = BirthdateConvert(profile.dateOfBirth);
-    const dateOfJoin = JoinDateConvert(profile.dateJoined);
+    const {currentUser} = useSelector(state => state.users);
+    const dispatch = useDispatch();
+    const {id} = useParams();
+    useEffect(() => {
+        dispatch(getUserByIdThunk);
+    }, [])
 
+    const dateOfBirth = BirthdateConvert(currentUser.birthdate);
+    const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
+    console.log("---------9----");
+    console.log(currentUser.location);
     return (
         <div className="border p-2">
             <div className="row pb-2">
@@ -21,48 +30,48 @@ const ProfileComponent = () => {
                     </Link>
                 </div>
                 <div className="col-11">
-                    <div className="fw-bolder">{profile.firstName} {profile.lastName}</div>
+                    <div className="fw-bolder">{currentUser.firstName} {currentUser.lastName}</div>
                     <div className="text-secondary small">10 Posts</div>
                 </div>
             </div>
             <div className="pos-relative">
-                <img className="wd-polyglot" src={`/img/${profile.bannerPicture}`} alt=""/>
-                <img className="wd-avatar rounded-circle" src={`/img/${profile.profilePicture}`} alt=""/>
+                {/*<img className="wd-polyglot" src={`/img/${currentUser.bannerPicture}`} alt=""/>*/}
+                {/*<img className="wd-avatar rounded-circle" src={`/img/${currentUser.profilePicture}`} alt=""/>*/}
                 <Link to="/edit-profile">
                     <button className="btn btn-dark rounded-pill float-end m-2">Edit Profile</button>
                 </Link>
             </div>
             <div>
-                <div className="fw-bolder">{profile.firstName} {profile.lastName}</div>
-                <div className="text-secondary">{profile.handle}</div>
+                <div className="fw-bolder">{currentUser.firstName} {currentUser.lastName}</div>
+                <div className="text-secondary">{currentUser.handle}</div>
             </div>
             <div className="pt-2">
-                {"The Golden Retriever, an exuberant Scottish gundog of great beauty, stands among America's most popular dog breeds. They are serious workers at hunting and field work, as guides for the blind, and in search-and-rescue, enjoy obedience and other competitive events, and have an endearing love of life when not at work. "}
+                {currentUser.bio}
             </div>
             <div className="row pt-2">
                 <div className="col-4">
                     <span className="bi bi-geo-alt text-secondary"></span>
-                    <span className="ps-1">{profile.location}</span>
+                    <span className="ps-1">{currentUser.location}</span>
                 </div>
                 <div className="col-4">
                     <span className="bi bi-balloon text-secondary"></span>
-                    <span className="ps-1">Born {dateOfBirth}</span>
+                    <span className="ps-1">Born {currentUser.birthdate}</span>
                 </div>
 
                 <div className="col-4">
                     <span className="bi bi-calendar3 text-secondary"></span>
-                    <span className="ps-1">Joined {dateOfJoin}</span>
+                    <span className="ps-1">Joined {currentUser.joinedDate}</span>
                 </div>
             </div>
 
-            <div className="pt-2 row">
-                <div className="col-3">
-                    <span className="fw-bolder">{profile.followingCount}</span> Following
-                </div>
-                <div className="col-3">
-                    <span className="fw-bolder col-4">{profile.followersCount}</span> Followers
-                </div>
-            </div>
+            {/*<div className="pt-2 row">*/}
+            {/*    <div className="col-3">*/}
+            {/*        <span className="fw-bolder">{currentUser.followingCount}</span> Following*/}
+            {/*    </div>*/}
+            {/*    <div className="col-3">*/}
+            {/*        <span className="fw-bolder col-4">{currentUser.followersCount}</span> Followers*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <br></br>
             <CreatePostComponent/>
             <ul className="nav nav-pills mb-2">
@@ -79,7 +88,7 @@ const ProfileComponent = () => {
                     <a className="nav-link" href="#bookmarks.html">Bookmarks</a>
                 </li>
             </ul>
-            <PostList/>
+            {/*<PostList/>*/}
         </div>
 
     );
@@ -89,11 +98,13 @@ const ProfileComponent = () => {
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export const BirthdateConvert = (date) => {
+    if (date == null) return null;
     const birthDate = date.split("/");
     const month = birthDate[0] - 1;
     return months[month] + " " + birthDate[1] + ", " + birthDate[2];
 }
 export const JoinDateConvert = (date) => {
+    if (date == null) return null;
     const joinDate = date.split("/");
     const joinMonth = joinDate[0] - 1;
     return months[joinMonth] + ", " + joinDate[1];

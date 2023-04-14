@@ -1,5 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUsersThunk, getUserByIdThunk, createUserThunk, updateUserThunk, deleteUserThunk, signinThunk, signupThunk, signoutThunk } from '../services/users-thunks.js';
+import {
+    getUsersThunk,
+    getUserByIdThunk,
+    createUserThunk,
+    updateUserThunk,
+    deleteUserThunk,
+    signinThunk,
+    signupThunk,
+    signoutThunk,
+    userProfileThunk
+} from '../services/users-thunks.js';
 
 const initialState = {
     users: [],
@@ -74,7 +84,32 @@ const usersSlice = createSlice({
 
         [signoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null;
-        }
+        },
+
+        [userProfileThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload
+            state.error = null;
+            state.loading = false;
+        },
+        [userProfileThunk.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [userProfileThunk.rejected]: (state, action) => {
+            state.error = action.payload
+            state.currentUser = null
+            state.loading = false;
+        },
+
+        // [updateUserProfileByIdThunk.fulfilled]: (state, action) => {
+        //     state.currentUser = {
+        //         ...state.currentUser,
+        //         ...action.payload
+        //     }
+        //     console.log("newProfile in reducer")
+        //     console.log(state.currentUser)
+        //     state.error = null
+        // },
+
 
     }
 });

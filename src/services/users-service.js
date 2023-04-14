@@ -36,7 +36,6 @@ export const signin = async (user) => {
     }  catch (error) {
         throw new Error(error.response.data.message);
     }
-    
 }
 
 export const signup = async (user) => {
@@ -50,5 +49,16 @@ export const signup = async (user) => {
 
 export const signout = async () => {
     const response = await axios.get(`${USERS_API_BASE_URL}/signout`);
+    return response.data;
+}
+
+export const userProfile = async () => {
+    const response = await api.get(`${USERS_API_BASE_URL}/profile`);
+    return response.data
+}
+
+
+export const updateUserProfileById = async (UserId, user) => {
+    const response = await api.put(`${USERS_API_BASE_URL}/${UserId}`, user)
     return response.data;
 }

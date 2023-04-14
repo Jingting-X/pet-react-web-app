@@ -1,40 +1,52 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateProfile} from "../profile-reducer";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {
+    getUserByIdThunk,
+    updateUserProfileByIdThunk,
+    updateUserThunk,
+    userProfileThunk
+} from "../../../services/users-thunks";
 
 const EditProfileComponent = () => {
-    const profile = useSelector(state => state.profile);
-    const currProfile = {
-        'firstName': profile.firstName,
-        'lastName': profile.lastName,
-        'handle': profile.handle,
-        'profilePicture': profile.profilePicture,
-        'bannerPicture': profile.bannerPicture,
-        'bio': profile.bio,
-        'location': profile.location,
-        'dateOfBirth': profile.dateOfBirth,
-        'dateJoined': profile.dateJoined,
-        'followingCount': profile.followingCount,
-        'followersCount': profile.followersCount
-    };
-
-    const updateProfileDispatch = useDispatch();
+    const {currentUser} = useSelector(state => state.users);
+    const dispatch = useDispatch();
     const updateProfileClickHandler = () => {
-        const newName = document.getElementById("profileName").value;
-        const nameArray = newName.split(" ");
-        if (nameArray.length >= 1) {
-            currProfile.firstName = nameArray[0];
-        }
-        if (nameArray.length >= 2) {
-            currProfile.lastName = nameArray[1];
-        }
+        // const newName = document.getElementById("profileName").value;
+        // const nameArray = newName.split(" ");
+        // if (nameArray.length >= 1) {
+        //     currProfile.firstName = nameArray[0];
+        // }
+        // if (nameArray.length >= 2) {
+        //     currProfile.lastName = nameArray[1];
+        // }
+        const newFirstname = document.getElementById('firstName').value;
+        const newLastname = document.getElementById('lastName').value;
+        const newBio = document.getElementById('bio').value;
+        const newLocation = document.getElementById('location').value;
+        const newBirthdate = document.getElementById('birthdate').value;
+        const newJoinedDate = document.getElementById('joinedDate').value;
+        console.log("---------5-----------");
+        console.log(newFirstname);
+        const currProfile = {
+            ...currentUser,
+            'firstName': newFirstname,
+            'lastName':newLastname,
+            'bio': newBio,
+            'location':newLocation,
+            'birthdate': newBirthdate,
+            'joinedDate': newJoinedDate,
+        };
+        console.log("---------6-----------");
+        console.log(currProfile.firstName);
+        dispatch(updateUserProfileByIdThunk(currProfile))
+        // dispatch(updateUserThunk(currProfile))
+        console.log("---------7-----------");
+        console.log(currentUser.firstName);
+        // dispatch(userProfileThunk());
+        dispatch(getUserByIdThunk);
 
-        currProfile.bio = document.getElementById("profileBio").value;
-        currProfile.location = document.getElementById("profileLocation").value;
-        currProfile.dateOfBirth = document.getElementById("profileBirthOfDate").value;
-
-        updateProfileDispatch(updateProfile(currProfile));
     }
 
     return (
@@ -55,34 +67,37 @@ const EditProfileComponent = () => {
                     </Link>
                 </div>
             </div>
-            <div className="pos-relative">
-                <img className="wd-polyglot" src={`/img/${profile.bannerPicture}`} alt=""/>
-                <img className="wd-avatar rounded-circle" src={`/img/${profile.profilePicture}`} alt=""/>
-            </div>
+            {/*<div className="pos-relative">*/}
+            {/*    <img className="wd-polyglot" src={`/img/${profile.bannerPicture}`} alt=""/>*/}
+            {/*    <img className="wd-avatar rounded-circle" src={`/img/${profile.profilePicture}`} alt=""/>*/}
+            {/*</div>*/}
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">First Name</label>
                 <input id="firstName" className="form-control border-0"
-                       defaultValue={`${profile.firstName}`}/>
+                       defaultValue={`${currentUser.firstName}`}/>
             </div>
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">Last Name</label>
                 <input id="lastName" className="form-control border-0"
-                       defaultValue={`${profile.lastName}`}/>
+                       defaultValue={`${currentUser.lastName}`}/>
             </div>
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">Description</label>
-                <textarea id="profileBio" className="form-control border-0" defaultValue={`${profile.bio}`}/>
+                <textarea id="bio" className="form-control border-0" defaultValue={`${currentUser.bio}`}/>
             </div>
-
+            <div className="border pt-2 mt-4 rounded-1">
+                <label className="text-secondary ps-2">Location</label>
+                <input id="profileLocation" className="form-control border-0" defaultValue={`${currentUser.location}`}/>
+            </div>
             <div className="mt-4">
                 <div className="d-flex align-items-center">
                     <div className="text-secondary">Birth date</div>
                     <div className="ps-1 pe-1">·</div>
-                    <button className="wd-stats-button" style={{color: "blue"}}>Edit</button>
+                    <button style={{color: "blue"}}>Edit</button>
                 </div>
             </div>
-            <input id="profileBirthOfDate" className="form-control border-0"
-                   defaultValue={`${profile.dateOfBirth}`}/>
+            <input id="birthdate" className="form-control border-0"
+                   defaultValue={`${currentUser.birthdate}`}/>
 
         </div>
     );
