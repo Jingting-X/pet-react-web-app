@@ -3,13 +3,13 @@ import {useEffect, useState} from "react";
 import {getDetail} from "./dogs-service";
 import {useSelector} from "react-redux";
 import * as service from "../services/likes-service";
-// import findLikedOrNotByUser from "../services/likes-service";
-import {createDetail} from "../services/details-service";
+import * as dislikeService from "../services/dislikes-service";
 
 function DogsDetailScreen() {
 
     const [error, setError] = useState("");
     const [liked, setLiked] = useState(false);
+    const [disliked, setDisliked] = useState(false);
     const {id} = useParams();
     const {currentUser} = useSelector((state => state.users))
     const checkLiked = async() => {
@@ -27,11 +27,22 @@ function DogsDetailScreen() {
         }
     }
 
-    // console.log("liked returned is:", liked);
+    const checkDisliked = async() => {
+        if (currentUser != null) {
+            const res = await dislikeService.findDislikedOrNotByUser(currentUser._id, id);
+            if (res.length > 0) {
+                setDisliked(true);
+            } else {
+                setDisliked(false);
+            }
+        } else {
+            setDisliked(false);
+        }
+    }
 
     const [detail, setDetail] = useState({});
 
-    const [likes, setLikes] = useState([]);
+    // const [likes, setLikes] = useState([]);
 
     const searchDogs = async () => {
         const response = await getDetail(id);
@@ -48,14 +59,23 @@ function DogsDetailScreen() {
         }
     }
 
-    // console.log("333333");
+    const dislikeDetail = async () => {
+        if (! currentUser) {
+            setError("Not logged in!")
+        } else {
+            const response = await dislikeService.userDislikesDetail(currentUser._id, id);
+            console.log("userDislikesDetail response: ", response);
+        }
+    }
+
     useEffect(() => {
         searchDogs(id);
         checkLiked();
+        checkDisliked();
         },[]
     );
     console.log("liked is:", liked);
-    // console.log("4444444");
+    console.log("disliked is:", disliked);
 
     return (
         <div>
@@ -68,7 +88,7 @@ function DogsDetailScreen() {
             </div>
             <div>
             <button className="btn btn-success mt-2" onClick={likeDetail}>{liked? <i className="bi bi-heart-fill"/>: <i className="bi bi-heart"/>}</button>
-            <button className="btn btn-danger mt-2"><i className="bi bi-hand-thumbs-down"></i></button>
+            <button className="btn btn-danger mt-2" onClick={dislikeDetail}>{disliked? <i className="bi bi-hand-thumbs-down-fill"/>: <i className="bi bi-hand-thumbs-down"/>}</button>
             </div>
             {/*<pre>{JSON.stringify(detail, null, 2)}</pre>*/}
         </div>

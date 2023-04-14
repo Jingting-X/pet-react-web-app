@@ -27,7 +27,7 @@ function DogsSearch() {
         }},[searchTerm]
     );
 
-    console.log("results is:", results);
+    // console.log("results is:", results);
 
     return (
         <Provider store={store}>
@@ -53,7 +53,7 @@ function DogsSearch() {
                     ))
                 }
             </ul>
-            <pre>{JSON.stringify(results, null, 2)}</pre>
+            {/*<pre>{JSON.stringify(results, null, 2)}</pre>*/}
         </div>
         </Provider>
     );
