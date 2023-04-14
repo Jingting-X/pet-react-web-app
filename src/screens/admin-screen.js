@@ -15,11 +15,11 @@ function AdminScreen() {
     return (
         <div>
              <div className='row'>
-                <div className="col-6 col-md-4 col-lg-4 col-xl-4 d-flex justify-content-start">
+                <div className="col-4 d-flex justify-content-start">
                     <button className="btn  border" onClick={() => navigate('/home')}>Back Home</button>
                 </div>
-                <div className='col-6 col-md-4 col-lg-4 col-xl-4 d-md-none d-lg-block'></div>
-                <div className="col-6 col-md-4 col-lg-4 col-xl-4 d-flex justify-content-end">
+                <div className='col-4'></div>
+                <div className="col-4 d-flex justify-content-end">
                     <button className="btn  border" onClick={() => navigate('/home/other')}>Log Out</button>
                 </div>
             </div>

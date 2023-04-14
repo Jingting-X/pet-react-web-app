@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { findPostsThunk, deletePostThunk } from '../services/post-thunk.js';
 import DeleteConfirmationModal from '../components/deleteConfirmationModal.js';
+import { useNavigate } from 'react-router-dom';
 function AdminPostsScreen() {
     const { posts } = useSelector((state) => state.posts);
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findPostsThunk());
@@ -26,6 +27,10 @@ function AdminPostsScreen() {
 
     return (
         <div>
+            <button className='btn border'
+                onClick={() => navigate('/admin')}>
+                <i className="fas fa-arrow-left me-2"></i>Back
+            </button>
             <ul className="list-group mt-3">
                 {posts.map((post) => (
                     <li className="list-group-item" key={post._id}>
