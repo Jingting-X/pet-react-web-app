@@ -2,47 +2,60 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getDetail} from "./dogs-service";
 import {useSelector} from "react-redux";
-import userLikesDetail from "../services/likes-service";
+import * as service from "../services/likes-service";
+// import findLikedOrNotByUser from "../services/likes-service";
 import {createDetail} from "../services/details-service";
 
 function DogsDetailScreen() {
 
     const [error, setError] = useState("");
-
-    const {currentUser} = useSelector((state => state.users))
-    console.log("current User is:", currentUser);
-
+    const [liked, setLiked] = useState(false);
     const {id} = useParams();
-    // createDetail(id);
-    console.log("In dogs-detail image id is:", id);
+    const {currentUser} = useSelector((state => state.users))
+    const checkLiked = async() => {
+        if (currentUser != null) {
+            const res = await service.findLikedOrNotByUser(currentUser._id, id);
+            console.log("pringing res:", res);
+            console.log("pringing res.length:", res.length);
+            if (res.length > 0) {
+                setLiked(true);
+            } else {
+                setLiked(false);
+            }
+        } else {
+            setLiked(false);
+        }
+    }
+
+    // console.log("liked returned is:", liked);
+
     const [detail, setDetail] = useState({});
 
     const [likes, setLikes] = useState([]);
-    // const fetchLikes = async () => {
-    //     const likes = await findLikesByUserId(userId);
-    //     setLikes(likes);
-    // }
 
     const searchDogs = async () => {
         const response = await getDetail(id);
         setDetail(response);
     }
-
-    // console.log("detailId line 36: ", detailId);
+    // await createDetail(id);
+    // console.log("222222");
     const likeDetail = async () => {
-        await createDetail(id);
         if (! currentUser) {
             setError("Not logged in!")
         } else {
-            const response = await userLikesDetail(currentUser._id, id);
+            const response = await service.userLikesDetail(currentUser._id, id);
             console.log("userLikesDetail response: ", response);
         }
     }
 
+    // console.log("333333");
     useEffect(() => {
         searchDogs(id);
+        checkLiked();
         },[]
     );
+    console.log("liked is:", liked);
+    // console.log("4444444");
 
     return (
         <div>
@@ -54,7 +67,7 @@ function DogsDetailScreen() {
             <img src={`https://cdn2.thedogapi.com/images/${id}.jpg`} width={400} height={300} alt={id}/>
             </div>
             <div>
-            <button className="btn btn-success mt-2" onClick={likeDetail}> <i className="bi bi-heart">{likes}</i></button>
+            <button className="btn btn-success mt-2" onClick={likeDetail}>{liked? <i className="bi bi-heart-fill"/>: <i className="bi bi-heart"/>}</button>
             <button className="btn btn-danger mt-2"><i className="bi bi-hand-thumbs-down"></i></button>
             </div>
             {/*<pre>{JSON.stringify(detail, null, 2)}</pre>*/}
