@@ -3,7 +3,7 @@ import React from 'react';
 const Footnote = () => {
     return (
         <div className="wd-footer">
-            <div className="row h-75 mt-5 pb-0">
+            <div className="row h-75 mt-4 pb-0">
                 <ul className="col-sm-6 link-dark" style={{width: '450px'}}>
                     <div className="float-end me-5 mt-4">
                         <li style={{listStyleType: 'none'}}>
