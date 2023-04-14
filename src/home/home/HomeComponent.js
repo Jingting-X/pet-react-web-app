@@ -2,7 +2,6 @@ import React from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import PostSummaryList from "../post-summary-list/index.js";
 import SearchBar from "../search-bar";
-import SearchScreen from "../../dogs";
 
 const HomeComponent = () => {
   return (
@@ -12,7 +11,6 @@ const HomeComponent = () => {
           {/*  <i className="fa-solid fa-magnifying-glass"></i>*/}
           {/*</div>*/}
             <SearchBar/>
-            <SearchScreen/>
           {/*<input*/}
           {/*    type="text"*/}
           {/*    placeholder="Search your favorite dog.."*/}

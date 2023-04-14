@@ -1,25 +1,16 @@
-import React, {useState} from 'react'
-import Data from "./mock-data.json"
+import React from 'react'
+import {useNavigate} from "react-router";
+import './index.css';
 
 export default function SearchBar (){
-    const [query, setQuery] = useState("")
+    let navigate = useNavigate();
+    const openSearchScreen = () => {
+        navigate('/dogs/search');
+    }
     return (
-        <div>
-            <input placeholder="Search" onChange={event => setQuery(event.target.value)} />
-            <ul className="list-group">{
-                Data.filter(post => {
-                    if (query === '') {
-                        return;
-                    } else if (post.first_name.toLowerCase().includes(query.toLowerCase())) {
-                        return post;
-                    }
-                }).map((post, index) => (
-                    <div className="box" key={index}>
-                        <p>{post.first_name}</p>
-                        <p>{post.last_name}</p>
-                    </div>
-                ))
-            }</ul>
+        <div className="form-group has-search">
+            <span className="fa fa-search form-control-feedback"/>
+            <input type="text" className="form-control" placeholder="Search in Dogs API" onClick={openSearchScreen} />
         </div>
 )
 }
