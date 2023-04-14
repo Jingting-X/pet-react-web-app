@@ -29,7 +29,6 @@ function SigninScreen() {
     };
 
     const handleSubmit = async () => {
-        try {
             const result = await dispatch(signinThunk({ email, password }));
             if (result.error) {
                 setError(result.error);
@@ -42,10 +41,6 @@ function SigninScreen() {
                     navigate("/home");
                 }
             }
-        } catch {
-            setError("An unexpected error occurred");
-            setShowModal(true);
-        }
     };
 
 
