@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import UsersScreen from './screens/admin-users-screen';
 import DogsDetailScreen from "./dogs/dogs-detail";
-// import EventCompoment from "./event/index.js";
+import EventsScreen from "./screens/admin-events-screen";
 function App() {
     return (
         <Provider store={store}>
@@ -31,6 +31,7 @@ function App() {
                         <Route path="/signin" element={<SigninScreen/>}/>
                         <Route path="/signup" element={<SignupScreen/>}/>
                         <Route path="/admin/users" element={<UsersScreen/>}/>
+                        <Route path="/admin/events" element={<EventsScreen/>}/>
                         <Route path="/dogs" element={<DogsScreen/>}/>
                         <Route path="/dogs/search" element={<DogsSearch/>}/>
                         <Route path="/dogs/search/:searchTerm" element={<DogsSearch/>}/>
