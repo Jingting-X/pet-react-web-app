@@ -1,5 +1,5 @@
 import React from "react";
-import EventList from "./tuits/tuits-list";
+import EventList from "./tuits/events-list";
 import EventPost from "./whats-happening";
 
 const EventCompoment = () => {

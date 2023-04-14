@@ -19,6 +19,7 @@ import EventsScreen from "./screens/admin-events-screen";
 import PostsScreen from "./screens/admin-posts-screen";
 import ProfileComponent from "./home/profile";
 import EditProfileComponent from "./home/profile/edit-profile-component";
+import EventCompoment from "./event/index";
 
 function App() {
     return (
@@ -45,13 +46,14 @@ function App() {
                         <Route path="/dogs/search/detail/:id" element={<DogsDetailScreen/>} />
                         <Route path="/profile" element={<ProfileComponent/>}/>
                         <Route path="/edit-profile" element={<EditProfileComponent/>}/>
+                        <Route path="/event" element={<EventCompoment/>}/>
                     </Routes>
-                </div>
-                <div>
-                    <Footnote/>
                 </div>
             </div>
         </BrowserRouter>
+          <div>
+            <Footnote/>
+          </div>
         </Provider>
     );
 }

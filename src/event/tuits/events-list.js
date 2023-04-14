@@ -5,7 +5,7 @@ import {findEventsThunk} from "../../services/event-thunks.js";
 
 const EventList =() =>{
   const {events, loading} = useSelector(
-      state => state.tuitsData)
+      state => state.events)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(findEventsThunk())
