@@ -67,6 +67,22 @@ const postSlice = createSlice({
                 state.posts = state.posts
                     .filter(t => t._id !== payload)
             },
+
+        [findPostsThunkByUser.pending]:
+            (state) => {
+                state.loading = true
+                state.posts = []
+            },
+        [findPostsThunkByUser.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false;
+                state.posts = payload;
+            },
+        [findPostsThunkByUser.rejected]:
+            (state, action) => {
+                state.loading = false
+                state.error = action.error
+            },
     },
     reducers: {
         deletePost(state, action) {
