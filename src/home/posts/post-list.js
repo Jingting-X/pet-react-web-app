@@ -23,7 +23,7 @@ const PostList = () => {
             }
             {
                 posts.map(post =>
-                    <PostItem key={post._id} tuit={post}/>
+                    <PostItem key={post._id} post={post}/>
                 )
             }
         </ul>

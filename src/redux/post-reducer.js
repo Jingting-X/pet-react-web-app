@@ -1,4 +1,4 @@
-import {createSlice, current} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {
     createPostThunk,
     deletePostThunk,
@@ -63,8 +63,6 @@ const postSlice = createSlice({
                     ...payload,
                     ...templatePost,
                 };
-                console.log("----------3--------");
-                console.log(payload);
                 state.posts.push(newPost)
             },
 
@@ -82,8 +80,7 @@ const postSlice = createSlice({
         [findPostsThunkByUser.fulfilled]:
             (state, { payload }) => {
                 state.loading = false;
-                const currentUserPosts = state.posts.filter(post => post.userId === payload.userId);
-                state.posts = currentUserPosts;
+                state.posts = payload;
             },
         [findPostsThunkByUser.rejected]:
             (state, action) => {

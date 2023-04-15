@@ -1,5 +1,5 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deletePostThunk} from "../../services/post-thunk";
 import PostStats from "./post-stats";
 
@@ -9,8 +9,12 @@ const PostItem = ({
                   }
 ) => {
     const dispatch = useDispatch();
+    const {currentUser} = useSelector(state => state.users);
     const deletePostHandler = (id) => {
         dispatch(deletePostThunk(id));
+    }
+    if (!post || Object.keys(post).length === 0) {
+        return <div>Loading...</div>; // or any other indicator that the data is being fetched
     }
     return (
         <li className="list-group-item">
@@ -22,10 +26,10 @@ const PostItem = ({
                 <div className="col-10">
                     <div className="row">
                         <div className="col-10 d-flex">
-                            <div className="fw-bold pe-1">{post.userName}</div>
+                            <div className="fw-bold pe-1">{currentUser.firstName}</div>
                             <i className="bi bi-check-circle-fill table-primary pe-1"
                                style={{color: "#0096FF"}}></i>
-                            <div className="text-secondary"> {post.handle} · {post.time}</div>
+                            <div className="text-secondary"> {currentUser.handle} · {post.time}</div>
                         </div>
                         <div className="col-2">
                             <i className="bi bi-x-lg float-end" onClick={() => deletePostHandler(post._id)}></i>
