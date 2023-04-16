@@ -4,9 +4,14 @@ import {getDetail} from "./dogs-service";
 import {useSelector} from "react-redux";
 import * as service from "../services/likes-service";
 import * as dislikeService from "../services/dislikes-service";
+import Modal from "../components/modal.js";
 
 function DogsDetailScreen() {
-    const [error, setError] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
+    const closeModal = () => {
+        setShowModal(false);
+    };
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
     const {id} = useParams();
@@ -48,7 +53,8 @@ function DogsDetailScreen() {
 
     const likeDetail = async () => {
         if (! loggedIn) {
-            setError("Not logged in!")
+            setShowModal(true);
+            setErrorMsg("You need to log in to like a detail page");
         } else {
             const response = await service.userLikesDetail(currentUser._id, id);
             setLiked(true);
@@ -57,7 +63,8 @@ function DogsDetailScreen() {
     }
     const RevertLikeDetail = async () => {
         if (! loggedIn) {
-            setError("Not logged in!")
+            setShowModal(true);
+            setErrorMsg("You need to log in to revert a like on a detail page");
         } else {
             const response = await service.userRevertLikesDetail(currentUser._id, id);
             setLiked(false);
@@ -67,7 +74,8 @@ function DogsDetailScreen() {
 
     const dislikeDetail = async () => {
         if (! loggedIn) {
-            setError("Not logged in!")
+            setShowModal(true);
+            setErrorMsg("You need to log in to dislike a detail page");
         } else {
             const response = await dislikeService.userDislikesDetail(currentUser._id, id);
             setDisliked(true)
@@ -77,7 +85,8 @@ function DogsDetailScreen() {
 
     const revertDislikeDetail = async () => {
         if (! loggedIn) {
-            setError("Not logged in!")
+            setShowModal(true);
+            setErrorMsg("You need to log in to revert a dislike on a detail page");
         } else {
             const response = await dislikeService.userRevertDislikesDetail(currentUser._id, id);
             setDisliked(false)
@@ -109,9 +118,11 @@ function DogsDetailScreen() {
             <img src={`https://cdn2.thedogapi.com/images/${id}.jpg`} width={400} height={300} alt={id}/>
             </div>
             <div>
-                <h1 className="display-5">{loggedIn? `Hi ${currentUser.firstName} Like it or not?` : "Ops! You need to log in to like or dislike!"} </h1>
+                {/*<h1 className="display-5">{loggedIn? `Hi ${currentUser.firstName} Like it or not?` : "Ops! You need to log in to like or dislike!"} </h1>*/}
                 {liked? <button className="btn btn-success mt-2 me-2" onClick={RevertLikeDetail}><i className="bi bi-heart-fill"/></button>: <button className="btn btn-success mt-2 me-2" onClick={likeDetail}><i className="bi bi-heart"/></button>}
+
                 {disliked? <button className="btn btn-danger mt-2 ms-2" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill"/></button>: <button className="btn btn-danger mt-2 ms-2" onClick={dislikeDetail}><i className="bi bi-heartbreak"/></button>}
+                <Modal show={showModal} message={errorMsg} onClose={closeModal} />
             </div>
         </div>
     )
