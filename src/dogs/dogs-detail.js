@@ -55,6 +55,15 @@ function DogsDetailScreen() {
             console.log("userLikesDetail response: ", response);
         }
     }
+    const RevertLikeDetail = async () => {
+        if (! loggedIn) {
+            setError("Not logged in!")
+        } else {
+            const response = await service.userRevertLikesDetail(currentUser._id, id);
+            setLiked(false);
+            console.log("userRevertLikesDetail response: ", response);
+        }
+    }
 
     const dislikeDetail = async () => {
         if (! loggedIn) {
@@ -63,6 +72,16 @@ function DogsDetailScreen() {
             const response = await dislikeService.userDislikesDetail(currentUser._id, id);
             setDisliked(true)
             console.log("userDislikesDetail response: ", response);
+        }
+    }
+
+    const revertDislikeDetail = async () => {
+        if (! loggedIn) {
+            setError("Not logged in!")
+        } else {
+            const response = await dislikeService.userRevertDislikesDetail(currentUser._id, id);
+            setDisliked(false)
+            console.log("userRevertDislikesDetail response: ", response);
         }
     }
 
@@ -86,8 +105,11 @@ function DogsDetailScreen() {
             </div>
             <div>
                 <h1 className="display-5">{loggedIn? `Hi ${currentUser.firstName} Like it or not?` : "Ops! You need to log in to like or dislike!"} </h1>
-            <button className="btn btn-success mt-2" onClick={likeDetail}>{liked? <i className="bi bi-heart-fill"/>: <i className="bi bi-heart"/>}</button>
-            <button className="btn btn-danger mt-2 ms-2" onClick={dislikeDetail}>{disliked? <i className="bi bi-heartbreak-fill"/>: <i className="bi bi-heartbreak"/>}</button>
+                {liked? <button className="btn btn-success mt-2" onClick={RevertLikeDetail}><i className="bi bi-heart-fill"/></button>: <button className="btn btn-success mt-2" onClick={likeDetail}><i className="bi bi-heart"/></button>}
+                {disliked? <button className="btn btn-success mt-2" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill"/></button>: <button className="btn btn-success mt-2" onClick={dislikeDetail}><i className="bi bi-heartbreak"/></button>}
+
+
+            {/*<button className="btn btn-danger mt-2 ms-2" onClick={dislikeDetail}>{disliked? <i className="bi bi-heartbreak-fill"/>: <i className="bi bi-heartbreak"/>}</button>*/}
             </div>
         </div>
     )
