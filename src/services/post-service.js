@@ -15,7 +15,7 @@ export const findPosts = async () => {
 export const deletePost = async (pid) => {
     const response = await axios
         .delete(`${POSTS_API}/${pid}`)
-    return response.data
+    return response.data;
 }
 
 export const updatePost = async (post) => {
@@ -25,6 +25,21 @@ export const updatePost = async (post) => {
 }
 
 export const findPostsByUser = async (userId) => {
-    const response = await axios.get(`${POSTS_API}/${userId}`);
+    const response = await axios.get(`${POSTS_API}/user/${userId}`);
+    return response.data;
+}
+
+export const findPostById = async (pid) => {
+    const response = await axios.get(`${POSTS_API}/id/${pid}`);
+    return response.data;
+}
+
+export const addComment = async (pid, comment) => {
+    const response = await axios.post(`${POSTS_API}/id/${pid}/comments`, {comment});
+    return response.data.post;
+}
+
+export const getComments = async (pid) => {
+    const response = await axios.get(`${POSTS_API}/id/${pid}/comments`);
     return response.data;
 }

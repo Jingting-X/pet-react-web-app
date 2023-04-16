@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createPostThunk} from "../../../services/post-thunk";
+import {createPostThunk} from "../../services/post-thunk";
 
 const CreatePostComponent = () => {
     let [whatsHappening, setWhatsHappening] = useState('');

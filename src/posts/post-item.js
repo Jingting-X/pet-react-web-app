@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deletePostThunk} from "../../services/post-thunk";
+import {deletePostThunk} from "../services/post-thunk";
 import PostStats from "./post-stats";
 
 const PostItem = ({

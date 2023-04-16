@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem from "./post-item";
-import {findPostsThunk, findPostsThunkByUser} from "../../services/post-thunk";
+import { findPostsThunkByUser} from "../services/post-thunk";
 
 const PostList = () => {
     const {posts, loading} = useSelector(state => state.posts)

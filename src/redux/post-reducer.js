@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    addCommentThunk,
     createPostThunk,
     deletePostThunk,
     findPostsThunk,
@@ -78,7 +79,7 @@ const postSlice = createSlice({
                 state.posts = []
             },
         [findPostsThunkByUser.fulfilled]:
-            (state, { payload }) => {
+            (state, {payload}) => {
                 state.loading = false;
                 state.posts = payload;
             },
@@ -87,6 +88,28 @@ const postSlice = createSlice({
                 state.loading = false
                 state.error = action.error
             },
+        [addCommentThunk.fulfilled]: (state, { payload }) => {
+            const { post, comment } = payload;
+            console.log("--------k");
+            console.log(comment);
+            const postIndex = state.posts.findIndex((p) => p._id === post._id);
+            if (postIndex !== -1) {
+                state.posts[postIndex] = post;
+                state.posts[postIndex].comments.push(comment);
+            }
+        }
+
+
+        // [updatePostThunk.fulfilled]:
+        //     (state, {payload}) => {
+        //         state.loading = false
+        //         const postNdx = state.posts
+        //             .findIndex((t) => t._id === payload._id)
+        //         state.posts[postNdx] = {
+        //             ...state.posts[postNdx],
+        //             ...payload
+        //         }
+        //     },
     },
     reducers: {
         deletePost(state, action) {

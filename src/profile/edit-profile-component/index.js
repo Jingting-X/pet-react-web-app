@@ -1,13 +1,7 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from "../profile-reducer";
-import {Link, useParams} from "react-router-dom";
-import {
-    getUserByIdThunk,
-    updateUserProfileByIdThunk,
-    updateUserThunk,
-    userProfileThunk
-} from "../../../services/users-thunks";
+import {Link} from "react-router-dom";
+import {getUserByIdThunk, updateUserProfileByIdThunk} from "../../services/users-thunks";
 
 const EditProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
@@ -25,23 +19,19 @@ const EditProfileComponent = () => {
         const newLastname = document.getElementById('lastName').value;
         const newBio = document.getElementById('bio').value;
         const newLocation = document.getElementById('location').value;
-        const newBirthdate = document.getElementById('birthdate').value;
+        const newBirthdate = DashToSlashConvert(document.getElementById('birthdate').value);
         // const newJoinedDate = document.getElementById('joinedDate').value;
         const currProfile = {
             ...currentUser,
             'firstName': newFirstname,
-            'lastName':newLastname,
+            'lastName': newLastname,
             'bio': newBio,
-            'location':newLocation,
+            'location': newLocation,
             'birthdate': newBirthdate,
             // 'joinedDate': newJoinedDate,
         };
-        console.log("---------6-----------");
-        console.log(currProfile.firstName);
         dispatch(updateUserProfileByIdThunk(currProfile))
         // dispatch(updateUserThunk(currProfile))
-        console.log("---------7-----------");
-        console.log(currentUser.firstName);
         // dispatch(userProfileThunk());
         dispatch(getUserByIdThunk);
 
@@ -89,17 +79,36 @@ const EditProfileComponent = () => {
             </div>
             <div className="mt-4">
                 <div className="d-flex align-items-center">
-                    <div className="text-secondary">Birth date</div>
-                    <div className="ps-1 pe-1">·</div>
-                    <button style={{color: "blue"}}>Edit</button>
+                    <div className="text-secondary">Birthday</div>
                 </div>
             </div>
-            <input id="birthdate" className="form-control border-0"
-                   defaultValue={`${currentUser.birthdate}`}/>
+            <input id="birthdate" type="date" className="form-control border-0"
+                   defaultValue={slashToDashConvert(currentUser.birthdate)}/>
 
         </div>
     );
 
 };
+
+export const slashToDashConvert = (slashDate) => {
+    let [month, day, year] = slashDate.split("/");
+    if (month < 10) {
+        month = "0" + month;
+    }
+    if (day < 10) {
+        day = "0" + day;
+    }
+    return year + "-" + month + "-" + day;
+}
+export const DashToSlashConvert = (DashDate) => {
+    let [year, month, day] = DashDate.split("-");
+    if (month < 10) {
+        month = month.substring(1);
+    }
+    if (day < 10) {
+        day = day.substring(1);
+    }
+    return month + "/" + day + "/" + year;
+}
 
 export default EditProfileComponent;
