@@ -51,6 +51,7 @@ function DogsDetailScreen() {
             setError("Not logged in!")
         } else {
             const response = await service.userLikesDetail(currentUser._id, id);
+            setLiked(true);
             console.log("userLikesDetail response: ", response);
         }
     }
@@ -60,6 +61,7 @@ function DogsDetailScreen() {
             setError("Not logged in!")
         } else {
             const response = await dislikeService.userDislikesDetail(currentUser._id, id);
+            setDisliked(true)
             console.log("userDislikesDetail response: ", response);
         }
     }
