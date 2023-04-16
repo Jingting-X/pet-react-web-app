@@ -1,16 +1,16 @@
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import {getDetail} from "./dogs-service";
 import {useSelector} from "react-redux";
 import * as service from "../services/likes-service";
 import * as dislikeService from "../services/dislikes-service";
 
 function DogsDetailScreen() {
-
     const [error, setError] = useState("");
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
     const {id} = useParams();
+    const navigate = useNavigate();
     const {currentUser} = useSelector((state => state.users))
     const loggedIn = currentUser != null;
     const checkLiked = async() => {
@@ -98,18 +98,20 @@ function DogsDetailScreen() {
 
     return (
         <div>
+            <button className='btn border'
+                    onClick={() => navigate(-1)}>
+                <i className="fas fa-arrow-left me-2"></i>Back
+            </button>
             {/*<h1 className="display-3">Dogs detail page</h1>*/}
-            <p className="display-3">{detail.name}</p>
+
+            <p className="display-4">{detail.name}</p>
             <div>
             <img src={`https://cdn2.thedogapi.com/images/${id}.jpg`} width={400} height={300} alt={id}/>
             </div>
             <div>
                 <h1 className="display-5">{loggedIn? `Hi ${currentUser.firstName} Like it or not?` : "Ops! You need to log in to like or dislike!"} </h1>
-                {liked? <button className="btn btn-success mt-2" onClick={RevertLikeDetail}><i className="bi bi-heart-fill"/></button>: <button className="btn btn-success mt-2" onClick={likeDetail}><i className="bi bi-heart"/></button>}
-                {disliked? <button className="btn btn-success mt-2" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill"/></button>: <button className="btn btn-success mt-2" onClick={dislikeDetail}><i className="bi bi-heartbreak"/></button>}
-
-
-            {/*<button className="btn btn-danger mt-2 ms-2" onClick={dislikeDetail}>{disliked? <i className="bi bi-heartbreak-fill"/>: <i className="bi bi-heartbreak"/>}</button>*/}
+                {liked? <button className="btn btn-success mt-2 me-2" onClick={RevertLikeDetail}><i className="bi bi-heart-fill"/></button>: <button className="btn btn-success mt-2 me-2" onClick={likeDetail}><i className="bi bi-heart"/></button>}
+                {disliked? <button className="btn btn-danger mt-2 ms-2" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill"/></button>: <button className="btn btn-danger mt-2 ms-2" onClick={dislikeDetail}><i className="bi bi-heartbreak"/></button>}
             </div>
         </div>
     )
