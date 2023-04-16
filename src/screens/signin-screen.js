@@ -37,11 +37,12 @@ function SigninScreen() {
             setError("");
             currentUser = result.payload;
             const userRole = result.payload.role; // Access the user's role from the result
-            if (userRole === "admin") {
-                navigate("/home");
-            } else {
-                navigate("/home/other");
-            }
+            // if (userRole === "admin") {
+            //     navigate("/home");
+            // } else {
+            //     navigate("/profile");
+            // }
+            navigate("/home");
         }
     };
 
