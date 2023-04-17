@@ -7,12 +7,14 @@ import CreatePostComponent from "./create-post-component";
 import PostList from "../posts/post-list";
 import {getUserById} from "../services/users-service";
 import {getUserByIdThunk} from "../services/users-thunks";
+import {useNavigate} from "react-router-dom";
 
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
     const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {id} = useParams();
     useEffect(() => {
         dispatch(getUserByIdThunk);
@@ -20,14 +22,16 @@ const ProfileComponent = () => {
 
     // const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
     return (
+
         <div className="border p-2">
             <div className="row pb-2">
-                <div className="col-1">
-                    <Link to="/">
-                        <div className="bi bi-arrow-left pt-2 fw-bolder"></div>
-                    </Link>
+                <div className="col-2">
+                    <button className='btn border'
+                            onClick={() => navigate(`/home`)}>
+                        <i className="fas fa-arrow-left me-2"></i>Back
+                    </button>
                 </div>
-                <div className="col-11">
+                <div className="col-10">
                     <div className="fw-bolder">{currentUser.firstName} {currentUser.lastName}</div>
                     {/*<div className="text-secondary small">10 Posts</div>*/}
                 </div>
@@ -85,12 +89,16 @@ const ProfileComponent = () => {
                 <li className="nav-item">
                     <a className="nav-link" href="src/profile#bookmarks.html">Bookmarks</a>
                 </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="src/profile#followers.html">Followers</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="src/profile#following.html">Following</a>
+                </li>
             </ul>
             <PostList/>
         </div>
-
     );
-
 };
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
