@@ -22,7 +22,7 @@ const { currentUser } = useSelector((state) => state.users);
             </div>
             <div className="d-none d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">             
               <Welcome/>
-              <Calendar/> 
+              {/* <Calendar/>  */}
               {/*<WhoToFollowList/>*/}
             </div>
             {/* <div>

@@ -48,7 +48,7 @@ export const signup = async (user) => {
 }
 
 export const signout = async () => {
-    const response = await api.get(`${USERS_API_BASE_URL}/signout`);
+    const response = await api.post(`${USERS_API_BASE_URL}/signout`);
     return response.data;
 }
 
