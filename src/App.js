@@ -44,6 +44,7 @@ function App() {
                                 <Route path="/dogs/search/:searchTerm" element={<DogsSearch />} />
                                 <Route path="/dogs/search/detail/:id" element={<DogsDetailScreen />} />
                                 <Route path="/profile" element={<ProfileComponent />} />
+                                <Route path="/profile/:uid" element={<ProfileComponent />} />
                                 <Route path="/edit-profile" element={<EditProfileComponent />} />
                                 <Route path="/event" element={<EventCompoment />} />
                             </Routes>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const USERS_API = "http://localhost:4000/api/users/"
+const USERS_API = "http://localhost:4000/api/users"
 
 export const userFollowsUser = async (followerId, followedId) => {
     const response = await axios.post(`${USERS_API}/${followerId}/follows/${followedId}`);
@@ -20,3 +20,9 @@ export const findFollowsByFollowerId = async (follower) => {
     const response = await axios.get(`${USERS_API}/${follower}/followees`);
     return response.data;
 }
+
+export const findFollowedOrNot = async (followerId, followedId) => {
+    const response = await axios.get(`${USERS_API}/check/${followerId}/${followedId}`);
+    return response.data;
+}
+
