@@ -16,6 +16,7 @@ import AdminUsersScreen from './screens/admin-users-screen';
 import AdminPostsScreen from './screens/admin-posts-screen';
 import AdminEventsScreen from './screens/admin-events-screen';
 import DogsDetailScreen from "./dogs/dogs-detail";
+import AboutScreen from "./screens/about-screen";
 import ProfileComponent from "./profile";
 import EditProfileComponent from "./profile/edit-profile-component";
 import EventCompoment from "./event/index";
@@ -33,6 +34,7 @@ function App() {
                             <Routes>
                                 <Route path="/" element={<Home />} />
                                 <Route path="/home/*" element={<Home />} />
+                                <Route path="/about" element={<AboutScreen />} />
                                 <Route path="/admin" element={<AdminScreen />} />
                                 <Route path="/signin" element={<SigninScreen />} />
                                 <Route path="/signup" element={<SignupScreen />} />

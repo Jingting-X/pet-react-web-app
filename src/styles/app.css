@@ -32,3 +32,8 @@
 .wd-paw-icon {
     color: lightpink;
 }
+.introduction {
+    font-size: 120%; /* 2 times the default font size */
+    font-weight: 200;
+    line-height: 1.5; /* 1.5 times the default line height */
+  }
