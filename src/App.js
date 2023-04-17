@@ -10,8 +10,8 @@ import SigninScreen from "./screens/signin-screen";
 import SignupScreen from "./screens/signup-screen";
 import AdminScreen from "./screens/admin-screen";
 import { Provider } from 'react-redux';
-import { store, persistor } from "./redux/store.js";
-import { PersistGate } from "redux-persist/integration/react";
+import { store} from "./redux/store.js";
+// import { PersistGate } from "redux-persist/integration/react";
 import AdminUsersScreen from './screens/admin-users-screen';
 import AdminPostsScreen from './screens/admin-posts-screen';
 import AdminEventsScreen from './screens/admin-events-screen';
@@ -22,7 +22,7 @@ import EventCompoment from "./event/index";
 function App() {
     return (
         <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
+            {/* <PersistGate loading={null} persistor={persistor}> */}
                 <BrowserRouter>
                     <div className="container">
                         <div className="text-center fw-bold mt-2"
@@ -53,7 +53,7 @@ function App() {
                 <div>
                     <Footnote />
                 </div>
-            </PersistGate>
+            {/* </PersistGate> */}
         </Provider>
     );
 }
