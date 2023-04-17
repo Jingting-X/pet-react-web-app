@@ -28,6 +28,7 @@ const ProfileComponent = () => {
     const checkFollowed = async() => {
         const res = await followsService.findFollowedOrNot(currentUser._id, currentUser._id);
         if (res.length > 0) {
+            console.log("This user is being Followed")
            setFollowed(true)
        }
     }
@@ -43,6 +44,7 @@ const ProfileComponent = () => {
     const unfollowUser = async() => {
         const response = await followsService.unfollowUser(currentUser._id, currentUser._id)
         setFollowed(false);
+        console.log("click unfollow, response is:", response);
     }
 
     useEffect(() => {
