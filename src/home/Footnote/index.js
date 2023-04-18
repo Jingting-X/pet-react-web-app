@@ -90,10 +90,10 @@ const Footnote = () => {
 
                             <ul className="list-unstyled">
                                 <li className="mb-2">
-                                    <a href="#!" className="text-black"><i className="fas fa-paw pe-3"></i>General information</a>
+                                    <a href="/home" className="text-black"><i className="fas fa-paw pe-3"></i>General information</a>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#!" className="text-black"><i className="fas fa-paw pe-3"></i>About us</a>
+                                    <a href="/about" className="text-black"><i className="fas fa-paw pe-3"></i>About us</a>
                                 </li>
                                 <li className="mb-2">
                                     <a href="#!" className="text-black"><i className="fas fa-paw pe-3"></i>Job</a>
@@ -104,13 +104,13 @@ const Footnote = () => {
                             <h5 className="text-uppercase mb-4">Contact</h5>
                             <ul className="list-unstyled">
                                 <li>
-                                    <p><i className="fas fa-map-marker-alt pe-2"></i>Warsaw, 57 Street, Poland</p>
+                                    <p><i className="fas fa-map-marker-alt pe-2"></i>Northeastern University, World</p>
                                 </li>
                                 <li>
-                                    <p><i className="fas fa-phone pe-2"></i>+ 01 234 567 89</p>
+                                    <p><i className="fas fa-phone pe-2"></i>+ 01 561 056 10</p>
                                 </li>
                                 <li>
-                                    <p><i className="fas fa-envelope pe-2 mb-0"></i>contact@example.com</p>
+                                    <p><i className="fas fa-envelope pe-2 mb-0"></i>contact@dogland.com</p>
                                 </li>
                             </ul>
                         </div>
