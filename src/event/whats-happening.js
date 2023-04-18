@@ -7,8 +7,9 @@ const EventPost = () => {
   const dispatch = useDispatch();
   const postClickHandler = () => {
     const newTuit = {
-      tuit: whatsHappening,
-      username: "Username",
+      event: whatsHappening,
+      username: "Event host",
+      title: "Pet Event",
       image: "../img/do3.jpeg",
     }
     dispatch(createEventThunk(newTuit));

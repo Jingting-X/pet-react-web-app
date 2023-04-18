@@ -17,9 +17,9 @@ const EventItem = ({post = {}}) => {
           <img className="rounded-circle d-flex" alt ="" src={`../img/${post.image}`} width="50px" height="50px"/>
           <div className="float-end">
             <div className="ms-5">
-              <span className="fw-bold me-2">{post.username}</span>
+              <span className="fw-bold me-2">{post.title}@{post.username}</span>
             </div>
-            <div className="ms-5 mt-2 mb-2">{post.tuit}</div>
+            <div className="ms-5 mt-2 mb-2">{post.event}</div>
           </div>
         </div>
       </>

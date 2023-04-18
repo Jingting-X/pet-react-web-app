@@ -6,11 +6,8 @@ const EventSummaryItem = ({post}) => {
         <div className="row">
           <div className="col-12">
             <div className="fw-bold">{post.username}</div>
-            <div>{post.tuit}</div>
+            <div>{post.event}</div>
           </div>
-          {/*<div className="col-2">*/}
-          {/*  <button className="btn btn-primary rounded-pill float-end">Click</button>*/}
-          {/*</div>*/}
         </div>
       </li>
   );
