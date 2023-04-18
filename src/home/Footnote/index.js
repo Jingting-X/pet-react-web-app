@@ -2,45 +2,6 @@ import React from 'react';
 
 const Footnote = () => {
   return (
-      // <div className="wd-footer mt-5">
-      //     <div className="row h-75 mt-4 pb-0">
-      //         <ul className="col-4 col-sm link-dark">
-      //             <div className="float-end me-5 mt-4">
-      //                 <li style={{listStyleType: 'none'}}>
-      //                     <p className="ps-5" style={{fontFamily: 'cursive', fontSize: '50px', color: 'darkpink'}}>Dog
-      //                         Land</p>
-      //                 </li>
-      //                 <li style={{listStyleType: 'none'}}>
-      //                     <span className="text-black ps-5 small">Produced by ...</span>
-      //                 </li>
-      //                 <li style={{listStyleType: 'none'}}>
-      //                     <span className="text-black ps-5 small">2023, Dog Land</span>
-      //                 </li>
-      //                 <li style={{listStyleType: 'none'}}>
-      //                     <span className="text-black ps-5 mb-5 small">All right reserved</span>
-      //                 </li>
-      //             </div>
-      //         </ul>
-
-      //         <ul className="col-2 col-sm mt-5" style={{width: '250px', listStyleType: 'none'}}>
-      //             <li className="mb-4"><a className="link-dark" href="#">About us</a></li>
-      //             <li className="mb-4"><a className="link-dark" href="#">Contact us</a></li>
-      //         </ul>
-
-      //         <ul className="col-2 col-sm mt-5" style={{width: '250px', listStyleType: 'none'}}>
-      //             <li className="mb-4"><a className="link-dark" href="#">Blog</a></li>
-      //             <li className="mb-4"><a className="link-dark" href="#">Event</a></li>
-      //             <li className="mb-4"><a className="link-dark" href="#">Setting</a></li>
-      //             <li className="mb-4"><a className="link-dark" href="#">Notifications</a></li>
-      //         </ul>
-
-      //         <ul className="col-2 col-sm mt-5 ml-auto" style={{width: '250px', listStyleType: 'none'}}>
-      //             <li className="mb-4"><a className="link-dark" href="#">Terms of Use</a></li>
-      //             <li className="mb-4"><a className="link-dark" href="#">Privacy Policy</a></li>
-      //             <li className="mb-4"><a className="link-dark" href="#">Q&A</a></li>
-      //         </ul>
-      //     </div>
-      // </div>
       <div className="container mt-5 me-0 pe-0">
         <div className="text-center text-lg-start text-black" style={{ backgroundColor: 'lightpink' }}>
           <div className="container p-4">
