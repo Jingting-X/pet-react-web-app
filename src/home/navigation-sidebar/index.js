@@ -1,15 +1,28 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
+import { signoutThunk } from "../../services/users-thunks.js";
 
 const NavigationSidebar = () => {
   const { pathname } = useLocation();
-  const paths = pathname.split('/');
+  const paths = pathname.split("/");
   const active = paths[2];
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.users.currentUser);
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleSignOut = async () => {
+    await dispatch(signoutThunk());
+    navigate("/home");
+  };
   return (
     <div className="list-group rounded-3">
       <Link to="/home" className="list-group-item">
@@ -22,10 +35,10 @@ const NavigationSidebar = () => {
         <span className="ms-1 d-none d-xl-inline">About</span>
       </Link>
 
-      <Link to="/event" className={`list-group-item ${active === 'post' ? 'active' : ''}`}>
+      {currentUser && (currentUser.role === "admin" || currentUser.role === "Service Provider") &&  <Link to="/event" className={`list-group-item ${active === 'post' ? 'active' : ''}`}>
         <i className="fa-solid fa-book fa-lg me-2"></i>
         <span className="ms-1 d-none d-xl-inline">Event</span>
-      </Link>
+      </Link>}
 
       {currentUser && (currentUser.role === "admin" || currentUser.role === "Personal User") && (
         <>
@@ -47,6 +60,23 @@ const NavigationSidebar = () => {
           <span className="ms-1 d-none d-xl-inline">Admin Center</span>
         </Link>
       )}
+
+      {currentUser && (
+        <div className={`list-group-item ${dropdownOpen ? "active" : ""}`} onClick={toggleDropdown}>
+          <i className="fa-solid fa-ellipsis fa-lg me-2"></i>
+          <span className="ms-1 d-none d-xl-inline"></span>
+        </div>
+      )}
+
+      {currentUser && dropdownOpen && (
+        <div className="list-group-item">
+          <button className="btn btn-outline-danger w-100" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
+      )}
+
+
     </div>
   );
 };

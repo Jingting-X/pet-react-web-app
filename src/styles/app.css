@@ -1,10 +1,14 @@
 .wd-footer {
-    background-color: lightpink;
+    top: auto;
+    bottom: 0;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightpink;
     height: 300px;
     overflow-x: hidden;
 }
-
 
 .wd-border {
     border-radius: 25px;
@@ -19,6 +23,7 @@
 .wd-name:nth-child(2) {
     margin-right: 3%;
 }
+
 .centered-modal {
     display: block;
     position: fixed;
@@ -27,8 +32,19 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.5);
-  }
+}
 
 .wd-paw-icon {
     color: lightpink;
+}
+
+.introduction {
+    font-size: 120%;
+    /* 2 times the default font size */
+    font-weight: 200;
+    line-height: 1.5;
+    /* 1.5 times the default line height */
+}
+body {
+    overflow-x: hidden;
 }
