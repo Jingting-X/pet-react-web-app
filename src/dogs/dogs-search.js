@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { fullTextSearch} from "./dogs-service";
 import {Link, useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
@@ -32,7 +32,11 @@ function DogsSearch() {
     return (
         <Provider store={store}>
         <div>
-            <h1 className="display-3">Search in Dogs API</h1>
+            <button className='btn border'
+                    onClick={() => navigate(`/home`)}>
+                <i className="fas fa-arrow-left me-2"></i>Back
+            </button>
+            <h1 className="display-5">Search in Dogs API</h1>
             <button className="float-end btn btn-primary" onClick={searchDogs}>
                 Search
             </button>

@@ -2,25 +2,23 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
 import {Link, useParams} from "react-router-dom";
-import PostSummaryList from "../post-summary-list";
+import PostSummaryList from "../home/post-summary-list";
 import CreatePostComponent from "./create-post-component";
 import PostList from "../posts/post-list";
-import {getUserById} from "../../services/users-service";
-import {getUserByIdThunk} from "../../services/users-thunks";
+import {getUserById} from "../services/users-service";
+import {getUserByIdThunk} from "../services/users-thunks";
 
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
+    const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     const dispatch = useDispatch();
     const {id} = useParams();
     useEffect(() => {
         dispatch(getUserByIdThunk);
     }, [])
 
-    // const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     // const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
-    console.log("---------9----");
-    console.log(currentUser.location);
     return (
         <div className="border p-2">
             <div className="row pb-2">
@@ -53,10 +51,10 @@ const ProfileComponent = () => {
                     <span className="bi bi-geo-alt text-secondary"></span>
                     <span className="ps-1">{currentUser.location}</span>
                 </div>
-                {/*<div className="col-4">*/}
-                {/*    <span className="bi bi-balloon text-secondary"></span>*/}
-                {/*    <span className="ps-1">Born {currentUser.birthdate}</span>*/}
-                {/*</div>*/}
+                <div className="col-4">
+                    <span className="bi bi-balloon text-secondary"></span>
+                    <span className="ps-1">Born {dateOfBirth}</span>
+                </div>
 
                 {/*<div className="col-4">*/}
                 {/*    <span className="bi bi-calendar3 text-secondary"></span>*/}
@@ -76,16 +74,16 @@ const ProfileComponent = () => {
             <CreatePostComponent/>
             <ul className="nav nav-pills mb-2">
                 <li className="nav-item">
-                    <a className="nav-link active" href="#posts.html">Posts</a>
+                    <a className="nav-link active" href="src/profile#posts.html">Posts</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#comments.html">Comments</a>
+                    <a className="nav-link" href="src/profile#comments.html">Comments</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#likes.html">Likes</a>
+                    <a className="nav-link" href="src/profile#likes.html">Likes</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#bookmarks.html">Bookmarks</a>
+                    <a className="nav-link" href="src/profile#bookmarks.html">Bookmarks</a>
                 </li>
             </ul>
             {/*<PostList/>*/}

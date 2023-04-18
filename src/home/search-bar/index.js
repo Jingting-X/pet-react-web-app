@@ -8,7 +8,7 @@ export default function SearchBar (){
         navigate('/dogs/search');
     }
     return (
-        <div className="form-group has-search">
+        <div className="form-group has-search w-100">
             <span className="fa fa-search form-control-feedback"/>
             <input type="text" className="form-control" placeholder="Search in Dogs API" onClick={openSearchScreen} />
         </div>

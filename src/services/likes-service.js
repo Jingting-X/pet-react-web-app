@@ -17,3 +17,8 @@ export const findLikedOrNotByUser = async (userId, detailId) => {
     const response = await axios.get(`${USERS_API}/${userId}/likes/details/check/${detailId}`);
     return response.data;
 }
+
+export const userRevertLikesDetail = async (userId, detailId) => {
+    const response = await axios.delete(`${USERS_API}/${userId}/likes/details/${detailId}`);
+    return response.data;
+}

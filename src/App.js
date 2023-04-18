@@ -17,8 +17,8 @@ import AdminEventsScreen from './screens/admin-events-screen';
 import DogsDetailScreen from "./dogs/dogs-detail";
 import EventsScreen from "./screens/admin-events-screen";
 import PostsScreen from "./screens/admin-posts-screen";
-import ProfileComponent from "./home/profile";
-import EditProfileComponent from "./home/profile/edit-profile-component";
+import ProfileComponent from "./profile";
+import EditProfileComponent from "./profile/edit-profile-component";
 import EventCompoment from "./event/index";
 
 function App() {
