@@ -26,7 +26,7 @@ function App() {
             {/* <PersistGate loading={null} persistor={persistor}> */}
                 <BrowserRouter>
                     <div className="container">
-                        <div className="text-center fw-bold mt-2"
+                        <div className="text-center fw-bold mt-2 mb-4"
                             style={{ fontFamily: 'cursive', fontSize: '80px', color: 'lightpink' }}>
                             Dog Land
                         </div>

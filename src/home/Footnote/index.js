@@ -115,7 +115,7 @@ const Footnote = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="text-center text-black" style={{ backgroundColor: 'lightpink' }}>
+                    <div className="text-center text-black mt-4 mb-1" style={{ backgroundColor: 'lightpink' }}>
                         <p className="text-black" href="#">© 2023 Copyright: dogland.com</p>
                     </div>
                 </div>
