@@ -53,7 +53,7 @@ function App() {
                         </div>
                     </div>
                 </BrowserRouter>
-                <div>
+                <div className='row wd-footer-box'>
                     <Footnote />
                 </div>
             {/* </PersistGate> */}

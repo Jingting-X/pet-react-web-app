@@ -35,10 +35,10 @@ const NavigationSidebar = () => {
         <span className="ms-1 d-none d-xl-inline">About</span>
       </Link>
 
-      <Link to="/event" className={`list-group-item ${active === 'post' ? 'active' : ''}`}>
+      {currentUser && (currentUser.role === "admin" || currentUser.role === "Service Provider") &&  <Link to="/event" className={`list-group-item ${active === 'post' ? 'active' : ''}`}>
         <i className="fa-solid fa-book fa-lg me-2"></i>
         <span className="ms-1 d-none d-xl-inline">Event</span>
-      </Link>
+      </Link>}
 
       {currentUser && (currentUser.role === "admin" || currentUser.role === "Personal User") && (
         <>
