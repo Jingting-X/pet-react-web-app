@@ -9,7 +9,8 @@ import {getUserById} from "../services/users-service";
 import {getUserByIdThunk} from "../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 import * as followsService from "../services/follows-service";
-import * as service from "../services/likes-service";
+import * as likesService from "../services/likes-service";
+import * as dislikesService from "../services/dislikes-service";
 import {findFollowedOrNot} from "../services/follows-service";
 
 const ProfileComponent = () => {
@@ -20,6 +21,8 @@ const ProfileComponent = () => {
     const navigate = useNavigate();
     const [following, setFollowing] = useState([]);
     const [follows, setFollows] = useState([]);
+    const [detailsLiked, setDetailsLiked] = useState([]);
+    const [detailsDisliked, setDetailsDisliked] = useState([]);
     const fetchFollowing = async() => {
         const following = await  followsService.findFollowsByFollowerId(currentUser._id);
         console.log("following is:", following);
@@ -28,6 +31,16 @@ const ProfileComponent = () => {
     const fetchFollows = async() => {
         const follows = await  followsService.findFollowsByFollowedId(currentUser._id);
         setFollows(follows);
+    }
+
+    const fetchDetailsLiked = async() => {
+        const details = await  likesService.findLikesByUserId(currentUser._id);
+        setDetailsLiked(details);
+    }
+
+    const fetchDetailsDisliked = async() => {
+        const details = await  dislikesService.findDislikesByUserId(currentUser._id);
+        setDetailsDisliked(details);
     }
 
     // TODO: id is not added into url yet, need to make sure
@@ -65,6 +78,8 @@ const ProfileComponent = () => {
         checkFollowed()
         fetchFollowing()
         fetchFollows()
+        fetchDetailsLiked()
+        fetchDetailsDisliked()
     }, [])
 
     // const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
@@ -147,12 +162,18 @@ const ProfileComponent = () => {
                 <li className="nav-item">
                     <a className="nav-link" href="src/profile#following.html">Following</a>
                 </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="src/profile#following.html">Liked Details</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="src/profile#following.html">Disliked Details</a>
+                </li>
             </ul>
             {following && (<div>
                 <h2>Following</h2>
                 <ul className="list-group">
                     {following.map((follow) => (
-                        <li className="list-group-item">
+                        <li className="list-group-item border-0">
                             <Link to={`/profile/${follow.followed._id}`}>
                             <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
                             </Link>
@@ -166,10 +187,35 @@ const ProfileComponent = () => {
                 <h2>Followers</h2>
                 <ul className="list-group">
                     {follows.map((follower) => (
-                        <li className="list-group-item">
+                        <li className="list-group-item border-0">
                             <Link to={`/profile/${follower.follower._id}`}>
                                 <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
                             </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>)
+            }
+
+            {detailsLiked && (<div>
+                <h2>Details Liked</h2>
+                <ul className="list-group">
+                    {detailsLiked.map((detail) => (
+                        <li className="list-group-item border-0">
+                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
+
+                        </li>
+                    ))}
+                </ul>
+            </div>)
+            }
+            {detailsDisliked && (<div>
+                <h2>Details Disliked</h2>
+                <ul className="list-group">
+                    {detailsDisliked.map((detail) => (
+                        <li className="list-group-item border-0">
+                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
+
                         </li>
                     ))}
                 </ul>
