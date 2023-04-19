@@ -162,6 +162,20 @@ const ProfileComponent = () => {
             </div>)
             }
 
+            {follows && (<div>
+                <h2>Followers</h2>
+                <ul className="list-group">
+                    {follows.map((follower) => (
+                        <li className="list-group-item">
+                            <Link to={`/profile/${follower.follower._id}`}>
+                                <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>)
+            }
+
             {/*<PostList/>*/}
         </div>
     );
