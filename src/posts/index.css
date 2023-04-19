@@ -1,0 +1,44 @@
+.wd-polyglot {
+    width: 100%;
+    height: 200px;
+}
+
+.wd-avatar {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: -50px;
+    left: 20px;
+    z-index: 1;
+    background-color: white;
+}
+
+.wd-pictures {
+    height:48px;
+    width: 36px;
+    background: gainsboro;
+}
+
+.wd-banner-camera-pos {
+    position: relative;
+    bottom: 150px;
+    left: 180px;
+}
+
+.wd-banner-x-pos {
+    position: relative;
+    bottom: 150px;
+    left: 100px;
+}
+
+.wd-avatar-camera-pos {
+    position: relative;
+    bottom: 50px;
+    left: -68px;
+    z-index: 2;
+}
+
+.wd-border {
+    border: 2px solid #007bff;
+    box-shadow: 0 0 10px rgb(224, 222, 222);
+}

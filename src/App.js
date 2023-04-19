@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Route, Routes } from 'react-router';
+import {BrowserRouter} from 'react-router-dom';
+import {Route, Routes} from 'react-router';
 import Home from "./home";
 import Footnote from "./home/Footnote";
 import './styles/app.css'
@@ -20,6 +20,8 @@ import AboutScreen from "./screens/about-screen";
 import ProfileComponent from "./profile";
 import EditProfileComponent from "./profile/edit-profile-component";
 import EventCompoment from "./event/index";
+import OtherUserProfileComponent from "./profile/other-user-profile";
+
 function App() {
     return (
         <Provider store={store}>
@@ -46,7 +48,7 @@ function App() {
                                 <Route path="/dogs/search/:searchTerm" element={<DogsSearch />} />
                                 <Route path="/dogs/search/detail/:id" element={<DogsDetailScreen />} />
                                 <Route path="/profile" element={<ProfileComponent />} />
-                                <Route path="/profile/:uid" element={<ProfileComponent />} />
+                                <Route path="/profile/:id" element={<OtherUserProfileComponent />} />
                                 <Route path="/edit-profile" element={<EditProfileComponent />} />
                                 <Route path="/event" element={<EventCompoment />} />
                             </Routes>
