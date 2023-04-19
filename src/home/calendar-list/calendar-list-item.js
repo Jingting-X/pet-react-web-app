@@ -5,8 +5,8 @@ const EventSummaryItem = ({post}) => {
       <li className="list-group-item">
         <div className="row">
           <div className="col-12">
-            <div className="fw-bold">{post.username}</div>
-            <div>{post.event}</div>
+            <div className="fw-bold">{post.time}</div>
+            <div className="text-muted">{post.event}</div>
           </div>
         </div>
       </li>

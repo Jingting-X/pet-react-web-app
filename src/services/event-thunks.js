@@ -20,5 +20,8 @@ export const createEventThunk = createAsyncThunk(
     })
 export const updateEventThunk = createAsyncThunk(
     'events/updateEvent',
-    async (event) => await service.updateEvent(event)
+    async (event) => {
+      await service.updateEvent(event);
+      return event
+    }
 )

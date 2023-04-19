@@ -21,8 +21,8 @@ const { currentUser } = useSelector((state) => state.users);
               </Routes>
             </div>
             <div className="d-none d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">             
-              <Welcome/>
-              <Calendar/>
+              <div><Welcome/></div>
+              <div className="mt-2"><Calendar/></div>
               {/*<WhoToFollowList/>*/}
             </div>
             {/* <div>

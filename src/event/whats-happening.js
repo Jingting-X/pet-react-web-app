@@ -6,10 +6,14 @@ const EventPost = () => {
   let [whatsHappening, setWhatsHappening] = useState('');
   const dispatch = useDispatch();
   const postClickHandler = () => {
+    const startDate = new Date(2023, 4, 20);
+    const endDate = new Date(2023, 5, 20);
+    const randomDate = new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
     const newTuit = {
       event: whatsHappening,
       username: "Event host",
       title: "Pet Event",
+      time: randomDate.toDateString(),
       image: "../img/do3.jpeg",
     }
     dispatch(createEventThunk(newTuit));
