@@ -2,16 +2,14 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
 import {Link, useParams} from "react-router-dom";
-import PostSummaryList from "../home/post-summary-list";
-import CreatePostComponent from "./create-post-component";
 import PostList from "../posts/post-list";
-import {getUserById} from "../services/users-service";
 import {getUserByIdThunk} from "../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 import * as followsService from "../services/follows-service";
 import * as likesService from "../services/likes-service";
 import * as dislikesService from "../services/dislikes-service";
 import {findFollowedOrNot} from "../services/follows-service";
+import CreatePostComponent from "../posts/create-post-component";
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
@@ -43,39 +41,8 @@ const ProfileComponent = () => {
         setDetailsDisliked(details);
     }
 
-    // TODO: id is not added into url yet, need to make sure
-    const {id} = useParams();
-
-    const [followed, setFollowed] = useState(false);
-
-    // currentUser._id shoule be the logged in user, id should be the profile's user id
-    // before a user's profile page can be retrieved, these two are the same for now
-    // TODO: UPDATE SECOND CURRENTUSER._ID TO ID
-    const checkFollowed = async() => {
-        const res = await followsService.findFollowedOrNot(currentUser._id, currentUser._id);
-        if (res && res.length > 0) {
-            console.log("This user is being Followed")
-           setFollowed(true)
-       }
-    }
-
-    // TODO: UPDATE SECOND CURRENTUSER._ID TO ID
-    const followUser = async() => {
-        const response = await followsService.userFollowsUser(currentUser._id, currentUser._id)
-        setFollowed(true);
-        console.log("click follow, response is:", response);
-    }
-
-    // TODO: UPDATE SECOND CURRENTUSER._ID TO ID
-    const unfollowUser = async() => {
-        const response = await followsService.unfollowUser(currentUser._id, currentUser._id)
-        setFollowed(false);
-        console.log("click unfollow, response is:", response);
-    }
-
     useEffect(() => {
         dispatch(getUserByIdThunk);
-        checkFollowed()
         fetchFollowing()
         fetchFollows()
         fetchDetailsLiked()
@@ -92,15 +59,6 @@ const ProfileComponent = () => {
                             onClick={() => navigate(`/home`)}>
                         <i className="fas fa-arrow-left me-2"/>Back
                     </button>
-                </div>
-                <div className="col-10">
-                    {/*<div className="fw-bolder">{currentUser.firstName} {currentUser.lastName}</div>*/}
-                    {followed? <button className='btn border float-end' onClick={unfollowUser}>
-                        <i className="fas fa-star me-2"/>Unfollow
-                    </button>: <button className='btn border float-end' onClick={followUser}>
-                        <i className="fa-regular fa-star me-2"/>Follow
-                    </button>}
-                    {/*<div className="text-secondary small">10 Posts</div>*/}
                 </div>
             </div>
             <div className="pos-relative">
@@ -133,14 +91,14 @@ const ProfileComponent = () => {
                 {/*</div>*/}
             </div>
 
-            {/*<div className="pt-2 row">*/}
-            {/*    <div className="col-3">*/}
-            {/*        <span className="fw-bolder">{currentUser.followingCount}</span> Following*/}
-            {/*    </div>*/}
-            {/*    <div className="col-3">*/}
-            {/*        <span className="fw-bolder col-4">{currentUser.followersCount}</span> Followers*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className="pt-2 row">
+                <div className="col-3">
+                    <span className="fw-bolder">{following.length}</span> Following
+                </div>
+                <div className="col-3">
+                    <span className="fw-bolder col-4">{follows.length}</span> Followers
+                </div>
+            </div>
             <br></br>
             <CreatePostComponent/>
             <ul className="nav nav-pills mb-2">
@@ -162,67 +120,8 @@ const ProfileComponent = () => {
                 <li className="nav-item">
                     <a className="nav-link" href="src/profile#following.html">Following</a>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#following.html">Liked Details</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#following.html">Disliked Details</a>
-                </li>
             </ul>
-            {following && (<div>
-                <h2>Following</h2>
-                <ul className="list-group">
-                    {following.map((follow) => (
-                        <li className="list-group-item border-0">
-                            <Link to={`/profile/${follow.followed._id}`}>
-                            <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>)
-            }
-
-            {follows && (<div>
-                <h2>Followers</h2>
-                <ul className="list-group">
-                    {follows.map((follower) => (
-                        <li className="list-group-item border-0">
-                            <Link to={`/profile/${follower.follower._id}`}>
-                                <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>)
-            }
-
-            {detailsLiked && (<div>
-                <h2>Details Liked</h2>
-                <ul className="list-group">
-                    {detailsLiked.map((detail) => (
-                        <li className="list-group-item border-0">
-                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
-
-                        </li>
-                    ))}
-                </ul>
-            </div>)
-            }
-            {detailsDisliked && (<div>
-                <h2>Details Disliked</h2>
-                <ul className="list-group">
-                    {detailsDisliked.map((detail) => (
-                        <li className="list-group-item border-0">
-                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
-
-                        </li>
-                    ))}
-                </ul>
-            </div>)
-            }
-
-            {/*<PostList/>*/}
+            <PostList/>
         </div>
     );
 };

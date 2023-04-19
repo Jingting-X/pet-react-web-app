@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {getUserByIdThunk, updateUserProfileByIdThunk} from "../../services/users-thunks";
+import {getUserByIdThunk, updateUserThunk} from "../../services/users-thunks";
 
 const EditProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
@@ -30,7 +30,7 @@ const EditProfileComponent = () => {
             'birthdate': newBirthdate,
             // 'joinedDate': newJoinedDate,
         };
-        dispatch(updateUserProfileByIdThunk(currProfile))
+        dispatch(updateUserThunk(currProfile))
         // dispatch(updateUserThunk(currProfile))
         // dispatch(userProfileThunk());
         dispatch(getUserByIdThunk);

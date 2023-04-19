@@ -1,9 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import PostSummaryList from "../post-summary-list/index.js";
 import SearchBar from "../search-bar";
 import '../../styles/app.css'
+import {findFollowsByFollowedId} from "../../services/follows-service";
+import * as followsService from "../../services/follows-service";
+import {useSelector} from "react-redux";
 const HomeComponent = () => {
+  // const {currentUser} = useSelector(state => state.users);
+  // const [following, setFollowing] = useState([]);
+  // useEffect(() => {
+  //   checkFollowing();
+  // }, []);
+  //
+  // const checkFollowing = async() => {
+  //   const res = await followsService.findFollowsByFollowedId(currentUser._id);
+  //   if (res.length > 0) {
+  //     console.log("This user has following.")
+  //     setFollowing(following)
+  //   }
+  // }
+
   return (
     <div className="d-flex flex-column align-content-start justify-content-start">
       <div className="bg-light d-flex align-items-center">
@@ -73,7 +90,12 @@ const HomeComponent = () => {
           </button>
         </div>
       </div>
-      <PostSummaryList />
+
+      {/*{following.length === 0 ? (*/}
+      {/*    <p className="text-center">You are not following anyone yet.</p>*/}
+      {/*) : (*/}
+          <PostSummaryList />
+      {/*)}*/}
     </div>
   );
 };
