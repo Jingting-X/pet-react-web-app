@@ -1,3 +1,9 @@
+.wd-background {
+    background-image: url("https://img.freepik.com/free-vector/colorful-geometric-seamless-pattern-background-design_53876-118676.jpg?w=826&t=st=1681941522~exp=1681942122~hmac=4903e9e12d71262849a44f444d8bfcc3123905f874467e976ead6bfb7009e6a7");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .wd-footer {
     top: auto;
     bottom: 0;
@@ -13,7 +19,6 @@
 .wd-border {
     border-radius: 25px;
 }
-
 
 .wd-name:first-child {
     margin-right: 5%;
@@ -40,10 +45,8 @@
 
 .introduction {
     font-size: 120%;
-    /* 2 times the default font size */
     font-weight: 200;
     line-height: 1.5;
-    /* 1.5 times the default line height */
 }
 body {
     overflow-x: hidden;

@@ -10,7 +10,7 @@ import NavigationSidebar from './navigation-sidebar/index.js';
 function Home() {
 const { currentUser } = useSelector((state) => state.users);
   return (
-        <div className="container mb-4">
+        <div className="container">
           <div className="row mt-2">
             <div className="col-2 col-md-2 col-lg-2 col-xl-2">
               <NavigationSidebar/>
