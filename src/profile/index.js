@@ -14,9 +14,22 @@ import {findFollowedOrNot} from "../services/follows-service";
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
+    console.log("currentUser is:", currentUser);
     const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [following, setFollowing] = useState([]);
+    const [follows, setFollows] = useState([]);
+    const fetchFollowing = async() => {
+        const following = await  followsService.findFollowsByFollowerId(currentUser._id);
+        console.log("following is:", following);
+        setFollowing(following);
+    }
+    const fetchFollows = async() => {
+        const follows = await  followsService.findFollowsByFollowedId(currentUser._id);
+        setFollows(follows);
+    }
+
     // TODO: id is not added into url yet, need to make sure
     const {id} = useParams();
 
@@ -27,7 +40,7 @@ const ProfileComponent = () => {
     // TODO: UPDATE SECOND CURRENTUSER._ID TO ID
     const checkFollowed = async() => {
         const res = await followsService.findFollowedOrNot(currentUser._id, currentUser._id);
-        if (res.length > 0) {
+        if (res && res.length > 0) {
             console.log("This user is being Followed")
            setFollowed(true)
        }
@@ -50,6 +63,8 @@ const ProfileComponent = () => {
     useEffect(() => {
         dispatch(getUserByIdThunk);
         checkFollowed()
+        fetchFollowing()
+        fetchFollows()
     }, [])
 
     // const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
@@ -133,6 +148,20 @@ const ProfileComponent = () => {
                     <a className="nav-link" href="src/profile#following.html">Following</a>
                 </li>
             </ul>
+            {following && (<div>
+                <h2>Following</h2>
+                <ul className="list-group">
+                    {following.map((follow) => (
+                        <li className="list-group-item">
+                            <Link to={`/profile/${follow.followed._id}`}>
+                            <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>)
+            }
+
             {/*<PostList/>*/}
         </div>
     );
