@@ -3,7 +3,8 @@ import {findEventsThunk, deleteEventThunk, createEventThunk, updateEventThunk} f
 
 const initialState = {
   events: [],
-  loading: false
+  loading: false,
+  error: null,
 }
 const eventSlice = createSlice({
   name: 'events',
@@ -49,4 +50,5 @@ const eventSlice = createSlice({
   },
   reducers:{}
 });
+export const { updateEvent, deleteEvent, addEvent } = eventSlice.actions;
 export default eventSlice.reducer
