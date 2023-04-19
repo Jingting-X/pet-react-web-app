@@ -20,7 +20,7 @@ const EventList =() =>{
         }
 
         {
-          events.map(details => (
+          events.slice().reverse().map(details => (
               <div className="list-group-item ">
                 <EventItem key ={details._id} post={details}/>
               </div>

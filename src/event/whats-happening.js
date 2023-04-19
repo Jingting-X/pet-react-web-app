@@ -6,14 +6,17 @@ const EventPost = () => {
   let [whatsHappening, setWhatsHappening] = useState('');
   const dispatch = useDispatch();
   const postClickHandler = () => {
-    const startDate = new Date(2023, 4, 20);
-    const endDate = new Date(2023, 5, 20);
-    const randomDate = new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
+    const today = new Date();
+    const twoWeeksLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + Math.floor(Math.random() * 3) + 7);
+    const sentences = whatsHappening.split(/[.?!]/);
+    const title = sentences[0];
+    const event = sentences.slice(1).join('.');
     const newTuit = {
-      event: whatsHappening,
+      event,
       username: "Event host",
-      title: "Pet Event",
-      time: randomDate.toDateString(),
+      title,
+      time: twoWeeksLater.toDateString(),
+      editing: false,
       image: "../img/do3.jpeg",
     }
     dispatch(createEventThunk(newTuit));
