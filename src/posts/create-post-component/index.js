@@ -13,7 +13,7 @@ const CreatePostComponent = () => {
 
     const postClickHandler = () => {
         if (!currentUser) {
-            // Handle error: current user not found
+            alert('Please log in to create a post.');
             return;
         }
 

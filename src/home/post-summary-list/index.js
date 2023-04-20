@@ -5,8 +5,8 @@ import {findPostsThunk} from "../../services/post-thunk";
 import {getUsersThunk} from "../../services/users-thunks";
 
 const PostSummaryList = () => {
-    const { posts, loading } = useSelector((state) => state.posts);
-    const { currentUser, users } = useSelector((state) => state.users);
+    const {posts, loading} = useSelector((state) => state.posts);
+    const {currentUser, users} = useSelector((state) => state.users);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const PostSummaryList = () => {
             ) : (
                 posts.length > 0 ? (
                     posts.map((post) => (
-                        (post.userId !== currentUser._id) ? (
+                        (currentUser === null || post.userId !== currentUser._id) ? (
                             <PostSummaryItem
                                 key={post._id}
                                 post={post}
