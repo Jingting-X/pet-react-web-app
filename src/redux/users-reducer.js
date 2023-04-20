@@ -47,7 +47,7 @@ const usersSlice = createSlice({
 
         [getUserByIdThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            state.selectedUsers = action.payload;
+            state.selectedUser = action.payload;
         },
 
         [getUserByIdThunk.rejected]: (state, action) => {

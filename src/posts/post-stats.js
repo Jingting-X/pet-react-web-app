@@ -50,7 +50,7 @@ const PostStats = ({ post = {} }) => {
                 ) : (
                     <i className="bi bi-chat text-secondary" onClick={() => setShowComments(true)}></i>
                 )}
-                {comments.length > 0 && <span className="text-secondary ps-2">{comments.length}</span>}
+                {post.comments && comments.length > 0 && <span className="text-secondary ps-2">{comments.length}</span>}
 
             </div>
 

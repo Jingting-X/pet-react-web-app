@@ -1,26 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {getUserByIdThunk, updateUserThunk} from "../../services/users-thunks";
+import {updateUserThunk} from "../../services/users-thunks";
+import {getUserById} from "../../services/users-service";
 
 const EditProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
+    const [user, setUser] = useState({});
     const dispatch = useDispatch();
+
+    const fetchUser = async () => {
+        const fetchedUser = await getUserById(currentUser._id);
+        console.log("fetchedUser:", fetchedUser);
+        setUser(fetchedUser);
+        console.log("user:", user);
+    };
+
+    useEffect(() => {
+        fetchUser()
+    }, [])
+
     const updateProfileClickHandler = () => {
-        // const newName = document.getElementById("profileName").value;
-        // const nameArray = newName.split(" ");
-        // if (nameArray.length >= 1) {
-        //     currProfile.firstName = nameArray[0];
-        // }
-        // if (nameArray.length >= 2) {
-        //     currProfile.lastName = nameArray[1];
-        // }
         const newFirstname = document.getElementById('firstName').value;
         const newLastname = document.getElementById('lastName').value;
         const newBio = document.getElementById('bio').value;
         const newLocation = document.getElementById('location').value;
         const newBirthdate = DashToSlashConvert(document.getElementById('birthdate').value);
-        // const newJoinedDate = document.getElementById('joinedDate').value;
+
         const currProfile = {
             ...currentUser,
             'firstName': newFirstname,
@@ -28,15 +34,13 @@ const EditProfileComponent = () => {
             'bio': newBio,
             'location': newLocation,
             'birthdate': newBirthdate,
-            // 'joinedDate': newJoinedDate,
         };
-        dispatch(updateUserThunk(currProfile))
-        // dispatch(updateUserThunk(currProfile))
-        // dispatch(userProfileThunk());
-        dispatch(getUserByIdThunk);
 
+        dispatch(updateUserThunk(currProfile));
     }
 
+
+    console.log(user.firstName)
     return (
         <div className="border p-2">
             <div className="row align-items-center pb-2">
@@ -59,26 +63,28 @@ const EditProfileComponent = () => {
             {/*    <img className="wd-polyglot" src={`/img/${profile.bannerPicture}`} alt=""/>*/}
             {/*    <img className="wd-avatar rounded-circle" src={`/img/${profile.profilePicture}`} alt=""/>*/}
             {/*</div>*/}
-            <div className="border pt-2 rounded-1">
-                <label className="text-secondary ps-2">First Name</label>
-                <input id="firstName" className="form-control border-0"
-                       defaultValue={`${currentUser.firstName}`}/>
-            </div>
-            <div className="border pt-2 rounded-1">
-                <label className="text-secondary ps-2">Last Name</label>
-                <input id="lastName" className="form-control border-0"
-                       defaultValue={`${currentUser.lastName}`}/>
-            </div>
+            {user.firstName && (
+                <div className="border pt-2 rounded-1">
+                    <label className="text-secondary ps-2">First Name</label>
+                    <input id="firstName" className="form-control border-0" defaultValue={`${user.firstName}`}/>
+                </div>
+            )}
+            {user.lastName &&
+                <div className="border pt-2 rounded-1">
+                    <label className="text-secondary ps-2">Last Name</label>
+                    <input id="lastName" className="form-control border-0"
+                           defaultValue={`${user.lastName}`}/>
+                </div>}
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">Description</label>
                 <textarea id="bio" className="form-control border-0"
-                          defaultValue={currentUser.bio !== null && currentUser.bio !== undefined ? `${currentUser.bio}` : ''}
+                          defaultValue={user.bio !== null && user.bio !== undefined ? `${user.bio}` : ''}
                           placeholder="Enter a description..."/>
             </div>
             <div className="border pt-2 mt-4 rounded-1">
                 <label className="text-secondary ps-2">Location</label>
                 <input id="location" className="form-control border-0"
-                       defaultValue={currentUser.location !== null && currentUser.location !== undefined ? `${currentUser.location}` : ''}
+                       defaultValue={user.location !== null && user.location !== undefined ? `${user.location}` : ''}
                        placeholder="Enter a location..."/>
             </div>
             <div className="mt-4">
@@ -87,7 +93,7 @@ const EditProfileComponent = () => {
                 </div>
             </div>
             <input id="birthdate" type="date" className="form-control border-0"
-                   defaultValue={slashToDashConvert(currentUser.birthdate)}/>
+                   defaultValue={slashToDashConvert(user.birthdate)}/>
 
         </div>
     );

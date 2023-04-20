@@ -3,14 +3,15 @@ import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
 import {Link} from "react-router-dom";
 import PostList from "../posts/post-list";
-import {getUserByIdThunk} from "../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 import * as followsService from "../services/follows-service";
 import * as likesService from "../services/likes-service";
 import * as dislikesService from "../services/dislikes-service";
+import {getUserById} from "../services/users-service";
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
+    const [user, setUser] = useState({});
     const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -43,15 +44,19 @@ const ProfileComponent = () => {
         setDetailsDisliked(details);
     }
 
+    const fetchUser = async () => {
+            const fetchedUser = await getUserById(currentUser._id);
+            setUser(fetchedUser);
+    };
+
     useEffect(() => {
-        dispatch(getUserByIdThunk);
+        fetchUser()
         fetchFollowing()
         fetchFollows()
         fetchDetailsLiked()
         fetchDetailsDisliked()
     }, [])
 
-    // const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
     return (
 
         <div className="container-xl bg-transparent ms-5 me-5">
@@ -71,26 +76,21 @@ const ProfileComponent = () => {
                 </Link>
             </div>
             <div>
-                <div className="fw-bolder">{currentUser.firstName} {currentUser.lastName}</div>
-                <div className="text-secondary">{currentUser.handle}</div>
+                <div className="fw-bolder">{user.firstName} {user.lastName}</div>
+                {/*<div className="text-secondary">{currentUser.handle}</div>*/}
             </div>
             <div className="pt-2">
-                {currentUser.bio}
+                {user.bio}
             </div>
             <div className="row pt-2">
                 <div className="col-4">
                     <span className="bi bi-geo-alt text-secondary"></span>
-                    <span className="ps-1">{currentUser.location}</span>
+                    <span className="ps-1">{user.location}</span>
                 </div>
                 <div className="col-4">
                     <span className="bi bi-balloon text-secondary"></span>
                     <span className="ps-1">Born {dateOfBirth}</span>
                 </div>
-
-                {/*<div className="col-4">*/}
-                {/*    <span className="bi bi-calendar3 text-secondary"></span>*/}
-                {/*    <span className="ps-1">Joined {currentUser.joinedDate}</span>*/}
-                {/*</div>*/}
             </div>
 
             <div className="pt-2 row">
