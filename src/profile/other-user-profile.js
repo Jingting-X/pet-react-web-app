@@ -2,8 +2,6 @@ import {Link, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserById} from "../services/users-service";
-import CreatePostComponent from "../posts/create-post-component";
-import PostList from "../posts/post-list";
 import {useNavigate} from "react-router";
 import {BirthdateConvert} from "./index";
 import * as followsService from "../services/follows-service";
@@ -21,9 +19,14 @@ const OtherUserProfileComponent = () => {
     const [followed, setFollowed] = useState(false);
     const [detailsLiked, setDetailsLiked] = useState([]);
     const [detailsDisliked, setDetailsDisliked] = useState([]);
+    const [activeTab, setActiveTab] = useState("posts");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const handleTabChange = (tabName) => {
+        setActiveTab(tabName);
+    };
 
     const fetchFollowing = async () => {
         const following = await followsService.findFollowsByFollowerId(currentUser._id);
@@ -45,9 +48,6 @@ const OtherUserProfileComponent = () => {
         setDetailsDisliked(details);
     }
 
-    // currentUser._id shoule be the logged in user, id should be the profile's user id
-    // before a user's profile page can be retrieved, these two are the same for now
-    // TODO: UPDATE SECOND CURRENTUSER._ID TO ID
     const checkFollowed = async () => {
         const res = await followsService.findFollowedOrNot(currentUser._id, id);
         if (res && res.length > 0) {
@@ -56,20 +56,17 @@ const OtherUserProfileComponent = () => {
         }
     }
 
-    // TODO: UPDATE SECOND CURRENTUSER._ID TO ID
     const followUser = async () => {
         const response = await followsService.userFollowsUser(currentUser._id, id)
         setFollowed(true);
         console.log("click follow, response is:", response);
     }
 
-    // TODO: UPDATE SECOND CURRENTUSER._ID TO ID
     const unfollowUser = async () => {
         const response = await followsService.unfollowUser(currentUser._id, id)
         setFollowed(false);
         console.log("click unfollow, response is:", response);
     }
-
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -107,7 +104,6 @@ const OtherUserProfileComponent = () => {
                     </button> : <button className='btn border float-end' onClick={followUser}>
                         <i className="fa-regular fa-star me-2"/>Follow
                     </button>}
-                    {/*<div className="text-secondary small">10 Posts</div>*/}
                 </div>
             </div>
             <div>
@@ -133,34 +129,93 @@ const OtherUserProfileComponent = () => {
                 {/*</div>*/}
             </div>
 
-            {/*<div className="pt-2 row">*/}
-            {/*    <div className="col-3">*/}
-            {/*        <span className="fw-bolder">{currentUser.followingCount}</span> Following*/}
-            {/*    </div>*/}
-            {/*    <div className="col-3">*/}
-            {/*        <span className="fw-bolder col-4">{currentUser.followersCount}</span> Followers*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className="pt-2 row">
+                <div className="col-3">
+                    <span className="fw-bolder">{following.length}</span> Following
+                </div>
+                <div className="col-3">
+                    <span className="fw-bolder col-4">{follows.length}</span> Followers
+                </div>
+            </div>
             <br></br>
-            <ul className="nav nav-pills mb-2">
-                <li className="nav-item">
-                    <a className="nav-link active" href="src/profile#posts.html">Posts</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#comments.html">Comments</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#likes.html">Likes</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#followers.html">Followers</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#following.html">Following</a>
-                </li>
-            </ul>
-            <PostList/>
+
+            <div className="mt-3">
+                <div className="row">
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "posts" && "active"}`}
+                                onClick={() => handleTabChange("posts")}
+                            >
+                                Posts
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "likes" && "active"}`}
+                                onClick={() => handleTabChange("likes")}
+                            >
+                                Likes
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "following" && "active"}`}
+                                onClick={() => handleTabChange("following")}
+                            >
+                                Following
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "followers" && "active"}`}
+                                onClick={() => handleTabChange("followers")}
+                            >
+                                Followers
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="col-md-9">
+                <div className="tab-content">
+                    {activeTab === "posts" && (
+                        <div className="tab-pane show active">
+                            <h1>Posts Tab Content</h1>
+                        </div>
+                    )}
+                    {activeTab === "likes" && (
+                        <div className="tab-pane show active">
+                            <h1>Likes Tab Content</h1>
+                        </div>
+                    )}
+                    {activeTab === "following" && (
+                        <div className="tab-pane show active">
+                            <h1>Following Tab Content</h1>
+                        </div>
+                    )}
+                    {activeTab === "followers" && (
+                        <div className="tab-pane show active">
+                            <h1>Followers Tab Content</h1>
+                        </div>
+                    )}
+                </div>
+            </div>
+
         </div>
+
+
+
     );
 };
 

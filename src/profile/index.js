@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import PostList from "../posts/post-list";
 import {getUserByIdThunk} from "../services/users-thunks";
 import {useNavigate} from "react-router-dom";
@@ -13,7 +13,7 @@ import CreatePostComponent from "../posts/create-post-component";
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
-    console.log("currentUser is:", currentUser);
+    // console.log("currentUser is:", currentUser);
     const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,23 +21,29 @@ const ProfileComponent = () => {
     const [follows, setFollows] = useState([]);
     const [detailsLiked, setDetailsLiked] = useState([]);
     const [detailsDisliked, setDetailsDisliked] = useState([]);
-    const fetchFollowing = async() => {
-        const following = await  followsService.findFollowsByFollowerId(currentUser._id);
-        console.log("following is:", following);
+    const [activeTab, setActiveTab] = useState("posts");
+
+    const handleTabChange = (tabName) => {
+        setActiveTab(tabName);
+    };
+
+    const fetchFollowing = async () => {
+        const following = await followsService.findFollowsByFollowerId(currentUser._id);
+        // console.log("following is:", following);
         setFollowing(following);
     }
-    const fetchFollows = async() => {
-        const follows = await  followsService.findFollowsByFollowedId(currentUser._id);
+    const fetchFollows = async () => {
+        const follows = await followsService.findFollowsByFollowedId(currentUser._id);
         setFollows(follows);
     }
 
-    const fetchDetailsLiked = async() => {
-        const details = await  likesService.findLikesByUserId(currentUser._id);
+    const fetchDetailsLiked = async () => {
+        const details = await likesService.findLikesByUserId(currentUser._id);
         setDetailsLiked(details);
     }
 
-    const fetchDetailsDisliked = async() => {
-        const details = await  dislikesService.findDislikesByUserId(currentUser._id);
+    const fetchDetailsDisliked = async () => {
+        const details = await dislikesService.findDislikesByUserId(currentUser._id);
         setDetailsDisliked(details);
     }
 
@@ -101,28 +107,84 @@ const ProfileComponent = () => {
             </div>
             <br></br>
             <CreatePostComponent/>
-            <ul className="nav nav-pills mb-2">
-                <li className="nav-item">
-                    <a className="nav-link active" href="src/profile#posts.html">Posts</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#comments.html">Comments</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#likes.html">Likes</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#bookmarks.html">Bookmarks</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#followers.html">Followers</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="src/profile#following.html">Following</a>
-                </li>
-            </ul>
-            <PostList/>
-        </div>
+
+
+            <div className="mt-3">
+                <div className="row">
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "posts" && "active"}`}
+                                onClick={() => handleTabChange("posts")}
+                            >
+                                Posts
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "likes" && "active"}`}
+                                onClick={() => handleTabChange("likes")}
+                            >
+                                Likes
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "following" && "active"}`}
+                                onClick={() => handleTabChange("following")}
+                            >
+                                Following
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-3">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item ${activeTab === "followers" && "active"}`}
+                                onClick={() => handleTabChange("followers")}
+                            >
+                                Followers
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="col-md-9">
+                    <div className="tab-content">
+                        {activeTab === "posts" && (
+                            <div className="tab-pane show active">
+                                <PostList/>
+                            </div>
+                        )}
+                        {activeTab === "likes" && (
+                            <div className="tab-pane show active">
+                                <h1>Likes Tab Content</h1>
+                            </div>
+                        )}
+                        {activeTab === "following" && (
+                            <div className="tab-pane show active">
+                                <h1>Following Tab Content</h1>
+                            </div>
+                        )}
+                        {activeTab === "followers" && (
+                            <div className="tab-pane show active">
+                                <h1>Followers Tab Content</h1>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+            </div>
+
+
     );
 };
 

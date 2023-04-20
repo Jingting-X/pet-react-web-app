@@ -69,9 +69,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                             <div>{post.post}</div>
                             <span className="d-flex mt-5 ps-4">
                 <i className="fa-regular fa-comment fa-lg me-5"></i>
-                <i className="fa-solid fa-retweet fa-lg me-5"></i>
                 <i className="fa-regular fa-heart fa-lg me-5"></i>
-                <i className="fa-solid fa-arrow-up-right-from-square fa-lg me-5"></i>
               </span>
                         </div>
                     </div>
