@@ -5,6 +5,7 @@ import { findEventsThunk } from "../../services/event-thunks";
 
 const Calendar = () => {
   const { events } = useSelector((state) => state.events);
+  console.log('events', events)
   const dispatch = useDispatch();
   const [numEventsDisplayed, setNumEventsDisplayed] = useState(3);
   useEffect(() => {

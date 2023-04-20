@@ -1,8 +1,8 @@
 import axios from 'axios';
-// const EVENTS_API = 'http://localhost:4000/api/events';
+const EVENTS_API = 'http://localhost:4000/api/events';
 
-const API_BASE = process.env.REACT_APP_API_BASE;
-const EVENTS_API = `${API_BASE}/events`;
+// const API_BASE = process.env.REACT_APP_API_BASE;
+// const EVENTS_API = `${API_BASE}/events`;
 
 export const findEvents  = async() => {
   const response = await axios.get(EVENTS_API);
