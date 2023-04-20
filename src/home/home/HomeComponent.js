@@ -3,6 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import PostSummaryList from "../post-summary-list/index.js";
 import SearchBar from "../search-bar";
 import '../../styles/app.css'
+import CreatePostComponent from "../../posts/create-post-component";
 // import {findFollowsByFollowedId} from "../../services/follows-service";
 // import * as followsService from "../../services/follows-service";
 // import {useSelector} from "react-redux";
@@ -90,7 +91,7 @@ const HomeComponent = () => {
           </button>
         </div>
       </div>
-
+      <CreatePostComponent/>
       {/*{following.length === 0 ? (*/}
       {/*    <p className="text-center">You are not following anyone yet.</p>*/}
       {/*) : (*/}

@@ -71,11 +71,15 @@ const EditProfileComponent = () => {
             </div>
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">Description</label>
-                <textarea id="bio" className="form-control border-0" defaultValue={`${currentUser.bio}`}/>
+                <textarea id="bio" className="form-control border-0"
+                          defaultValue={currentUser.bio !== null && currentUser.bio !== undefined ? `${currentUser.bio}` : ''}
+                          placeholder="Enter a description..."/>
             </div>
             <div className="border pt-2 mt-4 rounded-1">
                 <label className="text-secondary ps-2">Location</label>
-                <input id="location" className="form-control border-0" defaultValue={`${currentUser.location}`}/>
+                <input id="location" className="form-control border-0"
+                       defaultValue={currentUser.location !== null && currentUser.location !== undefined ? `${currentUser.location}` : ''}
+                       placeholder="Enter a location..."/>
             </div>
             <div className="mt-4">
                 <div className="d-flex align-items-center">
@@ -91,6 +95,9 @@ const EditProfileComponent = () => {
 };
 
 export const slashToDashConvert = (slashDate) => {
+    if (slashDate == null) {
+        return;
+    }
     let [month, day, year] = slashDate.split("/");
     if (month < 10) {
         month = "0" + month;
@@ -101,6 +108,9 @@ export const slashToDashConvert = (slashDate) => {
     return year + "-" + month + "-" + day;
 }
 export const DashToSlashConvert = (DashDate) => {
+    if (DashDate == null) {
+        return;
+    }
     let [year, month, day] = DashDate.split("-");
     if (month < 10) {
         month = month.substring(1);

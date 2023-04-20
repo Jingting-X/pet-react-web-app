@@ -9,7 +9,6 @@ import * as followsService from "../services/follows-service";
 import * as likesService from "../services/likes-service";
 import * as dislikesService from "../services/dislikes-service";
 import {findFollowedOrNot} from "../services/follows-service";
-import CreatePostComponent from "../posts/create-post-component";
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
@@ -107,7 +106,6 @@ const ProfileComponent = () => {
                 </div>
             </div>
             <br></br>
-            <CreatePostComponent/>
 
             <div className="mt-3">
                 <div className="row">
@@ -125,10 +123,10 @@ const ProfileComponent = () => {
                     <div className="col-auto">
                         <ul className="list-group">
                             <li
-                                className={`list-group-item tab-group ${activeTab === "likes" && "active"}`}
-                                onClick={() => handleTabChange("likes")}
+                                className={`list-group-item tab-group ${activeTab === "comments" && "active"}`}
+                                onClick={() => handleTabChange("comments")}
                             >
-                                Likes
+                                Comments
                             </li>
                         </ul>
                     </div>
@@ -186,14 +184,13 @@ const ProfileComponent = () => {
                                 <PostList/>
                             </div>
                         )}
-                        {activeTab === "likes" && (
+                        {activeTab === "comments" && (
                             <div className="tab-pane show active">
-                                <h1>Likes Tab Content</h1>
+                                <h1>Commented posts Tab Content</h1>
                             </div>
                         )}
                         {activeTab === "following" && (
                             <div className="tab-pane show active">
-                                {/*<h1>Following Tab Content</h1>*/}
                                 {following && (<div>
                                     <ul className="list-group">
                                         {following.map((follow) => (
@@ -256,15 +253,6 @@ const ProfileComponent = () => {
                         )}
                     </div>
                 </div>
-            {/*<PostList/>*/}
-
-
-
-
-
-
-
-            {/*<PostList/>*/}
         </div>
     );
 };

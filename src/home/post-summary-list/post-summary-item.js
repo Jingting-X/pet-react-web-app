@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserByIdThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 import {getUserById} from "../../services/users-service";
+import PostStats from "../../posts/post-stats";
+import HomePostStats from "./home-post-stats";
 
 const PostSummaryItem = ({post = {}, userId = {}}) => {
     const dispatch = useDispatch();
@@ -29,7 +31,6 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    console.log(user.firstName);
 
     return (
         <div className="list-group-item bg-light border-top-0 border-end-0 border-start-0">
@@ -37,13 +38,12 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                 className="row align-items-center"
                 style={{overflowX: "auto"}}
             >
-                <a
+                <h1
                     className="mt-1"
                     style={{fontWeight: "bold", fontSize: "20px"}}
-                    href="#"
                 >
                     {post.post}
-                </a>
+                </h1>
                 <div
                     className="d-flex float-end position-relative"
                     style={{width: "100%"}}
@@ -67,10 +67,14 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                                 </a>
                             </div>
                             <div>{post.post}</div>
-                            <span className="d-flex mt-5 ps-4">
-                <i className="fa-regular fa-comment fa-lg me-5"></i>
-                <i className="fa-regular fa-heart fa-lg me-5"></i>
-              </span>
+                            <div className="d-flex align-items-center mt-5">
+                                <HomePostStats key={post._id} post={post} />
+                            </div>
+                            {/*<span className="d-flex mt-5 ps-4">*/}
+                            {/*        <HomePostStats key={post._id} post={post}/>*/}
+                            {/*    /!*<i className="fa-regular fa-comment fa-lg me-5"></i>*!/*/}
+                            {/*    /!*<i className="fa-regular fa-heart fa-lg me-5"></i>*!/*/}
+                            {/* </span>*/}
                         </div>
                     </div>
                 </div>

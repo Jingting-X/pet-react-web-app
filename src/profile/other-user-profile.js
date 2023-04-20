@@ -69,12 +69,13 @@ const OtherUserProfileComponent = () => {
         console.log("click unfollow, response is:", response);
     }
 
+    const fetchUser = async () => {
+        const user = await getUserById(id);
+        setUser(user);
+        setIsLoading(false);
+    };
+
     useEffect(() => {
-        const fetchUser = async () => {
-            const user = await getUserById(id);
-            setUser(user);
-            setIsLoading(false);
-        };
         fetchUser();
         checkFollowed();
         fetchFollowing();
