@@ -64,7 +64,7 @@ const NavigationSidebar = () => {
       {currentUser && (
         <div className={`list-group-item ${dropdownOpen ? "active" : ""}`} onClick={toggleDropdown}>
           <i className="fa-solid fa-ellipsis fa-lg me-2"></i>
-          <span className="ms-1 d-none d-xl-inline"></span>
+          <span className="ms-1 d-none d-xl-inline">Sign Out</span>
         </div>
       )}
 

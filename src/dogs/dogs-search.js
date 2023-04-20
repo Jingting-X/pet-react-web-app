@@ -33,7 +33,7 @@ function DogsSearch() {
 
     return (
         <Provider store={store}>
-            <div className="ms-5 me-5">
+            <div className="ms-5 me-5 container">
                 <button className='btn border'
                     onClick={() => navigate(`/home`)}>
                     <i className="fas fa-arrow-left me-2"></i>Back

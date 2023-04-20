@@ -54,7 +54,7 @@ const ProfileComponent = () => {
     // const dateOfJoin = JoinDateConvert(currentUser.joinedDate);
     return (
 
-        <div className="container bg-white p-2">
+        <div className="container-xl bg-transparent ms-5 me-5">
             <div className="row pb-2">
                 <div className="col-2">
                     <button className='btn border'

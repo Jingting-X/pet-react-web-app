@@ -14,10 +14,10 @@ const PostList = () => {
   }, [currentUser]);
 
   return (
-      <ul className="list-group">
+      <ul className="list-group bg-transparent">
         {
             loading &&
-            <li className="list-group-item">
+            <li className="list-group-item bg-transparent">
               Loading...
             </li>
         }

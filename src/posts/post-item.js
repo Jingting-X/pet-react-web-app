@@ -17,7 +17,7 @@ const PostItem = ({
         return <div>Loading...</div>; // or any other indicator that the data is being fetched
     }
     return (
-        <li className="list-group-item">
+        <li className="list-group-item border-0 bg-transparent">
             <div className="row">
                 <div className="col-1">
                     <img className="rounded-pill" width="48px" height="48px" alt=""
