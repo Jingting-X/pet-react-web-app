@@ -26,18 +26,20 @@ function AdminEventsScreen() {
     };
 
     return (
-        <div>
-            <button className='btn border'
+        <div className='container'>
+            <button className='btn btn-light border'
                 onClick={() => navigate('/admin')}>
                 <i className="fas fa-arrow-left me-2"></i>Back
             </button>
             <ul className="list-group mt-3">
                 {events.map((event) => (
                     <li className="list-group-item" key={event._id}>
-                        {event._id} {event.tuit}
-                        <button className="btn btn-danger float-end me-3" onClick={() => openDeleteModal(event)}>
-                            Delete
-                        </button>
+                        <div>
+                            <h4>{event.title}<button className="btn btn-danger float-end me-3" onClick={() => openDeleteModal(event)}>
+                                Delete
+                            </button></h4>
+                        </div>
+                        <div>{event.event}</div>
                     </li>
                 ))}
             </ul>

@@ -27,8 +27,8 @@ function AdminUsersScreen() {
     };
 
     return (
-        <div>
-            <button className='btn border'
+        <div className='container'>
+            <button className='btn btn-light border'
                 onClick={() => navigate('/admin')}>
                 <i className="fas fa-arrow-left me-2"></i>Back
             </button>

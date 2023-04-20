@@ -14,14 +14,16 @@ function AdminScreen() {
     }
 
     return (
-        <div>
+        <div className='container'>
              <div className='row'>
                 <div className="col-4 d-flex justify-content-start">
-                    <button className="btn  border" onClick={() => navigate('/home')}>Back Home</button>
+                    <button className="btn btn-light border" onClick={() => navigate('/home')}>
+                    <i className="fas fa-arrow-left me-2"></i>
+Back Home</button>
                 </div>
                 <div className='col-4'></div>
                 <div className="col-4 d-flex justify-content-end">
-                    <button className="btn  border" onClick={handleSignOut}>Sign Out</button>
+                    <button className="btn btn-light border" onClick={handleSignOut}>Sign Out</button>
                 </div>
             </div>
             <div className="row mt-3">
