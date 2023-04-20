@@ -6,7 +6,7 @@ import {useNavigate} from "react-router";
 const EventCompoment = () => {
   const navigate = useNavigate();
   return (
-      <>
+      <div className="container">
         <div className="col-4 d-flex justify-content-start">
           <button className="btn  border" onClick={() => navigate('/home')}>Back Home</button>
         </div>
@@ -14,7 +14,7 @@ const EventCompoment = () => {
           <EventPost/>
           <EventList/>
         </div>
-      </>
+      </div>
   );
 };
 export default EventCompoment;

@@ -32,9 +32,9 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
     console.log(user.firstName);
 
     return (
-        <div className="list-group-item border-top-0 border-end-0 border-start-0 ps-3">
+        <div className="list-group-item bg-light border-top-0 border-end-0 border-start-0">
             <div
-                className="row align-items-center bg-light"
+                className="row align-items-center"
                 style={{overflowX: "auto"}}
             >
                 <a

@@ -37,28 +37,28 @@ const HomeComponent = () => {
             <div className="carousel-item active" data-bs-interval="3000">
               <img
                 src="../img/do1.jpeg"
-                className="d-block w-100"
+                className="d-block w-100 rounded-5"
                 alt="First slide"
               />
             </div>
             <div className="carousel-item" data-bs-interval="3000">
               <img
                 src="../img/do2copy.jpeg"
-                className="d-block w-100"
+                className="d-block w-100 rounded-5"
                 alt="Second slide"
               />
             </div>
             <div className="carousel-item" data-bs-interval="3000">
               <img
                 src="../../img/do3copy.jpeg"
-                className="d-block w-100"
+                className="d-block w-100 rounded-5"
                 alt="Third slide"
               />
             </div>
             <div className="carousel-item" data-bs-interval="3000">
               <img
                 src="../../img/do4.jpeg"
-                className="d-block w-100"
+                className="d-block w-100 rounded-5"
                 alt="Third slide"
               />
             </div>

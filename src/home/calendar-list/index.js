@@ -17,7 +17,7 @@ const Calendar = () => {
   };
   return (
       <ul className="list-group">
-        <li className="list-group-item pt-3 pb-0">
+        <li className="list-group-item pt-3 pb-0 bg-light">
           <h4>Coming Event..</h4>
         </li>
         {events.slice(0, numEventsDisplayed).map((details) => (
