@@ -51,9 +51,13 @@ const OtherUserProfileComponent = () => {
 
     const checkFollowed = async () => {
         const res = await followsService.findFollowedOrNot(currentUser._id, id);
-        if (res && res.length > 0) {
+        console.log("res of checkFollowed is:", res);
+        console.log("currentUser id is:", currentUser._id);
+        if (res !== null) {
             console.log("This user is being Followed")
             setFollowed(true)
+        } else {
+            console.log("This user is not being Followed")
         }
     }
 
