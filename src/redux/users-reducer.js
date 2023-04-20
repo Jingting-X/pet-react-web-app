@@ -15,6 +15,7 @@ const initialState = {
     loading: false,
     error: null,
     currentUser: null,
+    selectedUser: null,
     // isSignedIn: false,
     // isSignedUp: true,
     // isSignedOut: false,
@@ -46,7 +47,7 @@ const usersSlice = createSlice({
 
         [getUserByIdThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            state.users = action.payload;
+            state.selectedUsers = action.payload;
         },
 
         [getUserByIdThunk.rejected]: (state, action) => {

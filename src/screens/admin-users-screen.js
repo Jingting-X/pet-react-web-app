@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 function AdminUsersScreen() {
     const { users } = useSelector((state) => state.users);
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
