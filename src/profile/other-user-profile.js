@@ -30,22 +30,22 @@ const OtherUserProfileComponent = () => {
     };
 
     const fetchFollowing = async () => {
-        const following = await followsService.findFollowsByFollowerId(currentUser._id);
+        const following = await followsService.findFollowsByFollowerId(id);
         console.log("following is:", following);
         setFollowing(following);
     }
     const fetchFollows = async () => {
-        const follows = await followsService.findFollowsByFollowedId(currentUser._id);
+        const follows = await followsService.findFollowsByFollowedId(id);
         setFollows(follows);
     }
 
     const fetchDetailsLiked = async () => {
-        const details = await likesService.findLikesByUserId(currentUser._id);
+        const details = await likesService.findLikesByUserId(id);
         setDetailsLiked(details);
     }
 
     const fetchDetailsDisliked = async () => {
-        const details = await dislikesService.findDislikesByUserId(currentUser._id);
+        const details = await dislikesService.findDislikesByUserId(id);
         setDetailsDisliked(details);
     }
 
