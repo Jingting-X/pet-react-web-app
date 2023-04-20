@@ -37,3 +37,7 @@
     left: -68px;
     z-index: 2;
 }
+
+.tab-group {
+    width: fit-content;
+}

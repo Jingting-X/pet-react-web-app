@@ -7,6 +7,7 @@ import {BirthdateConvert} from "./index";
 import * as followsService from "../services/follows-service";
 import * as likesService from "../services/likes-service";
 import * as dislikesService from "../services/dislikes-service";
+import PostList from "../posts/post-list";
 
 const OtherUserProfileComponent = () => {
 
@@ -141,10 +142,10 @@ const OtherUserProfileComponent = () => {
 
             <div className="mt-3">
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-auto">
                         <ul className="list-group">
                             <li
-                                className={`list-group-item ${activeTab === "posts" && "active"}`}
+                                className={`list-group-item tab-group ${activeTab === "posts" && "active"}`}
                                 onClick={() => handleTabChange("posts")}
                             >
                                 Posts
@@ -152,10 +153,10 @@ const OtherUserProfileComponent = () => {
                         </ul>
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-auto">
                         <ul className="list-group">
                             <li
-                                className={`list-group-item ${activeTab === "likes" && "active"}`}
+                                className={`list-group-item tab-group ${activeTab === "likes" && "active"}`}
                                 onClick={() => handleTabChange("likes")}
                             >
                                 Likes
@@ -163,10 +164,10 @@ const OtherUserProfileComponent = () => {
                         </ul>
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-auto">
                         <ul className="list-group">
                             <li
-                                className={`list-group-item ${activeTab === "following" && "active"}`}
+                                className={`list-group-item tab-group ${activeTab === "following" && "active"}`}
                                 onClick={() => handleTabChange("following")}
                             >
                                 Following
@@ -174,13 +175,35 @@ const OtherUserProfileComponent = () => {
                         </ul>
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-auto">
                         <ul className="list-group">
                             <li
-                                className={`list-group-item ${activeTab === "followers" && "active"}`}
+                                className={`list-group-item tab-group ${activeTab === "followers" && "active"}`}
                                 onClick={() => handleTabChange("followers")}
                             >
                                 Followers
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col-auto">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item tab-group ${activeTab === "likedDetails" && "active"}`}
+                                onClick={() => handleTabChange("likedDetails")}
+                            >
+                                Liked Details
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="col">
+                        <ul className="list-group">
+                            <li
+                                className={`list-group-item tab-group ${activeTab === "dislikedDetails" && "active"}`}
+                                onClick={() => handleTabChange("dislikedDetails")}
+                            >
+                                Disliked Details
                             </li>
                         </ul>
                     </div>
@@ -191,7 +214,7 @@ const OtherUserProfileComponent = () => {
                 <div className="tab-content">
                     {activeTab === "posts" && (
                         <div className="tab-pane show active">
-                            <h1>Posts Tab Content</h1>
+                            <PostList/>
                         </div>
                     )}
                     {activeTab === "likes" && (
@@ -201,12 +224,65 @@ const OtherUserProfileComponent = () => {
                     )}
                     {activeTab === "following" && (
                         <div className="tab-pane show active">
-                            <h1>Following Tab Content</h1>
+                            {/*<h1>Following Tab Content</h1>*/}
+                            {following && (<div>
+                                <ul className="list-group">
+                                    {following.map((follow) => (
+                                        <li className="list-group-item border-0">
+                                            <Link to={`/profile/${follow.followed._id}`}>
+                                                <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
                         </div>
                     )}
                     {activeTab === "followers" && (
                         <div className="tab-pane show active">
-                            <h1>Followers Tab Content</h1>
+                            {follows && (<div>
+                                <ul className="list-group">
+                                    {follows.map((follower) => (
+                                        <li className="list-group-item border-0">
+                                            <Link to={`/profile/${follower.follower._id}`}>
+                                                <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
+                        </div>
+                    )}
+                    {activeTab === "likedDetails" && (
+                        <div className="tab-pane show active">
+                            {detailsLiked && (<div>
+                                <ul className="list-group">
+                                    {detailsLiked.map((detail) => (
+                                        <li className="list-group-item border-0">
+                                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
+                        </div>
+                    )}
+
+                    {activeTab === "dislikedDetails" && (
+                        <div className="tab-pane show active">
+                            {detailsDisliked && (<div>
+                                <ul className="list-group">
+                                    {detailsDisliked.map((detail) => (
+                                        <li className="list-group-item border-0">
+                                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
+
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
                         </div>
                     )}
                 </div>
