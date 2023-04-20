@@ -93,7 +93,7 @@ const EditProfileComponent = () => {
                 </div>
             </div>
             <input id="birthdate" type="date" className="form-control border-0"
-                   defaultValue={slashToDashConvert(user.birthdate)}/>
+                   defaultValue={user.birthdate !== null && user.birthdate !== undefined ? slashToDashConvert(user.birthdate) : ''}/>
 
         </div>
     );

@@ -12,7 +12,6 @@ import {getUserById} from "../services/users-service";
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
     const [user, setUser] = useState({});
-    const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [following, setFollowing] = useState([]);
@@ -20,6 +19,7 @@ const ProfileComponent = () => {
     const [detailsLiked, setDetailsLiked] = useState([]);
     const [detailsDisliked, setDetailsDisliked] = useState([]);
     const [activeTab, setActiveTab] = useState("posts");
+    const dateOfBirth = BirthdateConvert(user.birthdate);
 
     const handleTabChange = (tabName) => {
         setActiveTab(tabName);
