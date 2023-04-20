@@ -5,12 +5,12 @@ import { findEventsThunk } from "../../services/event-thunks";
 
 const Calendar = () => {
   const { events } = useSelector((state) => state.events);
-  console.log('events', events)
   const dispatch = useDispatch();
   const [numEventsDisplayed, setNumEventsDisplayed] = useState(3);
   useEffect(() => {
     dispatch(findEventsThunk());
   }, [dispatch]);
+  const sortedEvents = [...events].sort((a, b) => new Date(a.time) - new Date(b.time));
   const toggleShowAllEvents = () => {
     setNumEventsDisplayed((prevNumEvents) =>
         prevNumEvents === 3 ? events.length : 3
@@ -21,15 +21,14 @@ const Calendar = () => {
         <li className="list-group-item pt-3 pb-0 bg-light">
           <h4>Coming Event..</h4>
         </li>
-        {events.slice(0, numEventsDisplayed).map((details) => (
+        {sortedEvents.slice(0, numEventsDisplayed).map((details) => (
             <EventSummaryItem key={details._id} post={details} />
         ))}
         {events.length > 3 && (
             <li
                 className="list-group-item text-center bg-light"
                 onClick={toggleShowAllEvents}
-                style={{ cursor: "pointer" }}
-            >
+                style={{ cursor: "pointer" }}>
               {numEventsDisplayed === 3 ? "Show more" : "Show less"}
             </li>
         )}
