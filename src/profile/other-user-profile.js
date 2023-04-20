@@ -229,7 +229,7 @@ const OtherUserProfileComponent = () => {
                             {following && (<div>
                                 <ul className="list-group">
                                     {following.map((follow) => (
-                                        <li className="list-group-item border-0">
+                                        <li className="list-group-item bg-transparent border-0">
                                             <Link to={`/profile/${follow.followed._id}`}>
                                                 <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
                                             </Link>
@@ -245,7 +245,7 @@ const OtherUserProfileComponent = () => {
                             {follows && (<div>
                                 <ul className="list-group">
                                     {follows.map((follower) => (
-                                        <li className="list-group-item border-0">
+                                        <li className="list-group-item bg-transparent border-0">
                                             <Link to={`/profile/${follower.follower._id}`}>
                                                 <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
                                             </Link>
@@ -261,7 +261,7 @@ const OtherUserProfileComponent = () => {
                             {detailsLiked && (<div>
                                 <ul className="list-group">
                                     {detailsLiked.map((detail) => (
-                                        <li className="list-group-item border-0">
+                                        <li className="list-group-item bg-transparent border-0">
                                             <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
                                         </li>
                                     ))}
@@ -276,7 +276,7 @@ const OtherUserProfileComponent = () => {
                             {detailsDisliked && (<div>
                                 <ul className="list-group">
                                     {detailsDisliked.map((detail) => (
-                                        <li className="list-group-item border-0">
+                                        <li className="list-group-item bg-transparent border-0">
                                             <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
 
                                         </li>

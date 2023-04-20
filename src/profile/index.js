@@ -8,11 +8,9 @@ import {useNavigate} from "react-router-dom";
 import * as followsService from "../services/follows-service";
 import * as likesService from "../services/likes-service";
 import * as dislikesService from "../services/dislikes-service";
-import {findFollowedOrNot} from "../services/follows-service";
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
-    // console.log("currentUser is:", currentUser);
     const dateOfBirth = BirthdateConvert(currentUser.birthdate);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,7 +26,6 @@ const ProfileComponent = () => {
 
     const fetchFollowing = async () => {
         const following = await followsService.findFollowsByFollowerId(currentUser._id);
-        // console.log("following is:", following);
         setFollowing(following);
     }
     const fetchFollows = async () => {
@@ -39,7 +36,6 @@ const ProfileComponent = () => {
     const fetchDetailsLiked = async () => {
         const details = await likesService.findLikesByUserId(currentUser._id);
         setDetailsLiked(details);
-        console.log("detailsLiked is:", detailsLiked);
     }
 
     const fetchDetailsDisliked = async () => {
@@ -192,9 +188,9 @@ const ProfileComponent = () => {
                         {activeTab === "following" && (
                             <div className="tab-pane show active">
                                 {following && (<div>
-                                    <ul className="list-group">
+                                    <ul className="list-group bg-transparent">
                                         {following.map((follow) => (
-                                            <li className="list-group-item border-0">
+                                            <li className="list-group-item bg-transparent border-0">
                                                 <Link to={`/profile/${follow.followed._id}`}>
                                                     <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
                                                 </Link>
@@ -210,7 +206,7 @@ const ProfileComponent = () => {
                                 {follows && (<div>
                                     <ul className="list-group">
                                         {follows.map((follower) => (
-                                            <li className="list-group-item border-0">
+                                            <li className="list-group-item bg-transparent border-0">
                                                 <Link to={`/profile/${follower.follower._id}`}>
                                                     <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
                                                 </Link>
@@ -226,7 +222,7 @@ const ProfileComponent = () => {
                                 {detailsLiked && (<div>
                                     <ul className="list-group">
                                         {detailsLiked.map((detail) => (
-                                            <li className="list-group-item border-0">
+                                            <li className="list-group-item bg-transparent border-0">
                                                 <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
                                             </li>
                                         ))}
@@ -241,7 +237,7 @@ const ProfileComponent = () => {
                                 {detailsDisliked && (<div>
                                     <ul className="list-group">
                                         {detailsDisliked.map((detail) => (
-                                            <li className="list-group-item border-0">
+                                            <li className="list-group-item bg-transparent border-0">
                                                 <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
 
                                             </li>
