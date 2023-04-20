@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 function AboutScreen() {
     const navigate = useNavigate();
     return (
-        <div className="container">
+        <div className="container bg-white pt-2">
             <div className="col-4 d-flex justify-content-start">
                 <button className="btn  border" onClick={() => navigate('/home')}>Back Home</button>
             </div>
