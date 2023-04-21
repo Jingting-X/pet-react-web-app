@@ -5,7 +5,7 @@ function AboutScreen() {
     return (
         <div className="container bg-white pt-2">
             <div className="col-4 d-flex justify-content-start">
-                <button className="btn  border" onClick={() => navigate('/home')}>Back Home</button>
+                <button className="btn  border" onClick={() => navigate('/home')}><i className="fas fa-arrow-left me-2"></i>Back Home</button>
             </div>
             <div className="row mt-5">
                 <div className="col introduction">

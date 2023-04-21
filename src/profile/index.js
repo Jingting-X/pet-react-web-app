@@ -62,7 +62,7 @@ const ProfileComponent = () => {
         <div className="container-xl bg-transparent ms-5 me-5">
             <div className="row pb-2">
                 <div className="col-2">
-                    <button className='btn border'
+                    <button className='btn btn-light border'
                             onClick={() => navigate(`/home`)}>
                         <i className="fas fa-arrow-left me-2"/>Back
                     </button>

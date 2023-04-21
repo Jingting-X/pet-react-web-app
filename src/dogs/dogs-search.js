@@ -34,7 +34,7 @@ function DogsSearch() {
     return (
         <Provider store={store}>
             <div className="ms-5 me-5 container">
-                <button className='btn border'
+                <button className='btn btn-light border'
                     onClick={() => navigate(`/home`)}>
                     <i className="fas fa-arrow-left me-2"></i>Back
                 </button>
@@ -48,11 +48,11 @@ function DogsSearch() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
-                {currentUser && (
+                {/* {currentUser && (
                     <div className="mt-2">
                         <strong>Logged in as: {currentUser.firstName}</strong>
                     </div>
-                )}
+                )} */}
                 <ul className="list-group">
                     {
                         results && Object.keys(results).map((dog, idx) => (
@@ -66,6 +66,7 @@ function DogsSearch() {
                 </ul>
                 {/*<pre>{JSON.stringify(results, null, 2)}</pre>*/}
             </div>
+            <div className="gap" style={{'height':'86.5px'}}></div>
         </Provider>
     );
 }
