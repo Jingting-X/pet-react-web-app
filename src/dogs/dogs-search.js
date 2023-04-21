@@ -33,12 +33,12 @@ function DogsSearch() {
 
     return (
         <Provider store={store}>
-            <div className="ms-5 me-5 container">
+            <div className="container w-75 bg-white p-5 pt-3 border">
                 <button className='btn btn-light border'
                     onClick={() => navigate(`/home`)}>
                     <i className="fas fa-arrow-left me-2"></i>Back
                 </button>
-                <h1 className="display-5">Search in Dogs API</h1>
+                <h1 className="display-5 mt-4">Search in Dogs API</h1>
                 <button className="float-end btn btn-primary" onClick={searchDogs}>
                     Search
                 </button>
@@ -66,7 +66,6 @@ function DogsSearch() {
                 </ul>
                 {/*<pre>{JSON.stringify(results, null, 2)}</pre>*/}
             </div>
-            <div className="gap" style={{'height':'86.5px'}}></div>
         </Provider>
     );
 }

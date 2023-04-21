@@ -59,7 +59,7 @@ const ProfileComponent = () => {
 
     return (
 
-        <div className="container-xl bg-transparent ms-5 me-5">
+        <div className="container bg-light w-75 border p-5 pt-3">
             <div className="row pb-2">
                 <div className="col-2">
                     <button className='btn btn-light border'
@@ -75,7 +75,7 @@ const ProfileComponent = () => {
                     <button className="btn btn-dark rounded-pill float-end m-2">Edit Profile</button>
                 </Link>
             </div>
-            <div>
+            <div className="mt-3">
                 <div className="fw-bolder">{user.firstName} {user.lastName}</div>
                 {/*<div className="text-secondary">{currentUser.handle}</div>*/}
             </div>
@@ -173,8 +173,8 @@ const ProfileComponent = () => {
                 </div>
             </div>
 
-            <div className="col-md-9">
-                    <div className="tab-content">
+            <div className="col-md-9 pt-3">
+                    <div className="tab-content border">
                         {activeTab === "posts" && (
                             <div className="tab-pane show active">
                                 <PostList/>
