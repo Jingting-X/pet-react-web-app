@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
-import {updateUserThunk} from "../../services/users-thunks";
-import {getUserById} from "../../services/users-service";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { updateUserThunk } from "../../services/users-thunks";
+import { getUserById } from "../../services/users-service";
 
 const EditProfileComponent = () => {
-    const {currentUser} = useSelector(state => state.users);
+    const { currentUser } = useSelector(state => state.users);
     const [user, setUser] = useState({});
     const dispatch = useDispatch();
 
@@ -42,11 +42,11 @@ const EditProfileComponent = () => {
 
     console.log(user.firstName)
     return (
-        <div className="border p-2">
+        <div className="container w-75 bg-white border p-2">
             <div className="row align-items-center pb-2">
                 <div className="col-1">
                     <Link to="/profile">
-                        <i className="bi bi-x-lg float-end" style={{color: "grey"}}></i>
+                        <i className="bi bi-x-lg float-end" style={{ color: "grey" }}></i>
                     </Link>
                 </div>
                 <div className="col-9">
@@ -64,37 +64,38 @@ const EditProfileComponent = () => {
             {/*    <img className="wd-avatar rounded-circle" src={`/img/${profile.profilePicture}`} alt=""/>*/}
             {/*</div>*/}
             {user.firstName && (
-                <div className="border pt-2 rounded-1">
+                <div className="border pt-2 mb-2 rounded-1">
                     <label className="text-secondary ps-2">First Name</label>
-                    <input id="firstName" className="form-control border-0" defaultValue={`${user.firstName}`}/>
+                    <input id="firstName" className="form-control border-0" defaultValue={`${user.firstName}`} />
                 </div>
             )}
             {user.lastName &&
-                <div className="border pt-2 rounded-1">
+                <div className="border pt-2 mb-2 rounded-1">
                     <label className="text-secondary ps-2">Last Name</label>
                     <input id="lastName" className="form-control border-0"
-                           defaultValue={`${user.lastName}`}/>
+                        defaultValue={`${user.lastName}`} />
                 </div>}
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">Description</label>
                 <textarea id="bio" className="form-control border-0"
-                          defaultValue={user.bio !== null && user.bio !== undefined ? `${user.bio}` : ''}
-                          placeholder="Enter a description..."/>
+                    defaultValue={user.bio !== null && user.bio !== undefined ? `${user.bio}` : ''}
+                    placeholder="Enter a description..." />
             </div>
-            <div className="border pt-2 mt-4 rounded-1">
+            <div className="border pt-2 mt-2 rounded-1">
                 <label className="text-secondary ps-2">Location</label>
                 <input id="location" className="form-control border-0"
-                       defaultValue={user.location !== null && user.location !== undefined ? `${user.location}` : ''}
-                       placeholder="Enter a location..."/>
+                    defaultValue={user.location !== null && user.location !== undefined ? `${user.location}` : ''}
+                    placeholder="Enter a location..." />
             </div>
-            <div className="mt-4">
-                <div className="d-flex align-items-center">
-                    <div className="text-secondary">Birthday</div>
+            <div className="border pt-2 ps-2 mt-2 rounded-1">
+                <div className="mt-1">
+                    <div className="d-flex align-items-center">
+                        <div className="text-secondary">Birthday</div>
+                    </div>
                 </div>
+                <input id="birthdate" type="date" className="form-control border-0"
+                    defaultValue={user.birthdate !== null && user.birthdate !== undefined ? slashToDashConvert(user.birthdate) : ''} />
             </div>
-            <input id="birthdate" type="date" className="form-control border-0"
-                   defaultValue={user.birthdate !== null && user.birthdate !== undefined ? slashToDashConvert(user.birthdate) : ''}/>
-
         </div>
     );
 
