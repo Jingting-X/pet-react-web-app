@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPostThunk } from "../../services/post-thunk";
 import "../index.css";
+import "./index.css";
 
 const CreatePostComponent = () => {
     const [whatsHappening, setWhatsHappening] = useState('');
@@ -33,13 +34,13 @@ const CreatePostComponent = () => {
                   onChange={(event) => setWhatsHappening(event.target.value)}>
         </textarea>
                 <div>
-                    <button className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
+                    <button className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold post-button"
                             onClick={postClickHandler}>
                         Post
                     </button>
                     <div className="text-primary fs-2">
-                        <i className="bi bi-card-image me-3"></i>
-                        <i className="bi bi-geo-alt"></i>
+                        <i className="bi bi-card-image me-3 post-icon"></i>
+                        <i className="bi bi-geo-alt post-icon"></i>
                     </div>
                 </div>
             </div>

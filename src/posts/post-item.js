@@ -30,9 +30,9 @@ const PostItem = ({post = {}, user = {}}) => {
                         <div className="col-10 d-flex">
                             <div className="fw-bold pe-1">{user.firstName} {user.lastName}</div>
                             <i
-                                className="bi bi-check-circle-fill table-primary pe-1"
-                                style={{color: "#0096FF"}}
-                            ></i>
+    className="bi bi-check-circle-fill table-primary pe-1"
+    style={{color: "#0096FF"}}
+    />
                             <div className="text-secondary">
                                 {user.handle} · {post.time}
                             </div>
@@ -40,9 +40,9 @@ const PostItem = ({post = {}, user = {}}) => {
                         <div className="col-2">
                             {currentUser && (post.userId === currentUser._id) && (
                                 <i
-                                    className="bi bi-x-lg float-end"
-                                    onClick={() => deletePostHandler(post._id)}
-                                ></i>
+    className="bi bi-x-lg float-end"
+    onClick={() => deletePostHandler(post._id)}
+    />
                             )}
                         </div>
                     </div>
