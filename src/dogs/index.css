@@ -1,0 +1,24 @@
+.like-button {
+    background-color: hotpink !important;
+    border-color: hotpink !important;
+}
+
+.dislike-button {
+    background-color: lightskyblue !important;
+    border-color: lightskyblue !important;
+}
+
+.search-text {
+    font-family: cursive;
+    color: lightpink;
+}
+
+.search-button {
+    background-color: lightpink !important;
+    border-color: lightpink !important;
+}
+
+.detail-text {
+    color: lightpink;
+    text-decoration-color: lightpink !important;
+}

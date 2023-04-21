@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import * as service from "../services/likes-service";
 import * as dislikeService from "../services/dislikes-service";
 import Modal from "../components/modal.js";
+import "./index.css";
 
 function DogsDetailScreen() {
     const [showModal, setShowModal] = useState(false);
@@ -111,17 +112,15 @@ function DogsDetailScreen() {
                     onClick={() => navigate(-1)}>
                 <i className="fas fa-arrow-left me-2"></i>Back
             </button>
-            {/*<h1 className="display-3">Dogs detail page</h1>*/}
 
             <p className="display-4">{detail.name}</p>
             <div>
             <img src={`https://cdn2.thedogapi.com/images/${id}.jpg`} width={400} height={300} alt={id}/>
             </div>
             <div>
-                {/*<h1 className="display-5">{loggedIn? `Hi ${currentUser.firstName} Like it or not?` : "Ops! You need to log in to like or dislike!"} </h1>*/}
-                {liked? <button className="btn btn-success mt-2 me-2" onClick={RevertLikeDetail}><i className="bi bi-heart-fill"/></button>: <button className="btn btn-success mt-2 me-2" onClick={likeDetail}><i className="bi bi-heart"/></button>}
+                {liked? <button className="btn btn-success mt-2 me-2 like-button" onClick={RevertLikeDetail}><i className="bi bi-heart-fill"/></button>: <button className="btn btn-success mt-2 me-2 like-button" onClick={likeDetail}><i className="bi bi-heart"/></button>}
 
-                {disliked? <button className="btn btn-danger mt-2 ms-2" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill"/></button>: <button className="btn btn-danger mt-2 ms-2" onClick={dislikeDetail}><i className="bi bi-heartbreak"/></button>}
+                {disliked? <button className="btn btn-danger mt-2 ms-2 dislike-button" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill"/></button>: <button className="btn btn-danger mt-2 ms-2 dislike-button" onClick={dislikeDetail}><i className="bi bi-heartbreak"/></button>}
                 <Modal show={showModal} message={errorMsg} onClose={closeModal} />
             </div>
         </div>

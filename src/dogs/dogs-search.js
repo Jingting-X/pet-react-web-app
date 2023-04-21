@@ -29,6 +29,11 @@ function DogsSearch() {
     }, [searchTerm]
     );
 
+
+    const linkStyle = {
+        textDecoration: "none"
+    }
+
     // console.log("results is:", results);
 
     return (
@@ -38,8 +43,8 @@ function DogsSearch() {
                     onClick={() => navigate(`/home`)}>
                     <i className="fas fa-arrow-left me-2"></i>Back
                 </button>
-                <h1 className="display-5 mt-4">Search in Dogs API</h1>
-                <button className="float-end btn btn-primary" onClick={searchDogs}>
+                <h1 className="display-5 mt-4 search-text" >Search in Dogs API</h1>
+                <button className="float-end btn btn-primary search-button" onClick={searchDogs}>
                     Search
                 </button>
                 <input
@@ -48,18 +53,13 @@ function DogsSearch() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
-                {/* {currentUser && (
-                    <div className="mt-2">
-                        <strong>Logged in as: {currentUser.firstName}</strong>
-                    </div>
-                )} */}
                 <ul className="list-group">
                     {
                         results && Object.keys(results).map((dog, idx) => (
                             <li className="list-group-item border-0" key={idx}>
-                                <img src={results[dog].url} width={400} height={300} alt={results[dog].id} />
-                                <Link to={`/dogs/search/detail/${results[dog].id}`}> Check on my details!</Link>
-                                {/*<DogStats key={results[dog].id} dog={results[dog].id}/>*/}
+                                <img className="me-2" src={results[dog].url} width={400} height={300} alt={results[dog].id} />
+                                <Link to={`/dogs/search/detail/${results[dog].id}`} style={{ textDecoration: "none"}}><i
+                                    className="bi bi-chat-heart detail-text">Check on my details!</i></Link>
                             </li>
                         ))
                     }
