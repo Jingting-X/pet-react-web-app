@@ -1,30 +1,31 @@
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createEventThunk} from "../services/event-thunks.js";
 
 const EventPost = () => {
   let [whatsHappening, setWhatsHappening] = useState('');
+  const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const postClickHandler = () => {
-    const today = new Date();
-    const twoWeeksLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + Math.floor(Math.random() * 3) + 7);
     const sentences = whatsHappening.split(/[.?!]/);
     const title = sentences[0];
-    const event = sentences.slice(1).join('.');
+    const time = sentences[1];
+    const event = sentences.slice(2).join('.');
     const newTuit = {
+      userId: currentUser._id,
       event,
       username: "Event host",
       title,
-      time: twoWeeksLater.toDateString(),
+      time,
       editing: false,
-      image: "../img/do3.jpeg",
+      image: "../img/services.png",
     }
     dispatch(createEventThunk(newTuit));
   }
   return (
       <div className="row">
         <div className="col-auto">
-          <img className="rounded-circle" src="../img/do3.jpeg" alt="" width={70} height={70}/>
+          <img className="rounded-circle" src="../img/services.png" alt="" width={70} height={70}/>
         </div>
         <div className="col-10 mb-4">
           <textarea value={whatsHappening}

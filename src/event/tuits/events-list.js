@@ -1,15 +1,28 @@
-import React, {useEffect} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import EventItem from "./events-item";
-import {findEventsThunk} from "../../services/event-thunks.js";
+import {getUserById} from "../../services/users-service";
+import {useParams} from "react-router-dom";
 
-const EventList =() =>{
-  const {events, loading} = useSelector(
-      state => state.events)
-  const dispatch = useDispatch();
+const EventList =() => {
+  const {currentUser} = useSelector(state => state.users);
+  const [user, setUser] = useState({});
+  const { id } = useParams();
+  const fetchUser = async () => {
+    if (id != null) {
+      const fetchedUser = await getUserById(id);
+      setUser(fetchedUser);
+    } else {
+      setUser(currentUser);
+    }
+  };
+  const {events, loading} = useSelector(state => state.events);
+  const userEvents = events.filter(currentUser => currentUser.userId === user._id);
+
   useEffect(() => {
-    dispatch(findEventsThunk())
-  }, [dispatch])
+    fetchUser();
+  }, [currentUser, id]);
+
   return(
       <ul className="list-group">
         {
@@ -18,11 +31,10 @@ const EventList =() =>{
               Loading...
             </li>
         }
-
         {
-          events.slice().reverse().map(details => (
-              <div className="list-group-item ">
-                <EventItem key ={details._id} post={details}/>
+          userEvents.map(event => (
+              <div className="list-group-item" key={event._id}>
+                <EventItem key ={event._id} post={event}/>
               </div>
           ))}
       </ul>
