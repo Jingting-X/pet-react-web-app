@@ -50,6 +50,9 @@ const OtherUserProfileComponent = () => {
     }
 
     const checkFollowed = async () => {
+        if (!currentUser) {
+            return;
+        }
         const res = await followsService.findFollowedOrNot(currentUser._id, id);
         console.log("res of checkFollowed is:", res);
         console.log("currentUser id is:", currentUser._id);
@@ -62,6 +65,10 @@ const OtherUserProfileComponent = () => {
     }
 
     const followUser = async () => {
+        if (!currentUser) {
+            alert("Please sign in to follow users.");
+            return;
+        }
         const response = await followsService.userFollowsUser(currentUser._id, id)
         setFollowed(true);
         console.log("click follow, response is:", response);
@@ -120,21 +127,19 @@ const OtherUserProfileComponent = () => {
                 {user.bio}
             </div>
             <div className="row pt-2">
-                <div className="col-4">
-                    <span className="bi bi-geo-alt text-secondary"></span>
-                    <span className="ps-1">{user.location}</span>
-                </div>
-                <div className="col-4">
-                    <span className="bi bi-balloon text-secondary"></span>
-                    <span className="ps-1">Born {dateOfBirth}</span>
-                </div>
-
-                {/*<div className="col-4">*/}
-                {/*    <span className="bi bi-calendar3 text-secondary"></span>*/}
-                {/*    <span className="ps-1">Joined {currentUser.joinedDate}</span>*/}
-                {/*</div>*/}
+                {currentUser ? (
+                    <>
+                        <div className="col-4">
+                            <span className="bi bi-geo-alt text-secondary"></span>
+                            <span className="ps-1">{user.location}</span>
+                        </div>
+                        <div className="col-4">
+                            <span className="bi bi-balloon text-secondary"></span>
+                            <span className="ps-1">Born {dateOfBirth}</span>
+                        </div>
+                    </>
+                ) : null}
             </div>
-
             <div className="pt-2 row">
                 <div className="col-3">
                     <span className="fw-bolder">{following.length}</span> Following

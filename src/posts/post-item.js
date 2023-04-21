@@ -38,7 +38,7 @@ const PostItem = ({post = {}, user = {}}) => {
                             </div>
                         </div>
                         <div className="col-2">
-                            {post.userId === currentUser._id && (
+                            {currentUser && (post.userId === currentUser._id) && (
                                 <i
                                     className="bi bi-x-lg float-end"
                                     onClick={() => deletePostHandler(post._id)}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { addCommentThunk, getCommentsThunk, updatePostThunk } from "../services/post-thunk";
 import CommentForm from "./comment-form";
 
 const PostStats = ({ post = {} }) => {
     const dispatch = useDispatch();
+    const {currentUser} = useSelector(state => state.users);
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
     const [showCommentForm, setShowCommentForm] = useState(false);
@@ -16,7 +17,23 @@ const PostStats = ({ post = {} }) => {
     }, [dispatch, post._id]);
 
     const handleSubmit = (comment) => {
+        if (!currentUser) {
+            alert('Please sign in to add a comment.');
+            return;
+        }
         dispatch(addCommentThunk(post._id, comment));
+    };
+
+    const handleLike = () => {
+        if (!currentUser) {
+            alert('Please sign in to like this post.');
+            return;
+        }
+        dispatch(updatePostThunk({
+            ...post,
+            liked: !post.liked,
+            likes: post.liked ? post.likes - 1 : post.likes + 1,
+        }));
     };
 
     const formatDate = (date) => {
@@ -54,40 +71,21 @@ const PostStats = ({ post = {} }) => {
 
             </div>
 
-            {/*<div className="col-2 d-flex">*/}
-            {/*    <i className="bi bi-arrow-repeat text-secondary"></i>*/}
-            {/*    <span className="text-secondary ps-2">{post.reposts}</span>*/}
-            {/*</div>*/}
             <div className="col-4 text-secondary">
                 {post.liked ? (
                     <i
                         className="bi bi-heart-fill text-danger"
-                        onClick={() =>
-                            dispatch(
-                                updatePostThunk({
-                                    ...post,
-                                    liked: !post.liked,
-                                    likes: post.likes - 1,
-                                })
-                            )
-                        }
+                        onClick={handleLike}
                     ></i>
                 ) : (
                     <i
                         className="bi bi-heart"
-                        onClick={() =>
-                            dispatch(
-                                updatePostThunk({
-                                    ...post,
-                                    liked: !post.liked,
-                                    likes: post.likes + 1,
-                                })
-                            )
-                        }
+                        onClick={handleLike}
                     ></i>
                 )}
                 <span className="ps-2">{post.likes}</span>
             </div>
+
             {/*<div className="col-4">*/}
             {/*    <i className="bi bi-share text-secondary"></i>*/}
             {/*</div>*/}

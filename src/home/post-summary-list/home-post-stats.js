@@ -1,11 +1,12 @@
 import CommentForm from "../../posts/comment-form";
 import {addCommentThunk, getCommentsThunk, updatePostThunk} from "../../services/post-thunk";
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const HomePostStats = ({ post = {} }) => {
     const dispatch = useDispatch();
+    const {currentUser} = useSelector(state => state.users);
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
     const [showCommentForm, setShowCommentForm] = useState(false);
@@ -17,9 +18,23 @@ const HomePostStats = ({ post = {} }) => {
     }, [dispatch, post._id]);
 
     const handleSubmit = (comment) => {
+        if (!currentUser) {
+            alert('Please sign in to add a comment.');
+            return;
+        }
         dispatch(addCommentThunk(post._id, comment));
     };
-
+    const handleLike = () => {
+        if (!currentUser) {
+            alert('Please sign in to like this post.');
+            return;
+        }
+        dispatch(updatePostThunk({
+            ...post,
+            liked: !post.liked,
+            likes: post.liked ? post.likes - 1 : post.likes + 1,
+        }));
+    };
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         return new Date(date).toLocaleDateString('en-US', options);
@@ -63,28 +78,12 @@ const HomePostStats = ({ post = {} }) => {
                     {post.liked ? (
                         <i
                             className="fa-regular fa-heart fa-lg me-2 text-danger"
-                            onClick={() =>
-                                dispatch(
-                                    updatePostThunk({
-                                        ...post,
-                                        liked: !post.liked,
-                                        likes: post.likes - 1,
-                                    })
-                                )
-                            }
+                            onClick={handleLike}
                         ></i>
                     ) : (
                         <i
                             className="fa-regular fa-heart fa-lg me-2 text-secondary"
-                            onClick={() =>
-                                dispatch(
-                                    updatePostThunk({
-                                        ...post,
-                                        liked: !post.liked,
-                                        likes: post.likes + 1,
-                                    })
-                                )
-                            }
+                            onClick={handleLike}
                         ></i>
                     )}
                     <span>{post.likes}</span>

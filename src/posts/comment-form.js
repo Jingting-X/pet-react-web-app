@@ -5,19 +5,19 @@ import { addCommentThunk } from "../services/post-thunk";
 const CommentForm = ({ postId, handleSubmit }) => {
     const [text, setText] = useState("");
     const {currentUser} = useSelector(state => state.users);
-    const userName = currentUser.firstName;
-    const userId = currentUser._id;
     const dispatch = useDispatch();
 
     const onSubmit = async (e) => {
-        e.preventDefault();
-        console.log("--------form----");
-        console.log(postId);
+        if (!currentUser) {
+            alert('Please sign in to add a comment.');
+            e.preventDefault();
+            return;
+        }
+
         const comment = {
-            text,
-            userId, // replace with the actual user id
-            userName,
-            time: new Date().toISOString() // set the current time as ISO string
+            userId: currentUser._id,
+            userName: currentUser.firstName,
+            time: new Date().toISOString()
         };
         await dispatch(addCommentThunk({ postId, comment })); // pass an object with postId and comment
         setText("");

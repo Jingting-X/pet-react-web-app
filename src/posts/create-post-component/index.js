@@ -13,7 +13,7 @@ const CreatePostComponent = () => {
 
     const postClickHandler = () => {
         if (!currentUser) {
-            alert('Please log in to create a post.');
+            alert('Please sign in to create a post.');
             return;
         }
 
