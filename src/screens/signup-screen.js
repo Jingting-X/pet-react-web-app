@@ -164,7 +164,7 @@ function SignupScreen() {
                                         </div>
                                         <div className="d-flex justify-content-center mx-4">
                                             <button type="button"
-                                                className="btn btn-primary btn-lg"
+                                                className="btn btn-primary text-dark btn-lg buttons"
                                                 onClick={handleSubmit}
                                             >Sign up
                                             </button>
