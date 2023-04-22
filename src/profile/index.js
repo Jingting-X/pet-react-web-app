@@ -19,6 +19,8 @@ const ProfileComponent = () => {
     const [detailsLiked, setDetailsLiked] = useState([]);
     const [detailsDisliked, setDetailsDisliked] = useState([]);
     const [activeTab, setActiveTab] = useState("posts");
+    const [isLoading, setIsLoading] = useState(true);
+
     const dateOfBirth = BirthdateConvert(user.birthdate);
 
     const handleTabChange = (tabName) => {
@@ -47,6 +49,7 @@ const ProfileComponent = () => {
     const fetchUser = async () => {
         const fetchedUser = await getUserById(currentUser._id);
         setUser(fetchedUser);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -68,18 +71,16 @@ const ProfileComponent = () => {
                 </div>
             </div>
             <div className="pos-relative">
-                <div className="row align-items-center pb-2">
-                    <div className="col-1"></div>
-                    <div className="col-9">
-                        <div className="fw-bolder"></div>
-                    </div>
-                    <div className="col-2 float-end">
-                        <Link to="/edit-profile">
-                            <button className="btn btn-dark rounded-pill float-end m-2">Edit Profile</button>
-                        </Link>
-                    </div>
-                </div>
-                {user.avatar ? (
+                {isLoading ||  user.banner ? (
+                    <img className="wd-banner"
+                         src={`${user.banner}`}
+                         alt=""/>
+                ) : (
+                    <img className="wd-banner"
+                         src="/img/default-profile-banner.jpg"
+                         alt=""/>
+                )}
+                {isLoading ||  user.avatar ? (
                     <img className="wd-avatar rounded-circle"
                          src={`${user.avatar}`}
                          alt=""/>
@@ -88,12 +89,13 @@ const ProfileComponent = () => {
                          src="/img/default-avatar.png"
                          alt=""/>
                 )}
-
+                <Link to="/edit-profile">
+                    <button className="btn btn-light float-end fw-bolder m-2 border rounded-pill">Edit Profile</button>
+                </Link>
             </div>
 
-            <div className="mt-3">
-                <div className="fw-bolder">{user.firstName} {user.lastName}</div>
-                {/*<div className="text-secondary">{currentUser.handle}</div>*/}
+            <div>
+                <div className="fw-bolder">{user.userName}</div>
             </div>
             <div className="pt-2">
                 {user.bio}

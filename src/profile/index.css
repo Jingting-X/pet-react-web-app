@@ -43,3 +43,8 @@
     background-color: lightpink !important;
     border-color: lightpink !important;
 }
+
+.wd-banner {
+    width: 100%;
+    height: 300px;
+}

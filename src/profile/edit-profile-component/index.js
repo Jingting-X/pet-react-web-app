@@ -8,16 +8,21 @@ const EditProfileComponent = () => {
     const {currentUser} = useSelector(state => state.users);
     const [user, setUser] = useState({});
     const [avatarPreview, setAvatarPreview] = useState(user.avatar);
-    const fileInputRef = useRef();
+    const [bannerPreview, setBannerPreview] = useState(user.banner);
+    const avatarFileInputRef = useRef();
+    const bannerFileInputRef = useRef();
+    const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
 
     const fetchUser = async () => {
         const fetchedUser = await getUserById(currentUser._id);
         setUser(fetchedUser);
+        setIsLoading(false);
     };
 
     useEffect(() => {
         setAvatarPreview(null);
+        setBannerPreview(null);
         fetchUser();
     }, [])
 
@@ -32,9 +37,24 @@ const EditProfileComponent = () => {
         reader.readAsDataURL(file);
     };
 
+    const handleBannerFileInputChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const base64String = event.target.result.replace(/^data:image\/(png|jpg);base64,/, "");
+            setUser({...user, banner: base64String});
+            setBannerPreview(event.target.result);
+        };
+        reader.readAsDataURL(file);
+    };
+
     const handleAvatarClick = () => {
-        fileInputRef.current.click();
+        avatarFileInputRef.current.click();
     }
+
+    const handleBannerClick = () => {
+        bannerFileInputRef.current.click();
+    };
 
     const updateProfileClickHandler = () => {
         const newFirstname = document.getElementById('firstName').value;
@@ -43,6 +63,7 @@ const EditProfileComponent = () => {
         const newLocation = document.getElementById('location').value;
         const newBirthdate = DashToSlashConvert(document.getElementById('birthdate').value);
         const newAvatar = avatarPreview || user.avatar || "/img/default-avatar.png";
+        const newBanner = bannerPreview || user.banner || "/img/default-profile-banner";
 
         const currProfile = {
             ...currentUser,
@@ -52,6 +73,7 @@ const EditProfileComponent = () => {
             'location': newLocation,
             'birthdate': newBirthdate,
             'avatar': newAvatar,
+            'banner': newBanner,
         };
 
         dispatch(updateUserThunk(currProfile));
@@ -75,28 +97,47 @@ const EditProfileComponent = () => {
                     </Link>
                 </div>
             </div>
+            <div className="pos-relative">
 
-            <div className="pos-relative" style={{marginTop: "30px"}}>
+                <input
+                    id="banner"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleBannerFileInputChange}
+                    style={{display: "none"}}
+                    ref={bannerFileInputRef}
+                />
+                {!isLoading && (
+                    <img
+                        className="wd-banner"
+                        src={bannerPreview || user.banner || "/img/default-profile-banner.jpg"}
+                        alt=""
+                        onClick={handleBannerClick}
+                        style={{
+                            cursor: "pointer",
+                        }}
+                    />)}
                 <input
                     id="avatar"
                     type="file"
                     accept="image/*"
                     onChange={handleFileInputChange}
                     style={{display: "none"}}
-                    ref={fileInputRef}
+                    ref={avatarFileInputRef}
                 />
-                <img
-                    className="wd-avatar rounded-circle"
-                    src={ avatarPreview || user.avatar ||  "/img/default-avatar.png"}
-                    alt=""
-                    onClick={handleAvatarClick}
-                    style={{
-                        maxWidth: "200px",
-                        maxHeight: "200px",
-                        marginTop: "10px",
-                        cursor: "pointer",
-                    }}
-                />
+                {!isLoading && (
+                    <img
+                        className="wd-avatar rounded-circle"
+                        src={avatarPreview || user.avatar || "/img/default-avatar.png"}
+                        alt=""
+                        onClick={handleAvatarClick}
+                        style={{
+                            maxWidth: "200px",
+                            maxHeight: "200px",
+                            marginTop: "10px",
+                            cursor: "pointer",
+                        }}
+                    />)}
             </div>
 
             {user.firstName && (
