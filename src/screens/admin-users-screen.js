@@ -28,31 +28,34 @@ function AdminUsersScreen() {
 
     return (
         <>
-        {!currentUser || currentUser.role !== "admin" ? (
-            <h2 className='container bg-light p-4 mb-5'>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
-        ) : (
-        <div className='container'>
-            <button className='btn btn-light border'
-                onClick={() => navigate('/admin')}>
-                <i className="fas fa-arrow-left me-2"></i>Back
-            </button>
-            <ul className="list-group mt-3">
-                {users.map((user) => (
-                    <li className="list-group-item" key={user._id}>
-                        {user.firstName} {user.lastName}
-                        <button className="btn btn-danger float-end me-3" onClick={() => openDeleteModal(user)}>
-                            Delete
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <DeleteConfirmationModal
-                show={showDeleteModal}
-                // userToDelete={userToDelete}
-                onDelete={handleDeleteUserById}
-                onCancel={() => setShowDeleteModal(false)}
-            />
-        </div>)}
+            {!currentUser || currentUser.role !== "admin" ? (
+                <div className='container bg-light p-4 mb-5'>
+                    <h2>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
+                    <div style={{ height: '85px' }}>
+                    </div>
+                </div>) : (
+                <div className='container'>
+                    <button className='btn btn-light border'
+                        onClick={() => navigate('/admin')}>
+                        <i className="fas fa-arrow-left me-2"></i>Back
+                    </button>
+                    <ul className="list-group mt-3">
+                        {users.map((user) => (
+                            <li className="list-group-item" key={user._id}>
+                                {user.firstName} {user.lastName}
+                                <button className="btn btn-danger float-end me-3" onClick={() => openDeleteModal(user)}>
+                                    Delete
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                    <DeleteConfirmationModal
+                        show={showDeleteModal}
+                        // userToDelete={userToDelete}
+                        onDelete={handleDeleteUserById}
+                        onCancel={() => setShowDeleteModal(false)}
+                    />
+                </div>)}
         </>
     );
 }

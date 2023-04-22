@@ -16,8 +16,13 @@ function AdminScreen() {
 
     return (
         <>
-        {!currentUser || currentUser.role !== "admin" ? (
-            <h2 className='container bg-light p-4 mb-5'>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
+        {!currentUser || currentUser.role !== "admin" ? 
+        (
+            <div className='container bg-light p-4 mb-5'>
+                <h2>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
+                <div style={{ height: '85px' }}>
+                </div>
+            </div>
         ) : (
         <div className='container'>
             <div className='row'>
