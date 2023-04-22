@@ -18,7 +18,7 @@ const EventSummaryItem = ({ post }) => {
             <div className="fw-bold small">{post.time}</div>
             <div
                 className="text-muted"
-                style={{ maxHeight: showDetails ? "none" : "3em", overflow: "hidden" }}
+                style={{ maxHeight: showDetails ? "none" : "0.1em", overflow: "hidden" }}
             >
               {post.event}
             </div>
