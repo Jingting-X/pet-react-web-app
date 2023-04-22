@@ -35,7 +35,7 @@ const EventPost = () => {
                     onChange={(event) => setWhatsHappening(event.target.value)}>
           </textarea>
           <div>
-            <button className="rounded-pill btn btn-primary float-end mt-4 ps-3 pe-3 fw-bold"
+            <button className="rounded-pill btn btn-primary float-end mt-4 ps-3 pe-3 fw-bold buttons"
                     onClick={postClickHandler}>
               Post
             </button>
