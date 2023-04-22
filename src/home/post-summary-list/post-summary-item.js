@@ -43,12 +43,6 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                 className="row align-items-center"
                 style={{overflowX: "auto"}}
             >
-                {/*<h1*/}
-                {/*    className="mt-1"*/}
-                {/*    style={{fontWeight: "bold", fontSize: "20px"}}*/}
-                {/*>*/}
-                {/*    {post.post}*/}
-                {/*</h1>*/}
                 <div
                     className="d-flex float-end position-relative"
                     style={{width: "100%"}}
@@ -65,7 +59,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                     >
                         <div>
                             <div className="row">
-                                <div className="col-1">
+                                <div className="col-2">
                                     {user.avatar ? (
                                         <img
                                             className="rounded-pill"
@@ -84,20 +78,24 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                                              alt=""/>
                                     )}
                                 </div>
-                                <div className="col-12">
+                                <div className="col-10 ps-3">
                                     <div className="row">
-                                        <div className="col-10 d-flex">
+                                        <div className="col-12 d-flex">
                                             <div className="fw-bold pe-1">{user.userName}</div>
+                                            <i
+                                                className="bi bi-check-circle-fill table-primary pe-1"
+                                                style={{color: "#0096FF"}}
+                                            />
                                             <div className="text-secondary">
-                                                · {formatDate(post.time)}
+                                                {formatDate(post.time)}
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="mb-2">{post.post}</div>
+                                    <div className="d-flex align-items-center mt-5">
+                                        <HomePostStats key={post._id} post={post}/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>{post.post}</div>
-                            <div className="d-flex align-items-center mt-5">
-                                <HomePostStats key={post._id} post={post}/>
                             </div>
                         </div>
                     </div>

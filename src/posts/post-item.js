@@ -59,7 +59,7 @@ const PostItem = ({post = {}}) => {
                                 style={{color: "#0096FF"}}
                             />
                             <div className="text-secondary">
-                                {user.handle} · {formatDate(post.time)}
+                                {formatDate(post.time)}
                             </div>
                         </div>
                         <div className="col-2">
