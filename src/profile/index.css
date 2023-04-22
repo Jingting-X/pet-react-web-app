@@ -40,4 +40,6 @@
 
 .tab-group {
     width: fit-content;
+    background-color: lightpink !important;
+    border-color: lightpink !important;
 }
