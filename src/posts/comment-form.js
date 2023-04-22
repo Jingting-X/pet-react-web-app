@@ -17,11 +17,12 @@ const CommentForm = ({ postId, handleSubmit }) => {
         const comment = {
             userId: currentUser._id,
             userName: currentUser.userName,
+            text: text,
             time: new Date().toISOString()
         };
         await dispatch(addCommentThunk({ postId, comment }));
         setText("");
-        handleSubmit();
+        handleSubmit(comment);
     };
 
     return (
