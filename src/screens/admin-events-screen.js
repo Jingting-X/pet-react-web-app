@@ -5,7 +5,7 @@ import DeleteConfirmationModal from '../components/deleteConfirmationModal.js';
 import { useNavigate } from 'react-router-dom';
 function AdminEventsScreen() {
     const { events } = useSelector((state) => state.events);
-
+    const { currentUser, users } = useSelector(state => state.users);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findEventsThunk());
@@ -26,6 +26,10 @@ function AdminEventsScreen() {
     };
 
     return (
+        <>
+        {!currentUser || currentUser.role !== "admin" ? (
+            <h2 className='container bg-light p-4 mb-5'>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
+        ) : (
         <div className='container'>
             <button className='btn btn-light border'
                 onClick={() => navigate('/admin')}>
@@ -50,6 +54,8 @@ function AdminEventsScreen() {
                 onCancel={() => setShowDeleteModal(false)}
             />
         </div>
+        )}
+        </>
     );
 }
 

@@ -5,7 +5,7 @@ import DeleteConfirmationModal from '../components/deleteConfirmationModal';
 import { useNavigate } from 'react-router-dom';
 
 function AdminUsersScreen() {
-    const { users } = useSelector((state) => state.users);
+    const { currentUser, users } = useSelector(state => state.users);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
@@ -27,6 +27,10 @@ function AdminUsersScreen() {
     };
 
     return (
+        <>
+        {!currentUser || currentUser.role !== "admin" ? (
+            <h2 className='container bg-light p-4 mb-5'>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
+        ) : (
         <div className='container'>
             <button className='btn btn-light border'
                 onClick={() => navigate('/admin')}>
@@ -48,7 +52,8 @@ function AdminUsersScreen() {
                 onDelete={handleDeleteUserById}
                 onCancel={() => setShowDeleteModal(false)}
             />
-        </div>
+        </div>)}
+        </>
     );
 }
 

@@ -4,6 +4,7 @@ import { findPostsThunk, deletePostThunk } from '../services/post-thunk.js';
 import DeleteConfirmationModal from '../components/deleteConfirmationModal.js';
 import { useNavigate } from 'react-router-dom';
 function AdminPostsScreen() {
+    const { currentUser, users } = useSelector(state => state.users);
     const { posts } = useSelector((state) => state.posts);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -26,6 +27,10 @@ function AdminPostsScreen() {
     };
 
     return (
+        <>
+        {!currentUser || currentUser.role !== "admin" ? (
+            <h2 className='container bg-light p-4 mb-5'>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
+        ) : (
         <div className='container'>
             <button className='btn btn-light border'
                 onClick={() => navigate('/admin')}>
@@ -50,7 +55,8 @@ function AdminPostsScreen() {
                 onDelete={handleDeletePostById}
                 onCancel={() => setShowDeleteModal(false)}
             />
-        </div>
+        </div>)}
+        </>
     );
 }
 

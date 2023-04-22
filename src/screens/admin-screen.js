@@ -15,12 +15,16 @@ function AdminScreen() {
     }
 
     return (
+        <>
+        {!currentUser || currentUser.role !== "admin" ? (
+            <h2 className='container bg-light p-4 mb-5'>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
+        ) : (
         <div className='container'>
-             <div className='row'>
+            <div className='row'>
                 <div className="col-4 d-flex justify-content-start">
                     <button className="btn btn-light border" onClick={() => navigate('/home')}>
-                    <i className="fas fa-arrow-left me-2"></i>
-Back Home</button>
+                        <i className="fas fa-arrow-left me-2"></i>
+                        Back Home</button>
                 </div>
                 <div className='col-4'></div>
                 <div className="col-4 d-flex justify-content-end">
@@ -53,7 +57,8 @@ Back Home</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>)}
+        </>
     )
 }
 
