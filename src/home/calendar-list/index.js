@@ -29,11 +29,10 @@ const Calendar = () => {
                 className="list-group-item text-center bg-light"
                 onClick={toggleShowAllEvents}
                 style={{ cursor: "pointer" }}>
-              {numEventsDisplayed === 3 ? "Show more" : "Show less"}
+              {numEventsDisplayed === 3 ? "More event" : "Close"}
             </li>
         )}
       </ul>
   );
 };
-
 export default Calendar;

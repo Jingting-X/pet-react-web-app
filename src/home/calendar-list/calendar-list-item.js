@@ -2,11 +2,9 @@ import React, { useState } from "react";
 
 const EventSummaryItem = ({ post }) => {
   const [showDetails, setShowDetails] = useState(false);
-
   const toggleDetails = () => {
     setShowDetails((prevState) => !prevState);
   };
-
   return (
       <li className="list-group-item">
         <div className="row">
@@ -24,20 +22,17 @@ const EventSummaryItem = ({ post }) => {
             >
               {post.event}
             </div>
-
             <button
                 className="btn btn-link float-end"
                 onClick={toggleDetails}
                 style={{ display: showDetails || post.event.length <= 150}}
             >
-              {showDetails ? "Show less" : "Show more"}
+              {showDetails ? "show less" : "more details"}
             </button>
-
           </div>
         </div>
       </li>
   );
 };
-
 export default EventSummaryItem;
 
