@@ -1,7 +1,7 @@
-import {useNavigate, useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
-import {getDetail} from "./dogs-service";
-import {useSelector} from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { getDetail } from "./dogs-service";
+import { useSelector } from "react-redux";
 import * as service from "../services/likes-service";
 import * as dislikeService from "../services/dislikes-service";
 import Modal from "../components/modal.js";
@@ -15,11 +15,11 @@ function DogsDetailScreen() {
     };
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-    const {id} = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
-    const {currentUser} = useSelector((state => state.users))
+    const { currentUser } = useSelector((state => state.users))
     const loggedIn = currentUser != null;
-    const checkLiked = async() => {
+    const checkLiked = async () => {
         if (loggedIn) {
             const res = await service.findLikedOrNotByUser(currentUser._id, id);
             if (res.length > 0) {
@@ -32,7 +32,7 @@ function DogsDetailScreen() {
         }
     }
 
-    const checkDisliked = async() => {
+    const checkDisliked = async () => {
         if (loggedIn) {
             const res = await dislikeService.findDislikedOrNotByUser(currentUser._id, id);
             if (res.length > 0) {
@@ -53,7 +53,7 @@ function DogsDetailScreen() {
     }
 
     const likeDetail = async () => {
-        if (! loggedIn) {
+        if (!loggedIn) {
             setShowModal(true);
             setErrorMsg("You need to log in to like a detail page");
         } else {
@@ -63,7 +63,7 @@ function DogsDetailScreen() {
         }
     }
     const RevertLikeDetail = async () => {
-        if (! loggedIn) {
+        if (!loggedIn) {
             setShowModal(true);
             setErrorMsg("You need to log in to revert a like on a detail page");
         } else {
@@ -74,7 +74,7 @@ function DogsDetailScreen() {
     }
 
     const dislikeDetail = async () => {
-        if (! loggedIn) {
+        if (!loggedIn) {
             setShowModal(true);
             setErrorMsg("You need to log in to dislike a detail page");
         } else {
@@ -85,7 +85,7 @@ function DogsDetailScreen() {
     }
 
     const revertDislikeDetail = async () => {
-        if (! loggedIn) {
+        if (!loggedIn) {
             setShowModal(true);
             setErrorMsg("You need to log in to revert a dislike on a detail page");
         } else {
@@ -99,30 +99,80 @@ function DogsDetailScreen() {
         searchDogs(id);
         checkLiked();
         checkDisliked();
-        },[]
+    }, []
     );
 
 
-    console.log("liked is:", liked);
-    console.log("disliked is:", disliked);
+    // console.log("liked is:", liked);
+    // console.log("disliked is:", disliked);
+    // console.log("detail is:", detail);
+    function renderDetailValue(value) {
+        if (typeof value === 'string' || typeof value === 'number') {
+            return value;
+        }
+        if (Array.isArray(value)) {
+            return value.join(', ');
+        }
+        if (typeof value === 'object') {
+            return Object.entries(value)
+                .map(([key, val]) => `${key}: ${val}`)
+                .join(', ');
+        }
+        return JSON.stringify(value, null, 2);
+    }
 
     return (
-        <div>
-            <button className='btn border'
-                    onClick={() => navigate(-1)}>
+        <div className="container bg-light p-4 ps-5 border">
+            <button className='btn border mb-4'
+                onClick={() => navigate(-1)}>
                 <i className="fas fa-arrow-left me-2"></i>Back
             </button>
 
-            <p className="display-4">{detail.name}</p>
-            <div>
-            <img src={`https://cdn2.thedogapi.com/images/${id}.jpg`} width={400} height={300} alt={id}/>
-            </div>
-            <div>
-                {liked? <button className="btn btn-success mt-2 me-2 like-button" onClick={RevertLikeDetail}><i className="bi bi-heart-fill"/></button>: <button className="btn btn-success mt-2 me-2 like-button" onClick={likeDetail}><i className="bi bi-heart"/></button>}
+            <p className="display-4 mb-5">{detail.name}</p>
+            <div className="row">
+                <div className="col">
+                    <div>
+                        <img src={`https://cdn2.thedogapi.com/images/${id}.jpg`} width={400} height={300} alt={id} />
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="detail-container">
+                        <p>
+                            <strong>Name:</strong> {detail.name || 'unknown'}
+                        </p>
+                        <p>
+                            <strong>Country_code:</strong> {detail.country_code ? renderDetailValue(detail.country_code) : 'unknown'}
+                        </p>
+                        <p>
+                            <strong>Breed_for:</strong> {detail.breed_for ? renderDetailValue(detail.breed_for) : 'unknown'}
+                        </p>
+                        <p>
+                            <strong>Breed_group:</strong> {detail.breed_group ? renderDetailValue(detail.breed_group) : 'unknown'}
+                        </p>
+                        <p>
+                            <strong>Weight:</strong> {detail.weight ? renderDetailValue(detail.weight) : 'unknown'}
+                        </p>
+                        <p>
+                            <strong>Height:</strong> {detail.height ? renderDetailValue(detail.height) : 'unknown'}
+                        </p>
+                        <p>
+                            <strong>Lift_span:</strong> {detail.lift_span ? renderDetailValue(detail.lift_span) : 'unknown'}
+                        </p>
+                        <div className="row">
+                            <div className="col-3">
+                                {liked ? <button className="btn btn-success mt-2 like-button" onClick={RevertLikeDetail}><i className="bi bi-heart-fill" /></button> : <button className="btn btn-success mt-2 me-2 like-button" onClick={likeDetail}><i className="bi bi-heart" /></button>}
+                            </div>
+                            <div className="col">
+                                {disliked ? <button className="btn btn-danger mt-2 dislike-button" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill" /></button> : <button className="btn btn-danger mt-2 ms-2 dislike-button" onClick={dislikeDetail}><i className="bi bi-heartbreak" /></button>}
+                            </div>
+                            <Modal show={showModal} message={errorMsg} onClose={closeModal} />
+                        </div>
+                    </div>
+                </div>
 
-                {disliked? <button className="btn btn-danger mt-2 ms-2 dislike-button" onClick={revertDislikeDetail}><i className="bi bi-heartbreak-fill"/></button>: <button className="btn btn-danger mt-2 ms-2 dislike-button" onClick={dislikeDetail}><i className="bi bi-heartbreak"/></button>}
-                <Modal show={showModal} message={errorMsg} onClose={closeModal} />
             </div>
+
+
         </div>
     )
 }

@@ -19,7 +19,7 @@ const Welcome = () => {
                 <div className="list-group fw-bold mb-4 rounded-circle text-center"
                     style={{ fontSize: '20px', color: 'gray' }}>
                     <span>
-                        Welcome back!{'   '}{currentUser.firstName}
+                        Welcome back!{'   '}<span className="text-primary">{currentUser.firstName}</span>
                         <i className="fas fa-paw ms-2 wd-paw-icon"></i>
                     </span>
                 </div>

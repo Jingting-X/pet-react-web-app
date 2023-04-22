@@ -32,7 +32,7 @@ Back Home</button>
                     <div className="card">
                         <div className="card-body text-center">
                             <img src="img/user_management.jpeg" className="w-100 mb-4" />
-                            <a href="/admin/users" className="btn btn-primary buttons">User Management</a>
+                            <a href="/admin/users" className="btn btn-primary buttons text-dark">User Management</a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ Back Home</button>
                     <div className="card">
                         <div className="card-body text-center">
                             <img src="img/post_management.jpeg" className="w-100 mb-4" />
-                            <a href="/admin/posts" className="btn btn-primary buttons">Post Management</a>
+                            <a href="/admin/posts" className="btn btn-primary buttons text-dark">Post Management</a>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ Back Home</button>
                     <div className="card">
                         <div className="card-body text-center">
                             <img src="img/event_management.jpeg" className="w-100 mb-4" />
-                            <a href="/admin/events" className="btn btn-primary buttons">Event Management</a>
+                            <a href="/admin/events" className="btn btn-primary buttons text-dark">Event Management</a>
                         </div>
                     </div>
                 </div>

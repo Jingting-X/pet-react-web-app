@@ -52,7 +52,7 @@ const CreatePostComponent = () => {
         />
                 <div>
                     <button
-                        className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold post-button"
+                        className="text-dark rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold post-button"
                         onClick={postClickHandler}
                     >
                         Post

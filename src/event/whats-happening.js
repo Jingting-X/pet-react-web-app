@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {createEventThunk} from "../services/event-thunks.js";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createEventThunk } from "../services/event-thunks.js";
 
 const EventPost = () => {
   let [whatsHappening, setWhatsHappening] = useState('');
@@ -23,25 +23,27 @@ const EventPost = () => {
     dispatch(createEventThunk(newTuit));
   }
   return (
+    <div className="container">
       <div className="row">
         <div className="col-auto">
-          <img className="rounded-circle" src="../img/services.png" alt="" width={70} height={70}/>
+          <img className="rounded-circle" src="../img/services.png" alt="" width={70} height={70} />
         </div>
         <div className="col-10 mb-4">
           <textarea value={whatsHappening}
-                    placeholder="Post an new event here..."
-                    className="form-control"
-                    style={{width: "100%", height: "200px"}}
-                    onChange={(event) => setWhatsHappening(event.target.value)}>
+            placeholder="Post an new event here..."
+            className="form-control"
+            style={{ width: "100%", height: "200px" }}
+            onChange={(event) => setWhatsHappening(event.target.value)}>
           </textarea>
           <div>
-            <button className="rounded-pill btn btn-primary float-end mt-4 ps-3 pe-3 fw-bold buttons"
-                    onClick={postClickHandler}>
+            <button className="text-dark rounded-pill btn btn-primary float-end mt-4 ps-3 pe-3 fw-bold buttons"
+              onClick={postClickHandler}>
               Post
             </button>
           </div>
         </div>
       </div>
+    </div>
   );
 }
 export default EventPost;
