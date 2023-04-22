@@ -120,8 +120,17 @@ const OtherUserProfileComponent = () => {
                     </button>}
                 </div>
             </div>
-            <div className="pos-relative" style={{marginTop: "50px"}}>
-                {user.avatar ? (
+            <div className="pos-relative">
+                {isLoading || user.banner ? (
+                    <img className="wd-banner"
+                         src={`${user.banner}`}
+                         alt=""/>
+                ) : (
+                    <img className="wd-banner"
+                         src="/img/default-profile-banner.jpg"
+                         alt=""/>
+                )}
+                {isLoading || user.avatar ? (
                     <img className="wd-avatar rounded-circle"
                          src={`${user.avatar}`}
                          alt=""/>
@@ -132,8 +141,7 @@ const OtherUserProfileComponent = () => {
                 )}
             </div>
             <div className="mt-3">
-                <div className="fw-bolder">{user.firstName} {user.lastName}</div>
-                {/*<div className="text-secondary">{user.handle}</div>*/}
+                <div className="fw-bolder">{user.userName}</div>
             </div>
             <div className="pt-2">
                 {user.bio}
@@ -283,7 +291,8 @@ const OtherUserProfileComponent = () => {
                                 <ul className="list-group">
                                     {detailsLiked.map((detail) => (
                                         <li className="list-group-item bg-transparent border-0">
-                                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
+                                            <Link to={`/dogs/search/detail/${detail.detailId}`}>
+                                                <h3>{detail.detailId}</h3></Link>
                                         </li>
                                     ))}
                                 </ul>
@@ -298,7 +307,8 @@ const OtherUserProfileComponent = () => {
                                 <ul className="list-group">
                                     {detailsDisliked.map((detail) => (
                                         <li className="list-group-item bg-transparent border-0">
-                                            <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
+                                            <Link to={`/dogs/search/detail/${detail.detailId}`}>
+                                                <h3>{detail.detailId}</h3></Link>
 
                                         </li>
                                     ))}
@@ -311,7 +321,6 @@ const OtherUserProfileComponent = () => {
             </div>
 
         </div>
-
 
 
     );
