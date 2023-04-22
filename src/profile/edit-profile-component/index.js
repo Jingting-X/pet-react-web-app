@@ -1,24 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { updateUserThunk } from "../../services/users-thunks";
-import { getUserById } from "../../services/users-service";
+import React, {useEffect, useRef, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import {updateUserThunk} from "../../services/users-thunks";
+import {getUserById} from "../../services/users-service";
 
 const EditProfileComponent = () => {
-    const { currentUser } = useSelector(state => state.users);
+    const {currentUser} = useSelector(state => state.users);
     const [user, setUser] = useState({});
+    const [avatarPreview, setAvatarPreview] = useState(user.avatar);
+    const fileInputRef = useRef();
     const dispatch = useDispatch();
 
     const fetchUser = async () => {
         const fetchedUser = await getUserById(currentUser._id);
-        console.log("fetchedUser:", fetchedUser);
         setUser(fetchedUser);
-        console.log("user:", user);
     };
 
     useEffect(() => {
-        fetchUser()
+        setAvatarPreview(null);
+        fetchUser();
     }, [])
+
+    const handleFileInputChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const base64String = event.target.result.replace(/^data:image\/(png|jpg);base64,/, "");
+            setUser({...user, avatar: base64String});
+            setAvatarPreview(event.target.result);
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const handleAvatarClick = () => {
+        fileInputRef.current.click();
+    }
 
     const updateProfileClickHandler = () => {
         const newFirstname = document.getElementById('firstName').value;
@@ -26,6 +42,7 @@ const EditProfileComponent = () => {
         const newBio = document.getElementById('bio').value;
         const newLocation = document.getElementById('location').value;
         const newBirthdate = DashToSlashConvert(document.getElementById('birthdate').value);
+        const newAvatar = avatarPreview || user.avatar || "/img/default-avatar.png";
 
         const currProfile = {
             ...currentUser,
@@ -34,19 +51,18 @@ const EditProfileComponent = () => {
             'bio': newBio,
             'location': newLocation,
             'birthdate': newBirthdate,
+            'avatar': newAvatar,
         };
 
         dispatch(updateUserThunk(currProfile));
     }
 
-
-    console.log(user.firstName)
     return (
         <div className="container w-75 bg-white border p-2">
             <div className="row align-items-center pb-2">
                 <div className="col-1">
                     <Link to="/profile">
-                        <i className="bi bi-x-lg float-end" style={{ color: "grey" }}></i>
+                        <i className="bi bi-x-lg float-end" style={{color: "grey"}}></i>
                     </Link>
                 </div>
                 <div className="col-9">
@@ -59,33 +75,53 @@ const EditProfileComponent = () => {
                     </Link>
                 </div>
             </div>
-            {/*<div className="pos-relative">*/}
-            {/*    <img className="wd-polyglot" src={`/img/${profile.bannerPicture}`} alt=""/>*/}
-            {/*    <img className="wd-avatar rounded-circle" src={`/img/${profile.profilePicture}`} alt=""/>*/}
-            {/*</div>*/}
+
+            <div className="pos-relative" style={{marginTop: "30px"}}>
+                <input
+                    id="avatar"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileInputChange}
+                    style={{display: "none"}}
+                    ref={fileInputRef}
+                />
+                <img
+                    className="wd-avatar rounded-circle"
+                    src={ avatarPreview || user.avatar ||  "/img/default-avatar.png"}
+                    alt=""
+                    onClick={handleAvatarClick}
+                    style={{
+                        maxWidth: "200px",
+                        maxHeight: "200px",
+                        marginTop: "10px",
+                        cursor: "pointer",
+                    }}
+                />
+            </div>
+
             {user.firstName && (
                 <div className="border pt-2 mb-2 rounded-1">
                     <label className="text-secondary ps-2">First Name</label>
-                    <input id="firstName" className="form-control border-0" defaultValue={`${user.firstName}`} />
+                    <input id="firstName" className="form-control border-0" defaultValue={`${user.firstName}`}/>
                 </div>
             )}
             {user.lastName &&
                 <div className="border pt-2 mb-2 rounded-1">
                     <label className="text-secondary ps-2">Last Name</label>
                     <input id="lastName" className="form-control border-0"
-                        defaultValue={`${user.lastName}`} />
+                           defaultValue={`${user.lastName}`}/>
                 </div>}
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">Description</label>
                 <textarea id="bio" className="form-control border-0"
-                    defaultValue={user.bio !== null && user.bio !== undefined ? `${user.bio}` : ''}
-                    placeholder="Enter a description..." />
+                          defaultValue={user.bio !== null && user.bio !== undefined ? `${user.bio}` : ''}
+                          placeholder="Enter a description..."/>
             </div>
             <div className="border pt-2 mt-2 rounded-1">
                 <label className="text-secondary ps-2">Location</label>
                 <input id="location" className="form-control border-0"
-                    defaultValue={user.location !== null && user.location !== undefined ? `${user.location}` : ''}
-                    placeholder="Enter a location..." />
+                       defaultValue={user.location !== null && user.location !== undefined ? `${user.location}` : ''}
+                       placeholder="Enter a location..."/>
             </div>
             <div className="border pt-2 ps-2 mt-2 rounded-1">
                 <div className="mt-1">
@@ -94,7 +130,7 @@ const EditProfileComponent = () => {
                     </div>
                 </div>
                 <input id="birthdate" type="date" className="form-control border-0"
-                    defaultValue={user.birthdate !== null && user.birthdate !== undefined ? slashToDashConvert(user.birthdate) : ''} />
+                       defaultValue={user.birthdate !== null && user.birthdate !== undefined ? slashToDashConvert(user.birthdate) : ''}/>
             </div>
         </div>
     );

@@ -8,6 +8,7 @@ import * as followsService from "../services/follows-service";
 import * as likesService from "../services/likes-service";
 import * as dislikesService from "../services/dislikes-service";
 import PostList from "../posts/post-list";
+import "./index.css";
 
 const OtherUserProfileComponent = () => {
 
@@ -98,7 +99,7 @@ const OtherUserProfileComponent = () => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    console.log(user.birthdate);
+
     const dateOfBirth = BirthdateConvert(user.birthdate);
 
     return (
@@ -118,6 +119,17 @@ const OtherUserProfileComponent = () => {
                         <i className="fa-regular fa-star me-2"/>Follow
                     </button>}
                 </div>
+            </div>
+            <div className="pos-relative" style={{marginTop: "50px"}}>
+                {user.avatar ? (
+                    <img className="wd-avatar rounded-circle"
+                         src={`${user.avatar}`}
+                         alt=""/>
+                ) : (
+                    <img className="wd-avatar rounded-circle"
+                         src="/img/default-avatar.png"
+                         alt=""/>
+                )}
             </div>
             <div className="mt-3">
                 <div className="fw-bolder">{user.firstName} {user.lastName}</div>

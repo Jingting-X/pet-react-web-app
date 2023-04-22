@@ -45,8 +45,8 @@ const ProfileComponent = () => {
     }
 
     const fetchUser = async () => {
-            const fetchedUser = await getUserById(currentUser._id);
-            setUser(fetchedUser);
+        const fetchedUser = await getUserById(currentUser._id);
+        setUser(fetchedUser);
     };
 
     useEffect(() => {
@@ -62,19 +62,35 @@ const ProfileComponent = () => {
         <div className="container bg-light w-75 border p-5 pt-3">
             <div className="row pb-2">
                 <div className="col-2">
-                    <button className='btn btn-light border'
-                            onClick={() => navigate(`/home`)}>
+                    <button className='btn btn-light border' onClick={() => navigate(`/home`)}>
                         <i className="fas fa-arrow-left me-2"/>Back
                     </button>
                 </div>
             </div>
             <div className="pos-relative">
-                {/*<img className="wd-polyglot" src={`/img/${currentUser.bannerPicture}`} alt=""/>*/}
-                {/*<img className="wd-avatar rounded-circle" src={`/img/${currentUser.profilePicture}`} alt=""/>*/}
-                <Link to="/edit-profile">
-                    <button className="btn btn-dark rounded-pill float-end m-2">Edit Profile</button>
-                </Link>
+                <div className="row align-items-center pb-2">
+                    <div className="col-1"></div>
+                    <div className="col-9">
+                        <div className="fw-bolder"></div>
+                    </div>
+                    <div className="col-2 float-end">
+                        <Link to="/edit-profile">
+                            <button className="btn btn-dark rounded-pill float-end m-2">Edit Profile</button>
+                        </Link>
+                    </div>
+                </div>
+                {user.avatar ? (
+                    <img className="wd-avatar rounded-circle"
+                         src={`${user.avatar}`}
+                         alt=""/>
+                ) : (
+                    <img className="wd-avatar rounded-circle"
+                         src="/img/default-avatar.png"
+                         alt=""/>
+                )}
+
             </div>
+
             <div className="mt-3">
                 <div className="fw-bolder">{user.firstName} {user.lastName}</div>
                 {/*<div className="text-secondary">{currentUser.handle}</div>*/}
@@ -174,81 +190,83 @@ const ProfileComponent = () => {
             </div>
 
             <div className="col-md-9 pt-3">
-                    <div className="tab-content border">
-                        {activeTab === "posts" && (
-                            <div className="tab-pane show active">
-                                <PostList/>
-                            </div>
-                        )}
-                        {activeTab === "comments" && (
-                            <div className="tab-pane show active">
-                                <h1>Commented posts Tab Content</h1>
-                            </div>
-                        )}
-                        {activeTab === "following" && (
-                            <div className="tab-pane show active">
-                                {following && (<div>
-                                    <ul className="list-group bg-transparent">
-                                        {following.map((follow) => (
-                                            <li className="list-group-item bg-transparent border-0">
-                                                <Link to={`/profile/${follow.followed._id}`}>
-                                                    <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>)
-                                }
-                            </div>
-                        )}
-                        {activeTab === "followers" && (
-                            <div className="tab-pane show active">
-                                {follows && (<div>
-                                    <ul className="list-group">
-                                        {follows.map((follower) => (
-                                            <li className="list-group-item bg-transparent border-0">
-                                                <Link to={`/profile/${follower.follower._id}`}>
-                                                    <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>)
-                                }
-                            </div>
-                        )}
-                        {activeTab === "likedDetails" && (
-                            <div className="tab-pane show active">
-                                {detailsLiked && (<div>
-                                    <ul className="list-group">
-                                        {detailsLiked.map((detail) => (
-                                            <li className="list-group-item bg-transparent border-0">
-                                                <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>)
-                                }
-                            </div>
-                        )}
+                <div className="tab-content border">
+                    {activeTab === "posts" && (
+                        <div className="tab-pane show active">
+                            <PostList/>
+                        </div>
+                    )}
+                    {activeTab === "comments" && (
+                        <div className="tab-pane show active">
+                            <h1>Commented posts Tab Content</h1>
+                        </div>
+                    )}
+                    {activeTab === "following" && (
+                        <div className="tab-pane show active">
+                            {following && (<div>
+                                <ul className="list-group bg-transparent">
+                                    {following.map((follow) => (
+                                        <li className="list-group-item bg-transparent border-0">
+                                            <Link to={`/profile/${follow.followed._id}`}>
+                                                <h3>{follow.followed.firstName} {follow.followed.lastName}</h3>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
+                        </div>
+                    )}
+                    {activeTab === "followers" && (
+                        <div className="tab-pane show active">
+                            {follows && (<div>
+                                <ul className="list-group">
+                                    {follows.map((follower) => (
+                                        <li className="list-group-item bg-transparent border-0">
+                                            <Link to={`/profile/${follower.follower._id}`}>
+                                                <h3>{follower.follower.firstName} {follower.follower.lastName}</h3>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
+                        </div>
+                    )}
+                    {activeTab === "likedDetails" && (
+                        <div className="tab-pane show active">
+                            {detailsLiked && (<div>
+                                <ul className="list-group">
+                                    {detailsLiked.map((detail) => (
+                                        <li className="list-group-item bg-transparent border-0">
+                                            <Link to={`/dogs/search/detail/${detail.detailId}`}>
+                                                <h3>{detail.detailId}</h3></Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
+                        </div>
+                    )}
 
-                        {activeTab === "dislikedDetails" && (
-                            <div className="tab-pane show active">
-                                {detailsDisliked && (<div>
-                                    <ul className="list-group">
-                                        {detailsDisliked.map((detail) => (
-                                            <li className="list-group-item bg-transparent border-0">
-                                                <Link to={`/dogs/search/detail/${detail.detailId}`}><h3>{detail.detailId}</h3> </Link>
+                    {activeTab === "dislikedDetails" && (
+                        <div className="tab-pane show active">
+                            {detailsDisliked && (<div>
+                                <ul className="list-group">
+                                    {detailsDisliked.map((detail) => (
+                                        <li className="list-group-item bg-transparent border-0">
+                                            <Link to={`/dogs/search/detail/${detail.detailId}`}>
+                                                <h3>{detail.detailId}</h3></Link>
 
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>)
-                                }
-                            </div>
-                        )}
-                    </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>)
+                            }
+                        </div>
+                    )}
                 </div>
+            </div>
         </div>
     );
 };

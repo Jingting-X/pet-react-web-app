@@ -48,17 +48,32 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                     className="d-flex float-end position-relative"
                     style={{width: "100%"}}
                 >
-                    <img
-                        src={post.img}
-                        className="position-relative mb-3"
-                        style={{width: "35%"}}
-                    />
+                    {/*<img*/}
+                    {/*    src={post.img}*/}
+                    {/*    className="position-relative mb-3"*/}
+                    {/*    style={{width: "35%"}}*/}
+                    {/*/>*/}
                     <div
                         className="p-3"
                         style={{wordWrap: "break-word", wordBreak: "break-all"}}
                     >
                         <div>
                             <div>
+                                {user.avatar ? (
+                                    <img
+                                        className="rounded-pill"
+                                        width="48px"
+                                        height="48px"
+                                        alt=""
+                                        src={`${user.avatar}`}
+                                    />
+                                ) : (
+                                    <img className="rounded-pill"
+                                         width="48px"
+                                         height="48px"
+                                         src="/img/default-avatar.png"
+                                         alt=""/>
+                                )}
                                 <a
                                     href={`/profile/${user._id}`}
                                     onClick={(event) => handleUserClick(event, user._id)}
@@ -70,11 +85,6 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                             <div className="d-flex align-items-center mt-5">
                                 <HomePostStats key={post._id} post={post} />
                             </div>
-                            {/*<span className="d-flex mt-5 ps-4">*/}
-                            {/*        <HomePostStats key={post._id} post={post}/>*/}
-                            {/*    /!*<i className="fa-regular fa-comment fa-lg me-5"></i>*!/*/}
-                            {/*    /!*<i className="fa-regular fa-heart fa-lg me-5"></i>*!/*/}
-                            {/* </span>*/}
                         </div>
                     </div>
                 </div>
