@@ -49,7 +49,7 @@ const NavigationSidebar = () => {
 
           <Link to="/profile" className={`list-group-item ${active === 'profile' ? 'active' : ''}`}>
             <i className="fa-solid fa-bars fa-lg me-2"></i>
-            <span className="ms-1 d-none d-xl-inline">Profile</span>
+            <span className="ms-1 d-none d-xl-inline">Personal Center</span>
           </Link>
         </>
       )}

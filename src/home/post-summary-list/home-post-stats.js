@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 
-const HomePostStats = ({ post = {} }) => {
+const HomePostStats = ({post = {}}) => {
     const dispatch = useDispatch();
     const {currentUser} = useSelector(state => state.users);
     const [comments, setComments] = useState([]);
@@ -12,7 +12,7 @@ const HomePostStats = ({ post = {} }) => {
     const [showCommentForm, setShowCommentForm] = useState(false);
 
     useEffect(() => {
-        dispatch(getCommentsThunk({ pid: post._id })).then((data) => {
+        dispatch(getCommentsThunk({pid: post._id})).then((data) => {
             setComments(data.payload);
         });
     }, [dispatch, post._id]);
@@ -36,17 +36,18 @@ const HomePostStats = ({ post = {} }) => {
         }));
     };
     const formatDate = (date) => {
-        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+        const options = {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric'};
         return new Date(date).toLocaleDateString('en-US', options);
     };
 
     return (
-        <div className="row ">
-            <div className="col-6">
-                <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center">
+            <div className="col-12">
+                <div>
                     {showComments ? (
                         <>
-                            <i className="fa-regular fa-comment fa-lg me-2 text-secondary" onClick={() => setShowComments(false)}></i>
+                            <i className="fa-regular fa-comment fa-lg me-2 text-secondary"
+                               onClick={() => setShowComments(false)}></i>
                             <div className="mt-2">
                                 {comments.map((comment) => (
                                     <div key={comment._id} className="mb-2">
@@ -56,24 +57,27 @@ const HomePostStats = ({ post = {} }) => {
                                     </div>
                                 ))}
                             </div>
-                            <button
-                                className="btn btn-sm btn-outline-secondary mt-2"
-                                onClick={() => setShowCommentForm(!showCommentForm)}
-                            >
-                                Add Comment
-                            </button>
-                            {showCommentForm && <CommentForm postId={post._id} handleSubmit={handleSubmit} />}
+                            {showCommentForm && <CommentForm postId={post._id} handleSubmit={handleSubmit}/>}
+                            {!showCommentForm && (
+                                <button className="btn btn-sm btn-outline-secondary mt-2"
+                                        onClick={() => setShowCommentForm(true)}>
+                                    Add Comment
+                                </button>
+                            )}
                         </>
                     ) : (
                         <>
-                            <i className="fa-regular fa-comment fa-lg me-2 text-secondary" onClick={() => setShowComments(true)}></i>
-                            {comments.length > 0 && <span className="text-secondary">{comments.length}</span>}
+                            <i className="fa-regular fa-comment fa-lg me-2 text-secondary"
+                               onClick={() => setShowComments(true)}></i>
+                            {comments.length > 0 ? <span className="text-secondary">{comments.length}</span> :
+                                <span className="text-secondary">0</span>}
                         </>
                     )}
+
                 </div>
             </div>
 
-            <div className="col-6 text-secondary">
+            <div className="col-4 text-secondary">
                 <div className="d-flex align-items-center">
                     {post.liked ? (
                         <i
@@ -91,6 +95,5 @@ const HomePostStats = ({ post = {} }) => {
             </div>
         </div>
     );
-};
-
+}
 export default HomePostStats;

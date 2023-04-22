@@ -17,13 +17,18 @@ const PostItem = ({post = {}}) => {
         fetchUser();
     }, [post.userId]);
 
+    if (!post || Object.keys(post).length === 0) {
+        return <div>Loading...</div>;
+    }
+
     const deletePostHandler = (id) => {
         dispatch(deletePostThunk(id));
     };
 
-    if (!post || Object.keys(post).length === 0) {
-        return <div>Loading...</div>;
-    }
+    const formatDate = (date) => {
+        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+        return new Date(date).toLocaleDateString('en-US', options);
+    };
 
     return (
         <li className="list-group-item border-0 bg-transparent">
@@ -44,19 +49,17 @@ const PostItem = ({post = {}}) => {
                              src="/img/default-avatar.png"
                              alt=""/>
                     )}
-
-
                 </div>
                 <div className="col-10">
                     <div className="row">
                         <div className="col-10 d-flex">
-                            <div className="fw-bold pe-1">{user.firstName} {user.lastName}</div>
+                            <div className="fw-bold pe-1">{user.userName}</div>
                             <i
                                 className="bi bi-check-circle-fill table-primary pe-1"
                                 style={{color: "#0096FF"}}
                             />
                             <div className="text-secondary">
-                                {user.handle} · {post.time}
+                                {user.handle} · {formatDate(post.time)}
                             </div>
                         </div>
                         <div className="col-2">
@@ -69,6 +72,9 @@ const PostItem = ({post = {}}) => {
                         </div>
                     </div>
                     <div className="mb-2 text-secondary">{post.post}</div>
+                    <div>
+                        <img src = {post.image}  className="rounded border border-secondary"/>
+                    </div>
                     {/*{post.location && (*/}
                     {/*    <div className="mb-2 text-secondary">*/}
                     {/*        <i className="bi bi-geo-alt me-1"></i>*/}
