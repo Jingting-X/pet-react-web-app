@@ -55,7 +55,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                     {post.image && <img
                         src={post.image}
                         className="position-relative mb-3"
-                        style={{width: "35%"}}
+                        style={{width: "35%", maxHeight: "250px"}}
                     />}
 
                     <div
