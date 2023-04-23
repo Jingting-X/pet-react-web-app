@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "../../styles/app.css"
+import "../../styles/app.css";
+import "../../index.css";
 import { useNavigate } from "react-router";
 const Welcome = () => {
     const { currentUser } = useSelector((state) => state.users);
@@ -11,7 +12,7 @@ const Welcome = () => {
     
     return (
         <> {!currentUser && 
-        <div className="btn btn-primary"
+        <div className="btn btn-primary buttons"
         onClick={NavToSigninScreen}
         >Please sign in or sign up
         </div>}
