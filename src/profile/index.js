@@ -21,7 +21,13 @@ const ProfileComponent = () => {
     const [activeTab, setActiveTab] = useState("posts");
     const [isLoading, setIsLoading] = useState(true);
 
-    const dateOfBirth = BirthdateConvert(user.birthdate);
+    const dateOfBirth = user.birthdate ? BirthdateConvert(user.birthdate) : "";
+
+    const fetchUser = async () => {
+        const fetchedUser = await getUserById(currentUser._id);
+        setUser(fetchedUser);
+        setIsLoading(false);
+    };
 
     const handleTabChange = (tabName) => {
         setActiveTab(tabName);
@@ -46,12 +52,6 @@ const ProfileComponent = () => {
         setDetailsDisliked(details);
     }
 
-    const fetchUser = async () => {
-        const fetchedUser = await getUserById(currentUser._id);
-        setUser(fetchedUser);
-        setIsLoading(false);
-    };
-
     useEffect(() => {
         fetchUser()
         fetchFollowing()
@@ -61,7 +61,6 @@ const ProfileComponent = () => {
     }, [])
 
     return (
-
         <div className="container bg-light w-75 border p-5 pt-3">
             <div className="row pb-2">
                 <div className="col-3">
@@ -72,16 +71,16 @@ const ProfileComponent = () => {
                 </div>
             </div>
             <div className="pos-relative">
-                {isLoading ||  user.banner ? (
+                {!isLoading && (user.banner ? (
                     <img className="wd-banner"
                          src={`${user.banner}`}
                          alt=""/>
                 ) : (
                     <img className="wd-banner"
-                         src="/img/default-profile-banner.jpg"
+                         src="/img/default-banner.png"
                          alt=""/>
-                )}
-                {isLoading ||  user.avatar ? (
+                ))}
+                {!isLoading && (user.avatar ? (
                     <img className="wd-avatar rounded-circle"
                          src={`${user.avatar}`}
                          alt=""/>
@@ -89,7 +88,7 @@ const ProfileComponent = () => {
                     <img className="wd-avatar rounded-circle"
                          src="/img/default-avatar.png"
                          alt=""/>
-                )}
+                ))}
                 <Link to="/edit-profile">
                     <button className="btn btn-light float-end fw-bolder m-2 border rounded-pill">Edit Profile</button>
                 </Link>
@@ -135,16 +134,16 @@ const ProfileComponent = () => {
                         </ul>
                     </div>
 
-                    <div className="col-auto">
-                        <ul className="list-group">
-                            <li
-                                className={`list-group-item tab-group ${activeTab === "comments" && "active"}`}
-                                onClick={() => handleTabChange("comments")}
-                            >
-                                Comments
-                            </li>
-                        </ul>
-                    </div>
+                    {/*<div className="col-auto">*/}
+                    {/*    <ul className="list-group">*/}
+                    {/*        <li*/}
+                    {/*            className={`list-group-item tab-group ${activeTab === "comments" && "active"}`}*/}
+                    {/*            onClick={() => handleTabChange("comments")}*/}
+                    {/*        >*/}
+                    {/*            Comments*/}
+                    {/*        </li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
 
                     <div className="col-auto">
                         <ul className="list-group">
@@ -277,16 +276,12 @@ const ProfileComponent = () => {
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export const BirthdateConvert = (date) => {
-    if (date == null) return;
+    if (!date || date === "undefined/undefined/") {
+        return "";
+    }
     const birthDate = date.split("/");
     const month = birthDate[0] - 1;
     return months[month] + " " + birthDate[1] + ", " + birthDate[2];
-}
-export const JoinDateConvert = (date) => {
-    if (date == null) return;
-    const joinDate = date.split("/");
-    const joinMonth = joinDate[0] - 1;
-    return months[joinMonth] + ", " + joinDate[1];
 }
 
 export default ProfileComponent;

@@ -63,7 +63,7 @@ const EditProfileComponent = () => {
         const newLocation = document.getElementById('location').value;
         const newBirthdate = DashToSlashConvert(document.getElementById('birthdate').value);
         const newAvatar = avatarPreview || user.avatar || "/img/default-avatar.png";
-        const newBanner = bannerPreview || user.banner || "/img/default-profile-banner";
+        const newBanner = bannerPreview || user.banner || "/img/default-banner.png";
 
         const currProfile = {
             ...currentUser,
@@ -110,7 +110,7 @@ const EditProfileComponent = () => {
                 {!isLoading && (
                     <img
                         className="wd-banner"
-                        src={bannerPreview || user.banner || "/img/default-profile-banner.jpg"}
+                        src={bannerPreview || user.banner || "/img/default-banner.png"}
                         alt=""
                         onClick={handleBannerClick}
                         style={{

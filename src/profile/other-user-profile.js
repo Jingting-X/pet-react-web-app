@@ -127,7 +127,7 @@ const OtherUserProfileComponent = () => {
                          alt=""/>
                 ) : (
                     <img className="wd-banner"
-                         src="/img/default-profile-banner.jpg"
+                         src="/img/default-banner.png"
                          alt=""/>
                 )}
                 {isLoading || user.avatar ? (
@@ -183,16 +183,16 @@ const OtherUserProfileComponent = () => {
                         </ul>
                     </div>
 
-                    <div className="col-auto">
-                        <ul className="list-group">
-                            <li
-                                className={`list-group-item tab-group ${activeTab === "likes" && "active"}`}
-                                onClick={() => handleTabChange("likes")}
-                            >
-                                Likes
-                            </li>
-                        </ul>
-                    </div>
+                    {/*<div className="col-auto">*/}
+                    {/*    <ul className="list-group">*/}
+                    {/*        <li*/}
+                    {/*            className={`list-group-item tab-group ${activeTab === "likes" && "active"}`}*/}
+                    {/*            onClick={() => handleTabChange("likes")}*/}
+                    {/*        >*/}
+                    {/*            Likes*/}
+                    {/*        </li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
 
                     <div className="col-auto">
                         <ul className="list-group">
