@@ -112,7 +112,7 @@ const OtherUserProfileComponent = () => {
                         <i className="fas fa-arrow-left me-2"/>Back Home
                     </button>
                 </div>
-                <div className="col-10">
+                <div className="col-9">
                     {followed ? <button className='btn border float-end' onClick={unfollowUser}>
                         <i className="fas fa-star me-2"/>Unfollow
                     </button> : <button className='btn border float-end' onClick={followUser}>
