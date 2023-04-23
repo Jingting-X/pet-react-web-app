@@ -21,13 +21,11 @@ const PostSummaryList = () => {
             ) : (
                 posts.length > 0 ? (
                     posts.map((post) => (
-                        (currentUser === null || post.userId !== currentUser._id) ? (
-                            <PostSummaryItem
-                                key={post._id}
-                                post={post}
-                                userId={post.userId}
-                            />
-                        ) : null
+                        <PostSummaryItem
+                            key={post._id}
+                            post={post}
+                            userId={post.userId}
+                        />
                     ))
                 ) : (
                     <div>No posts found.</div>

@@ -10,6 +10,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const {currentUser} = useSelector(state => state.users);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -23,11 +24,15 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
         });
     }, [dispatch, post, userId]);
 
-
     const handleUserClick = (event, userId) => {
         event.preventDefault();
-        navigate(`/profile/${userId}`);
+        if (userId === currentUser._id) {
+            navigate(`/profile`);
+        } else {
+            navigate(`/profile/${userId}`);
+        }
     };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
