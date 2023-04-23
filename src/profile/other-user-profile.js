@@ -183,17 +183,6 @@ const OtherUserProfileComponent = () => {
                         </ul>
                     </div>
 
-                    {/*<div className="col-auto">*/}
-                    {/*    <ul className="list-group">*/}
-                    {/*        <li*/}
-                    {/*            className={`list-group-item tab-group ${activeTab === "likes" && "active"}`}*/}
-                    {/*            onClick={() => handleTabChange("likes")}*/}
-                    {/*        >*/}
-                    {/*            Likes*/}
-                    {/*        </li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
-
                     <div className="col-auto">
                         <ul className="list-group">
                             <li
@@ -254,7 +243,6 @@ const OtherUserProfileComponent = () => {
                     )}
                     {activeTab === "following" && (
                         <div className="tab-pane show active">
-                            {/*<h1>Following Tab Content</h1>*/}
                             {following && (<div>
                                 <ul className="list-group">
                                     {following.map((follow) => (

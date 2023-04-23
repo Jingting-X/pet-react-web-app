@@ -134,17 +134,6 @@ const ProfileComponent = () => {
                         </ul>
                     </div>
 
-                    {/*<div className="col-auto">*/}
-                    {/*    <ul className="list-group">*/}
-                    {/*        <li*/}
-                    {/*            className={`list-group-item tab-group ${activeTab === "comments" && "active"}`}*/}
-                    {/*            onClick={() => handleTabChange("comments")}*/}
-                    {/*        >*/}
-                    {/*            Comments*/}
-                    {/*        </li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
-
                     <div className="col-auto">
                         <ul className="list-group">
                             <li
