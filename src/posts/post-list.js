@@ -13,8 +13,6 @@ const PostList = () => {
     const fetchUser = async () => {
         if (id != null) {
             const fetchedUser = await getUserById(id);
-            console.log(id);
-            console.log(user);
             setUser(fetchedUser);
         } else {
             setUser(currentUser);

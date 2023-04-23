@@ -53,7 +53,7 @@ const PostItem = ({post = {}}) => {
                 <div className="col-10">
                     <div className="row">
                         <div className="col-10 d-flex">
-                            <div className="fw-bold pe-1">{user.userName}</div>
+                            <div className="fw-bold pe-1">{user.firstName} {user.lastName}</div>
                             <i
                                 className="bi bi-check-circle-fill table-primary pe-1"
                                 style={{color: "#0096FF"}}

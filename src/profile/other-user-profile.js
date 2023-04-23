@@ -141,7 +141,7 @@ const OtherUserProfileComponent = () => {
                 )}
             </div>
             <div className="mt-3">
-                <div className="fw-bolder">{user.userName}</div>
+                <div className="fw-bolder">{user.firstName} {user.lastName}</div>
             </div>
             <div className="pt-2">
                 {user.bio}

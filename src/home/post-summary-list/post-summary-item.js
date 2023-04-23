@@ -81,7 +81,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                                 <div className="col-10 ps-3">
                                     <div className="row">
                                         <div className="col-12 d-flex">
-                                            <div className="fw-bold pe-1">{user.userName}</div>
+                                            <div className="fw-bold pe-1">{user.firstName} {user.lastName}</div>
                                             <i
                                                 className="bi bi-check-circle-fill table-primary pe-1"
                                                 style={{color: "#0096FF"}}
