@@ -64,9 +64,10 @@ const ProfileComponent = () => {
 
         <div className="container bg-light w-75 border p-5 pt-3">
             <div className="row pb-2">
-                <div className="col-2">
-                    <button className='btn btn-light border' onClick={() => navigate(`/home`)}>
-                        <i className="fas fa-arrow-left me-2"/>Back Home
+                <div className="col-3">
+                    <button className='btn btn-light border'
+                            onClick={() => navigate(`/home`)}>
+                        <i className="fas fa-arrow-left me-2"></i>Back Home
                     </button>
                 </div>
             </div>
