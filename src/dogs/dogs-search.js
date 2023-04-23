@@ -41,7 +41,7 @@ function DogsSearch() {
             <div className="container w-75 bg-white p-5 pt-3 border">
                 <button className='btn btn-light border'
                     onClick={() => navigate(`/home`)}>
-                    <i className="fas fa-arrow-left me-2"></i>Back
+                    <i className="fas fa-arrow-left me-2"></i>Back Home
                 </button>
                 <h1 className="display-5 mt-4 search-text" >Search in Dogs API</h1>
                 <button className="text-dark float-end btn btn-primary search-button" onClick={searchDogs}>

@@ -109,7 +109,7 @@ const OtherUserProfileComponent = () => {
                 <div className="col-2">
                     <button className='btn btn-light border'
                             onClick={() => navigate(`/home`)}>
-                        <i className="fas fa-arrow-left me-2"/>Back
+                        <i className="fas fa-arrow-left me-2"/>Back Home
                     </button>
                 </div>
                 <div className="col-10">
