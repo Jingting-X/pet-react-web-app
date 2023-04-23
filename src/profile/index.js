@@ -95,7 +95,7 @@ const ProfileComponent = () => {
             </div>
 
             <div>
-                <div className="fw-bolder">{user.userName}</div>
+                <div className="fw-bolder">{user.firstName} {user.lastName}</div>
             </div>
             <div className="pt-2">
                 {user.bio}
