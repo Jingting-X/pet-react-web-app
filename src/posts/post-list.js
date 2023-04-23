@@ -23,7 +23,7 @@ const PostList = () => {
         fetchUser();
     }, [currentUser, id]);
 
-    const filteredPosts = posts.filter((post) => post.userId === user._id);
+    const filteredPosts = posts.filter((post) => post.userId === user._id).reverse();
 
     return (
         <ul className="list-group bg-transparent">

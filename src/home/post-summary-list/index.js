@@ -14,22 +14,18 @@ const PostSummaryList = () => {
         dispatch(findPostsThunk());
     }, []);
 
+    const reversedPosts = posts.slice().reverse();
+
     return (
         <div className="list-group mt-3">
             {loading ? (
                 <div>Loading...</div>
+            ) : reversedPosts.length > 0 ? (
+                reversedPosts.map((post) => (
+                    <PostSummaryItem key={post._id} post={post} userId={post.userId}/>
+                ))
             ) : (
-                posts.length > 0 ? (
-                    posts.map((post) => (
-                        <PostSummaryItem
-                            key={post._id}
-                            post={post}
-                            userId={post.userId}
-                        />
-                    ))
-                ) : (
-                    <div>No posts found.</div>
-                )
+                <div>No posts found.</div>
             )}
         </div>
     );
