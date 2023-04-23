@@ -40,7 +40,7 @@ const NavigationSidebar = () => {
         <span className="ms-1 d-none d-xl-inline">Event</span>
       </Link>}
 
-      {currentUser && (currentUser.role === "Admin" || currentUser.role === "Personal User") && (
+      {currentUser && (currentUser.role === "admin" || currentUser.role === "Personal User") && (
         <>
           {/* <Link to="/post" className={`list-group-item ${active === "event" ? "active" : ""}`}>
             <i className="fa-solid fa-calendar-days fa-lg me-2"></i>
@@ -54,7 +54,7 @@ const NavigationSidebar = () => {
         </>
       )}
 
-      {currentUser && currentUser.role === "Admin" && (
+      {currentUser && currentUser.role === "admin" && (
         <Link to="/admin" className={`list-group-item ${active === 'admincenter' ? 'active' : ''}`}>
           <i className="fa-solid fa-user-shield fs-6 me-1"></i>
           <span className="ms-1 d-none d-xl-inline">Admin Center</span>

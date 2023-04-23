@@ -12,7 +12,7 @@ const Welcome = () => {
     
     return (
         <> {!currentUser && 
-        <div className="btn btn-primary buttons"
+        <div className="btn btn-primary buttons text-dark"
         onClick={NavToSigninScreen}
         >Please sign in or sign up
         </div>}

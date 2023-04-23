@@ -28,7 +28,7 @@ function AdminPostsScreen() {
 
     return (
         <>
-        {!currentUser || currentUser.role !== "Admin" ? (
+        {!currentUser || currentUser.role !== "admin" ? (
             <div className='container bg-light p-4 mb-5'>
                 <h2>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
                 <div style={{ height: '85px' }}>
@@ -43,12 +43,12 @@ function AdminPostsScreen() {
                 {posts.map((post) => (
                     <li className="list-group-item" key={post._id}>
                         <div>
-                            by <b>{post.userName}</b>
+                            by <b>{post.userId}</b>
                             <button className="btn btn-danger float-end me-3 h-75" onClick={() => openDeleteModal(post)}>
                                 Delete
                             </button>
                         </div>
-                        <div className='mt-2'>{post.post}</div>
+                        <div className='mt-2 text-primary'>{post.post}</div>
                     </li>
                 ))}
             </ul>

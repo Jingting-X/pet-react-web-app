@@ -28,7 +28,7 @@ function AdminUsersScreen() {
 
     return (
         <>
-            {!currentUser || currentUser.role !== "Admin" ? (
+            {!currentUser || currentUser.role !== "admin" ? (
                 <div className='container bg-light p-4 mb-5'>
                     <h2>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
                     <div style={{ height: '85px' }}>
