@@ -7,22 +7,18 @@ import {useDispatch, useSelector} from "react-redux";
 const HomePostStats = ({post = {}}) => {
     const dispatch = useDispatch();
     const {currentUser} = useSelector(state => state.users);
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState(post.comments || []);
     const [showComments, setShowComments] = useState(false);
     const [showCommentForm, setShowCommentForm] = useState(false);
 
-    useEffect(() => {
-        dispatch(getCommentsThunk({pid: post._id})).then((data) => {
-            setComments(data.payload);
-        });
-    }, [dispatch, post._id]);
 
-    const handleSubmit = (comment) => {
+    const handleSubmit = async (comment) => {
         if (!currentUser) {
             alert('Please sign in to add a comment.');
             return;
         }
-        dispatch(addCommentThunk(post._id, comment));
+        await dispatch(addCommentThunk(post._id, comment));
+        setComments([...comments, comment]);
     };
     const handleLike = () => {
         if (!currentUser) {
@@ -60,7 +56,13 @@ const HomePostStats = ({post = {}}) => {
                             {showCommentForm && <CommentForm postId={post._id} handleSubmit={handleSubmit}/>}
                             {!showCommentForm && (
                                 <button className="btn btn-sm btn-outline-secondary mt-2"
-                                        onClick={() => setShowCommentForm(true)}>
+                                        onClick={() => {
+                                            if (!currentUser) {
+                                                alert('Please sign in to add a comment.');
+                                                return;
+                                            }
+                                            setShowCommentForm(true)
+                                        }}>
                                     Add Comment
                                 </button>
                             )}

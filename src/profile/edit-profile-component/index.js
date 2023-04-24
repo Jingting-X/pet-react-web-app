@@ -56,7 +56,7 @@ const EditProfileComponent = () => {
         bannerFileInputRef.current.click();
     };
 
-    const updateProfileClickHandler = () => {
+    const updateProfileClickHandler = (event) => {
         const newFirstname = document.getElementById('firstName').value;
         const newLastname = document.getElementById('lastName').value;
         const newBio = document.getElementById('bio').value;
@@ -76,7 +76,12 @@ const EditProfileComponent = () => {
             'banner': newBanner,
         };
 
-        dispatch(updateUserThunk(currProfile));
+        if (!newFirstname || !newLastname) {
+            window.alert("Please enter both first name and last name.");
+            event.preventDefault();
+        } else {
+            dispatch(updateUserThunk(currProfile));
+        }
     }
 
     return (
@@ -143,14 +148,16 @@ const EditProfileComponent = () => {
             {user.firstName && (
                 <div className="border pt-2 mb-2 rounded-1">
                     <label className="text-secondary ps-2">First Name</label>
-                    <input id="firstName" className="form-control border-0" defaultValue={`${user.firstName}`}/>
+                    <input id="firstName" className="form-control border-0" defaultValue={`${user.firstName}`}
+                           placeholder="Enter your first name..."/>
                 </div>
             )}
             {user.lastName &&
                 <div className="border pt-2 mb-2 rounded-1">
                     <label className="text-secondary ps-2">Last Name</label>
                     <input id="lastName" className="form-control border-0"
-                           defaultValue={`${user.lastName}`}/>
+                           defaultValue={`${user.lastName}`}
+                           placeholder="Enter your last name..."/>
                 </div>}
             <div className="border pt-2 rounded-1">
                 <label className="text-secondary ps-2">Description</label>

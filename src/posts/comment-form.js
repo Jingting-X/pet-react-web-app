@@ -8,9 +8,9 @@ const CommentForm = ({ postId, handleSubmit }) => {
     const dispatch = useDispatch();
 
     const onSubmit = async (e) => {
+        e.preventDefault();
         if (!currentUser) {
             alert('Please sign in to add a comment.');
-            e.preventDefault();
             return;
         }
 

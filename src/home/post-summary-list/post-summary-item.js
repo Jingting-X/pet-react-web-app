@@ -2,8 +2,6 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserByIdThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router-dom";
-import {getUserById} from "../../services/users-service";
-import PostStats from "../../posts/post-stats";
 import HomePostStats from "./home-post-stats";
 
 const PostSummaryItem = ({post = {}, userId = {}}) => {
@@ -26,7 +24,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
 
     const handleUserClick = (event, userId) => {
         event.preventDefault();
-        if (userId === currentUser._id) {
+        if (currentUser && userId === currentUser._id) {
             navigate(`/profile`);
         } else {
             navigate(`/profile/${userId}`);

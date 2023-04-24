@@ -33,7 +33,7 @@ const PostItem = ({post = {}}) => {
     return (
         <li className="list-group-item border-0 bg-transparent">
             <div className="row">
-                <div className="col-1">
+                <div className="col-1 pe-5">
                     {user.avatar ? (
                         <img
                             className="rounded-pill"
@@ -50,7 +50,7 @@ const PostItem = ({post = {}}) => {
                              alt=""/>
                     )}
                 </div>
-                <div className="col-10">
+                <div className="col-10 ps-2">
                     <div className="row">
                         <div className="col-10 d-flex">
                             <div className="fw-bold pe-1">{user.firstName} {user.lastName}</div>
@@ -75,12 +75,6 @@ const PostItem = ({post = {}}) => {
                     <div>
                         <img src = {post.image}  className="rounded border border-secondary"/>
                     </div>
-                    {/*{post.location && (*/}
-                    {/*    <div className="mb-2 text-secondary">*/}
-                    {/*        <i className="bi bi-geo-alt me-1"></i>*/}
-                    {/*        {post.location}*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
                     <PostStats key={post._id} post={post}/>
                 </div>
             </div>
