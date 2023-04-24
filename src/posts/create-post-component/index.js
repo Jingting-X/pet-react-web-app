@@ -21,10 +21,11 @@ const CreatePostComponent = () => {
         const newPost = {
             post: whatsHappening,
             userId: currentUser._id,
+            userName: currentUser.userName,
             image: imagePreview,
             time: new Date().toISOString(),
         }
-
+        console.log(newPost);
         dispatch(createPostThunk(newPost));
         setWhatsHappening('');
         setImagePreview('');

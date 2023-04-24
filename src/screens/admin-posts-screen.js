@@ -43,7 +43,7 @@ function AdminPostsScreen() {
                 {posts.map((post) => (
                     <li className="list-group-item" key={post._id}>
                         <div>
-                            by <b>{post.userId}</b>
+                            by <b>{post.userName}</b>
                             <button className="btn btn-danger float-end me-3 h-75" onClick={() => openDeleteModal(post)}>
                                 Delete
                             </button>
