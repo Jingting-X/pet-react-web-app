@@ -24,6 +24,9 @@ function AdminEventsScreen() {
         dispatch(findEventsThunk());
         setShowDeleteModal(false);
     };
+    const showUserProfile = (userId) => {
+        navigate(`/profile/${userId}`);
+    };
 
     return (
         <>
@@ -46,6 +49,7 @@ function AdminEventsScreen() {
                                 Delete
                             </button></h4>
                         </div>
+                        by<span className='text-primary'> <strong onClick={() => showUserProfile(event.userId)}>{event.username}</strong></span>
                         <div>{event.event}</div>
                     </li>
                 ))}

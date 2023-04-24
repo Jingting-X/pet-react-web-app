@@ -25,6 +25,9 @@ function AdminPostsScreen() {
         dispatch(findPostsThunk());
         setShowDeleteModal(false);
     };
+    const showUserProfile = (userId) => {
+        navigate(`/profile/${userId}`);
+    };
 
     return (
         <>
@@ -43,7 +46,7 @@ function AdminPostsScreen() {
                 {posts.map((post) => (
                     <li className="list-group-item" key={post._id}>
                         <div>
-                            by <b>{post.userName}</b>
+                            by <a className="text-primary" onClick={() => showUserProfile(post.userId)}><b>{post.userName}</b></a>
                             <button className="btn btn-danger float-end me-3 h-75" onClick={() => openDeleteModal(post)}>
                                 Delete
                             </button>

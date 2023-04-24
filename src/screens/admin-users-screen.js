@@ -19,6 +19,9 @@ function AdminUsersScreen() {
         setUserToDelete(user);
         setShowDeleteModal(true);
     };
+    const showUserProfile = (user) => {
+        navigate(`/profile/${user._id}`);
+    };
 
     const handleDeleteUserById = async () => {
         await dispatch(deleteUserThunk(userToDelete._id));
@@ -42,7 +45,7 @@ function AdminUsersScreen() {
                     <ul className="list-group mt-3">
                         {users.map((user) => (
                             <li className="list-group-item" key={user._id}>
-                                {user.firstName} {user.lastName}
+                                <a className="text-primary" onClick={() => showUserProfile(user)}>{user.firstName} {user.lastName}</a>
                                 <button className="btn btn-danger float-end me-3" onClick={() => openDeleteModal(user)}>
                                     Delete
                                 </button>
