@@ -48,7 +48,7 @@ function AdminPostsScreen() {
                                 Delete
                             </button>
                         </div>
-                        <div className='mt-2 text-primary'>{post.post}</div>
+                        <div className='mt-2'>{post.post}</div>
                     </li>
                 ))}
             </ul>
