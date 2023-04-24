@@ -31,7 +31,7 @@ function AdminUsersScreen() {
 
     return (
         <>
-            {!currentUser || currentUser.role !== "admin" ? (
+            {!currentUser || currentUser.role !== "Admin" ? (
                 <div className='container bg-light p-4 mb-5'>
                     <h2>You are not allowed to browse this page, please <a href='/signin'>sign in</a>.</h2>
                     <div style={{ height: '85px' }}>
@@ -46,6 +46,7 @@ function AdminUsersScreen() {
                         {users.map((user) => (
                             <li className="list-group-item" key={user._id}>
                                 <a className="text-primary" onClick={() => showUserProfile(user)}>{user.firstName} {user.lastName}</a>
+                                <div className='text-secondary'> Role: {user.role}</div>
                                 <button className="btn btn-danger float-end me-3" onClick={() => openDeleteModal(user)}>
                                     Delete
                                 </button>
