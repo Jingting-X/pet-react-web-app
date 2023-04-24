@@ -38,7 +38,7 @@ const HomePostStats = ({post = {}}) => {
 
     return (
         <div className="d-flex align-items-center">
-            <div className="col-12">
+            <div className="col-4">
                 <div>
                     {showComments ? (
                         <>

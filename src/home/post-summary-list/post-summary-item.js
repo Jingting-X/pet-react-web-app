@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserByIdThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 import HomePostStats from "./home-post-stats";
+import {deletePostThunk} from "../../services/post-thunk";
 
 const PostSummaryItem = ({post = {}, userId = {}}) => {
     const dispatch = useDispatch();
@@ -31,6 +32,10 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
         }
     };
 
+    const deletePostHandler = (id) => {
+        dispatch(deletePostThunk(id));
+    };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -53,7 +58,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                     {post.image && <img
                         src={post.image}
                         className="position-relative mb-3"
-                        style={{width: "35%", maxHeight: "250px"}}
+                        style={{width: "35%", maxHeight: "220px"}}
                     />}
 
                     <div
@@ -62,7 +67,7 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                     >
                         <div>
                             <div className="row">
-                                <div className="col-2">
+                                <div className="col-1 pe-5">
                                     {user.avatar ? (
                                         <img
                                             className="rounded-pill"
@@ -81,9 +86,9 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                                              alt=""/>
                                     )}
                                 </div>
-                                <div className="col-10 ps-3">
+                                <div className="col-10 ps-2">
                                     <div className="row">
-                                        <div className="col-12 d-flex">
+                                        <div className="col-10 d-flex">
                                             <div className="fw-bold pe-1">{user.firstName} {user.lastName}</div>
                                             <i
                                                 className="bi bi-check-circle-fill table-primary pe-1"
@@ -93,13 +98,20 @@ const PostSummaryItem = ({post = {}, userId = {}}) => {
                                                 {formatDate(post.time)}
                                             </div>
                                         </div>
+                                        <div className="col-2">
+                                            {currentUser && (post.userId === currentUser._id) && (
+                                                <i
+                                                    className="bi bi-x-lg float-end"
+                                                    onClick={() => deletePostHandler(post._id)}
+                                                />
+                                            )}
+                                        </div>
                                     </div>
                                     <div className="mb-2">{post.post}</div>
-                                    <div className="d-flex align-items-center mt-5">
-                                        <HomePostStats key={post._id} post={post}/>
-                                    </div>
+                                    <HomePostStats key={post._id} post={post}/>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

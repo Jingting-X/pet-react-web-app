@@ -73,7 +73,7 @@ const PostItem = ({post = {}}) => {
                     </div>
                     <div className="mb-2 text-secondary">{post.post}</div>
                     <div>
-                        <img src = {post.image}  className="rounded border border-secondary"/>
+                        {post.image && (<img src = {post.image}  className="rounded border border-secondary"/>)}
                     </div>
                     <PostStats key={post._id} post={post}/>
                 </div>

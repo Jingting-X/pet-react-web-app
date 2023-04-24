@@ -86,10 +86,6 @@ const PostStats = ({ post = {} }) => {
                 )}
                 <span className="ps-2">{post.likes}</span>
             </div>
-
-            {/*<div className="col-4">*/}
-            {/*    <i className="bi bi-share text-secondary"></i>*/}
-            {/*</div>*/}
         </div>
     );
 };
